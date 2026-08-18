@@ -1,0 +1,592 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		188EEBB3A3A59A4403EEBB22 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F27D23EB7E5AC5FD9DC6D0A /* Constants.swift */; };
+		23CABFFBBF682F7EC7BF2D59 /* RaceSceneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35263B3A9772D144A8AAD84F /* RaceSceneView.swift */; };
+		2D9493FD86DC65A5A79CBC82 /* CombatComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F6DB6AC6136F4244D84037 /* CombatComponent.swift */; };
+		301AA909D928A77C09E5E15F /* EnemyRider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996DBCC4AB0E7F19D155D5F6 /* EnemyRider.swift */; };
+		311177062C34026E546B25FE /* RaceControlsOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB8C0994545FB15590529AC /* RaceControlsOverlay.swift */; };
+		3EFB31206308DAC3960CF30B /* RaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42D2A4A2B023C7CD95E24ED /* RaceController.swift */; };
+		489468662EB5F4750936C040 /* HUDView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D471C7A642F27CE2EFBC88 /* HUDView.swift */; };
+		53B8D27A21453F2732CFE0FD /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B938D385143363E01155FD9 /* MenuView.swift */; };
+		56B3713799FE083B85357B10 /* RoadSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2968A81A8367A717FD73DEC /* RoadSegment.swift */; };
+		5B8416EC68B99256E88BC858 /* HitReaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DCAE05B9737E1A2D0238074 /* HitReaction.swift */; };
+		5C6B68DF6CC573FAD566704B /* RoadBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5089D9F7ACC1588A143168F /* RoadBuilder.swift */; };
+		713C9CF9798BEE92616B14B0 /* FinishView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F63BD9118A2101EF4E18C1A5 /* FinishView.swift */; };
+		7E77DD3567692103DCF96BAB /* BikePhysicsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E547C27D7FE08A9AC97AC45D /* BikePhysicsTests.swift */; };
+		862728461D65B80C30E6C105 /* TrafficVehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AF734B734F904D6AE3544F /* TrafficVehicle.swift */; };
+		8DBF282A7DB7F0345F98849B /* BikeEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05C6A9CE9FC47ADCD209542 /* BikeEntity.swift */; };
+		97726D7F6C2260291F272E07 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C998CD54553AB5230B4AA16E /* Assets.xcassets */; };
+		9FA43A79DF335B586160D877 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F2FE67A01AEFE52FBDE208 /* GameState.swift */; };
+		A241CD01FE1C2A9990B0D248 /* RaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C09B3E282C56101BC549C5 /* RaceView.swift */; };
+		A85170B972075057C25FA7F5 /* GameLoop.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1692C3D05D91C1E0705F6D9 /* GameLoop.swift */; };
+		B18E592294DBF89818283A1A /* RoadRebelsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8596600C94C3D1B62D888A4D /* RoadRebelsApp.swift */; };
+		B50B53E930B6B637B1B87D92 /* BikePhysics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7479E881C993429E177DDE96 /* BikePhysics.swift */; };
+		BCD839F90FD536E37DF5E2B7 /* TrafficManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2AA40362A824C188EC9EEE /* TrafficManager.swift */; };
+		CCBE9863A8A2AD69B1344D18 /* BikeInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = E561C43ADF8850900BDDB09C /* BikeInput.swift */; };
+		F7C3EEA5E04ED0F98CF30257 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE285B2E6A966478EB1D281 /* RootView.swift */; };
+		F867DE3235115D66632D18E3 /* ChaseCameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A60AE4D0FDF0946AAF01B9 /* ChaseCameraController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		5BACE77F43E30E9E058D5587 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AC5D4D6B5FD016CF0D5CE467 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 27582C28D83D47E5152355B6;
+			remoteInfo = RoadRebels;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		12F2FE67A01AEFE52FBDE208 /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
+		1ECA971E121375FEFD29F247 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		22F6DB6AC6136F4244D84037 /* CombatComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombatComponent.swift; sourceTree = "<group>"; };
+		2DCAE05B9737E1A2D0238074 /* HitReaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitReaction.swift; sourceTree = "<group>"; };
+		35263B3A9772D144A8AAD84F /* RaceSceneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaceSceneView.swift; sourceTree = "<group>"; };
+		399F81DD3A82D49C928543C7 /* RoadRebelsTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = RoadRebelsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F27D23EB7E5AC5FD9DC6D0A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		7479E881C993429E177DDE96 /* BikePhysics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikePhysics.swift; sourceTree = "<group>"; };
+		76AF734B734F904D6AE3544F /* TrafficVehicle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrafficVehicle.swift; sourceTree = "<group>"; };
+		7FE285B2E6A966478EB1D281 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		83A60AE4D0FDF0946AAF01B9 /* ChaseCameraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChaseCameraController.swift; sourceTree = "<group>"; };
+		8596600C94C3D1B62D888A4D /* RoadRebelsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoadRebelsApp.swift; sourceTree = "<group>"; };
+		8B2AA40362A824C188EC9EEE /* TrafficManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrafficManager.swift; sourceTree = "<group>"; };
+		996DBCC4AB0E7F19D155D5F6 /* EnemyRider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyRider.swift; sourceTree = "<group>"; };
+		9B938D385143363E01155FD9 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
+		A0D471C7A642F27CE2EFBC88 /* HUDView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUDView.swift; sourceTree = "<group>"; };
+		A1C09B3E282C56101BC549C5 /* RaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaceView.swift; sourceTree = "<group>"; };
+		B05C6A9CE9FC47ADCD209542 /* BikeEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeEntity.swift; sourceTree = "<group>"; };
+		C2968A81A8367A717FD73DEC /* RoadSegment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoadSegment.swift; sourceTree = "<group>"; };
+		C998CD54553AB5230B4AA16E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CAB2EA57295C626BB5D21850 /* RoadRebels.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = RoadRebels.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CFB8C0994545FB15590529AC /* RaceControlsOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaceControlsOverlay.swift; sourceTree = "<group>"; };
+		D42D2A4A2B023C7CD95E24ED /* RaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaceController.swift; sourceTree = "<group>"; };
+		E1692C3D05D91C1E0705F6D9 /* GameLoop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameLoop.swift; sourceTree = "<group>"; };
+		E547C27D7FE08A9AC97AC45D /* BikePhysicsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikePhysicsTests.swift; sourceTree = "<group>"; };
+		E561C43ADF8850900BDDB09C /* BikeInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeInput.swift; sourceTree = "<group>"; };
+		F5089D9F7ACC1588A143168F /* RoadBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoadBuilder.swift; sourceTree = "<group>"; };
+		F63BD9118A2101EF4E18C1A5 /* FinishView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		08BCF81C787F3929029076EC /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				3F27D23EB7E5AC5FD9DC6D0A /* Constants.swift */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		3D979D28724A11469CCF0B6D = {
+			isa = PBXGroup;
+			children = (
+				899A997EA0DE589590987AD1 /* RoadRebels */,
+				B83EE88165135652E9A2859C /* RoadRebelsTests */,
+				D4A44979F155A0F5774F76B2 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3F5E16343DB7DE996F67D212 /* Race */ = {
+			isa = PBXGroup;
+			children = (
+				D42D2A4A2B023C7CD95E24ED /* RaceController.swift */,
+			);
+			path = Race;
+			sourceTree = "<group>";
+		};
+		488A54489F97C6B2F75843E1 /* GameCore */ = {
+			isa = PBXGroup;
+			children = (
+				E1692C3D05D91C1E0705F6D9 /* GameLoop.swift */,
+				12F2FE67A01AEFE52FBDE208 /* GameState.swift */,
+			);
+			path = GameCore;
+			sourceTree = "<group>";
+		};
+		7BBF7C54028D44E89A9E3070 /* Bike */ = {
+			isa = PBXGroup;
+			children = (
+				B05C6A9CE9FC47ADCD209542 /* BikeEntity.swift */,
+				E561C43ADF8850900BDDB09C /* BikeInput.swift */,
+				7479E881C993429E177DDE96 /* BikePhysics.swift */,
+			);
+			path = Bike;
+			sourceTree = "<group>";
+		};
+		8276F36373D7ED0012CAA376 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				F63BD9118A2101EF4E18C1A5 /* FinishView.swift */,
+				A0D471C7A642F27CE2EFBC88 /* HUDView.swift */,
+				9B938D385143363E01155FD9 /* MenuView.swift */,
+				CFB8C0994545FB15590529AC /* RaceControlsOverlay.swift */,
+				35263B3A9772D144A8AAD84F /* RaceSceneView.swift */,
+				A1C09B3E282C56101BC549C5 /* RaceView.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		82AB9DF0B56AC5FFB144E7EA /* Road */ = {
+			isa = PBXGroup;
+			children = (
+				F5089D9F7ACC1588A143168F /* RoadBuilder.swift */,
+				C2968A81A8367A717FD73DEC /* RoadSegment.swift */,
+			);
+			path = Road;
+			sourceTree = "<group>";
+		};
+		899A997EA0DE589590987AD1 /* RoadRebels */ = {
+			isa = PBXGroup;
+			children = (
+				C998CD54553AB5230B4AA16E /* Assets.xcassets */,
+				1ECA971E121375FEFD29F247 /* Info.plist */,
+				BA6CA0EEB6B35882C86C79D9 /* App */,
+				7BBF7C54028D44E89A9E3070 /* Bike */,
+				A435743ADB1AF06CC8CC29E6 /* Camera */,
+				F3C60236AA4E15EFBEAFB4D0 /* Combat */,
+				EAE9A8F981BEF72AE0F3341B /* Enemy */,
+				488A54489F97C6B2F75843E1 /* GameCore */,
+				3F5E16343DB7DE996F67D212 /* Race */,
+				82AB9DF0B56AC5FFB144E7EA /* Road */,
+				08BCF81C787F3929029076EC /* Support */,
+				8DF35AC8A241236A6B30D333 /* Traffic */,
+				8276F36373D7ED0012CAA376 /* UI */,
+			);
+			path = RoadRebels;
+			sourceTree = "<group>";
+		};
+		8DF35AC8A241236A6B30D333 /* Traffic */ = {
+			isa = PBXGroup;
+			children = (
+				8B2AA40362A824C188EC9EEE /* TrafficManager.swift */,
+				76AF734B734F904D6AE3544F /* TrafficVehicle.swift */,
+			);
+			path = Traffic;
+			sourceTree = "<group>";
+		};
+		A435743ADB1AF06CC8CC29E6 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				83A60AE4D0FDF0946AAF01B9 /* ChaseCameraController.swift */,
+			);
+			path = Camera;
+			sourceTree = "<group>";
+		};
+		B83EE88165135652E9A2859C /* RoadRebelsTests */ = {
+			isa = PBXGroup;
+			children = (
+				E547C27D7FE08A9AC97AC45D /* BikePhysicsTests.swift */,
+			);
+			path = RoadRebelsTests;
+			sourceTree = "<group>";
+		};
+		BA6CA0EEB6B35882C86C79D9 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				8596600C94C3D1B62D888A4D /* RoadRebelsApp.swift */,
+				7FE285B2E6A966478EB1D281 /* RootView.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		D4A44979F155A0F5774F76B2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CAB2EA57295C626BB5D21850 /* RoadRebels.app */,
+				399F81DD3A82D49C928543C7 /* RoadRebelsTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EAE9A8F981BEF72AE0F3341B /* Enemy */ = {
+			isa = PBXGroup;
+			children = (
+				996DBCC4AB0E7F19D155D5F6 /* EnemyRider.swift */,
+			);
+			path = Enemy;
+			sourceTree = "<group>";
+		};
+		F3C60236AA4E15EFBEAFB4D0 /* Combat */ = {
+			isa = PBXGroup;
+			children = (
+				22F6DB6AC6136F4244D84037 /* CombatComponent.swift */,
+				2DCAE05B9737E1A2D0238074 /* HitReaction.swift */,
+			);
+			path = Combat;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		27582C28D83D47E5152355B6 /* RoadRebels */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6C8019D47CD6F6FC6A5CD1C5 /* Build configuration list for PBXNativeTarget "RoadRebels" */;
+			buildPhases = (
+				251D98B3B9E97FC6A6E8EED4 /* Sources */,
+				712AB9E51E48B40C8C81D427 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RoadRebels;
+			packageProductDependencies = (
+			);
+			productName = RoadRebels;
+			productReference = CAB2EA57295C626BB5D21850 /* RoadRebels.app */;
+			productType = "com.apple.product-type.application";
+		};
+		2EB1E94BB2941321324A9EB4 /* RoadRebelsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 70F754F0B3B739DA7B97340E /* Build configuration list for PBXNativeTarget "RoadRebelsTests" */;
+			buildPhases = (
+				789093AD244F983910AEB1BB /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				55FBA834E5DF6F1E2DE83D9F /* PBXTargetDependency */,
+			);
+			name = RoadRebelsTests;
+			packageProductDependencies = (
+			);
+			productName = RoadRebelsTests;
+			productReference = 399F81DD3A82D49C928543C7 /* RoadRebelsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AC5D4D6B5FD016CF0D5CE467 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					27582C28D83D47E5152355B6 = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+					2EB1E94BB2941321324A9EB4 = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = C60DB6E9EF5D9A28D8CBAE94 /* Build configuration list for PBXProject "RoadRebels" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 3D979D28724A11469CCF0B6D;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = D4A44979F155A0F5774F76B2 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				27582C28D83D47E5152355B6 /* RoadRebels */,
+				2EB1E94BB2941321324A9EB4 /* RoadRebelsTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		712AB9E51E48B40C8C81D427 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				97726D7F6C2260291F272E07 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		251D98B3B9E97FC6A6E8EED4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8DBF282A7DB7F0345F98849B /* BikeEntity.swift in Sources */,
+				CCBE9863A8A2AD69B1344D18 /* BikeInput.swift in Sources */,
+				B50B53E930B6B637B1B87D92 /* BikePhysics.swift in Sources */,
+				F867DE3235115D66632D18E3 /* ChaseCameraController.swift in Sources */,
+				2D9493FD86DC65A5A79CBC82 /* CombatComponent.swift in Sources */,
+				188EEBB3A3A59A4403EEBB22 /* Constants.swift in Sources */,
+				301AA909D928A77C09E5E15F /* EnemyRider.swift in Sources */,
+				713C9CF9798BEE92616B14B0 /* FinishView.swift in Sources */,
+				A85170B972075057C25FA7F5 /* GameLoop.swift in Sources */,
+				9FA43A79DF335B586160D877 /* GameState.swift in Sources */,
+				489468662EB5F4750936C040 /* HUDView.swift in Sources */,
+				5B8416EC68B99256E88BC858 /* HitReaction.swift in Sources */,
+				53B8D27A21453F2732CFE0FD /* MenuView.swift in Sources */,
+				3EFB31206308DAC3960CF30B /* RaceController.swift in Sources */,
+				311177062C34026E546B25FE /* RaceControlsOverlay.swift in Sources */,
+				23CABFFBBF682F7EC7BF2D59 /* RaceSceneView.swift in Sources */,
+				A241CD01FE1C2A9990B0D248 /* RaceView.swift in Sources */,
+				5C6B68DF6CC573FAD566704B /* RoadBuilder.swift in Sources */,
+				B18E592294DBF89818283A1A /* RoadRebelsApp.swift in Sources */,
+				56B3713799FE083B85357B10 /* RoadSegment.swift in Sources */,
+				F7C3EEA5E04ED0F98CF30257 /* RootView.swift in Sources */,
+				BCD839F90FD536E37DF5E2B7 /* TrafficManager.swift in Sources */,
+				862728461D65B80C30E6C105 /* TrafficVehicle.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		789093AD244F983910AEB1BB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E77DD3567692103DCF96BAB /* BikePhysicsTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		55FBA834E5DF6F1E2DE83D9F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 27582C28D83D47E5152355B6 /* RoadRebels */;
+			targetProxy = 5BACE77F43E30E9E058D5587 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		1CF46962ACFE30DB9A27A73C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		4C6BE9052F5FC90469FE570F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.roadrebels.RoadRebelsTests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RoadRebels.app/RoadRebels";
+			};
+			name = Debug;
+		};
+		553B828E2B6FE69B8E4EF688 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = RoadRebels/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.roadrebels.game;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		78707B08A1C0D9441E2F2E50 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.roadrebels.RoadRebelsTests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RoadRebels.app/RoadRebels";
+			};
+			name = Release;
+		};
+		C38A1431E48D0DB82E12ED58 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = RoadRebels/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.roadrebels.game;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F4A73B71C8F85CE5997D8F47 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6C8019D47CD6F6FC6A5CD1C5 /* Build configuration list for PBXNativeTarget "RoadRebels" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C38A1431E48D0DB82E12ED58 /* Debug */,
+				553B828E2B6FE69B8E4EF688 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		70F754F0B3B739DA7B97340E /* Build configuration list for PBXNativeTarget "RoadRebelsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4C6BE9052F5FC90469FE570F /* Debug */,
+				78707B08A1C0D9441E2F2E50 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		C60DB6E9EF5D9A28D8CBAE94 /* Build configuration list for PBXProject "RoadRebels" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F4A73B71C8F85CE5997D8F47 /* Debug */,
+				1CF46962ACFE30DB9A27A73C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = AC5D4D6B5FD016CF0D5CE467 /* Project object */;
+}
