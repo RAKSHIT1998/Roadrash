@@ -16,6 +16,7 @@
 		489468662EB5F4750936C040 /* HUDView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D471C7A642F27CE2EFBC88 /* HUDView.swift */; };
 		4A7006FAA5331CCA8171D704 /* AudioService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67C1E0C5F5E49CAFA9BF094 /* AudioService.swift */; };
 		53B8D27A21453F2732CFE0FD /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B938D385143363E01155FD9 /* MenuView.swift */; };
+		541CB1807A3CA30927123176 /* RaceControllerSmokeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8561E8D9BB9632C257B875 /* RaceControllerSmokeTests.swift */; };
 		56B3713799FE083B85357B10 /* RoadSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2968A81A8367A717FD73DEC /* RoadSegment.swift */; };
 		5B8416EC68B99256E88BC858 /* HitReaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DCAE05B9737E1A2D0238074 /* HitReaction.swift */; };
 		5C6B68DF6CC573FAD566704B /* RoadBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5089D9F7ACC1588A143168F /* RoadBuilder.swift */; };
@@ -51,6 +52,7 @@
 		012CC3F49D62C59E2FAA5303 /* HapticsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticsService.swift; sourceTree = "<group>"; };
 		0E2467FFC4862EF8F80820FA /* ImpactEffects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpactEffects.swift; sourceTree = "<group>"; };
 		12F2FE67A01AEFE52FBDE208 /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
+		1B8561E8D9BB9632C257B875 /* RaceControllerSmokeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaceControllerSmokeTests.swift; sourceTree = "<group>"; };
 		1ECA971E121375FEFD29F247 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		22F6DB6AC6136F4244D84037 /* CombatComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombatComponent.swift; sourceTree = "<group>"; };
 		2DCAE05B9737E1A2D0238074 /* HitReaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitReaction.swift; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 			isa = PBXGroup;
 			children = (
 				E547C27D7FE08A9AC97AC45D /* BikePhysicsTests.swift */,
+				1B8561E8D9BB9632C257B875 /* RaceControllerSmokeTests.swift */,
 			);
 			path = RoadRebelsTests;
 			sourceTree = "<group>";
@@ -383,6 +386,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7E77DD3567692103DCF96BAB /* BikePhysicsTests.swift in Sources */,
+				541CB1807A3CA30927123176 /* RaceControllerSmokeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
