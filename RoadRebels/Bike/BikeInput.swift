@@ -8,6 +8,9 @@ struct BikeControlState {
     var brake: Bool = false
     var attackRequested: Bool = false
     var nitroHeld: Bool = false
+    /// Set by RaceController (not the input layer) once the nitro meter has
+    /// been checked — distinct from `nitroHeld`, which is just the raw touch.
+    var nitroActive: Bool = false
 }
 
 /// Translates raw touch gestures (see UI/RaceControlsOverlay) into a BikeControlState.

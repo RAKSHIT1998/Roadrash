@@ -1,20 +1,37 @@
 import RealityKit
 import simd
 
-/// Smoothed third-person chase camera. Phase 1 only implements follow +
-/// lag/prediction; shake, FOV punch, and jump/impact reactions arrive in
-/// Phase 2 as documented in the mega-spec.
+/// Smoothed third-person chase camera with trauma-based shake and a nitro
+/// FOV punch on top of the Phase 1 follow/lag/prediction behavior.
 final class ChaseCameraController {
     let cameraEntity: Entity
     private var smoothedPosition: SIMD3<Float>
     private var smoothedForward: SIMD3<Float>
 
+    /// 0...1, decays over time; screen shake magnitude scales with trauma^2
+    /// so small bumps barely register but big hits punch hard.
+    private var trauma: Float = 0
+    private var shakeSeed: Float = 0
+
+    private var baseFOV: Float = 62
+    private var currentFOV: Float = 62
+    private var targetFOVBoost: Float = 0
+
     init(initialPosition: SIMD3<Float> = .zero, initialForward: SIMD3<Float> = SIMD3<Float>(0, 0, -1)) {
         let camera = Entity()
-        camera.components.set(PerspectiveCameraComponent(near: 0.05, far: 3000, fieldOfViewInDegrees: 62))
+        camera.components.set(PerspectiveCameraComponent(near: 0.05, far: 3000, fieldOfViewInDegrees: baseFOV))
         self.cameraEntity = camera
         self.smoothedPosition = initialPosition
         self.smoothedForward = initialForward
+        self.currentFOV = baseFOV
+    }
+
+    func addTrauma(_ amount: Float) {
+        trauma = min(1, trauma + amount)
+    }
+
+    func setNitroBoost(active: Bool) {
+        targetFOVBoost = active ? 14 : 0
     }
 
     /// `targetPosition`/`targetForward` describe the bike being followed.
@@ -29,8 +46,24 @@ final class ChaseCameraController {
         let rotBlend = min(1, GameConstants.cameraRotationSmoothing * dt)
         smoothedForward = simd_normalize(smoothedForward + (targetForward - smoothedForward) * rotBlend)
 
+        shakeSeed += dt * 40
+        let shakeMagnitude = trauma * trauma
+        let shakeOffset = SIMD3<Float>(
+            sin(shakeSeed * 1.7) * shakeMagnitude * 0.35,
+            sin(shakeSeed * 2.3 + 1.3) * shakeMagnitude * 0.25,
+            0
+        )
+        trauma = max(0, trauma - dt * 1.6)
+
         let lookTarget = targetPosition + SIMD3<Float>(0, GameConstants.cameraLookAheadHeight, 0)
-        cameraEntity.position = smoothedPosition
-        cameraEntity.look(at: lookTarget, from: smoothedPosition, relativeTo: nil)
+        let eyePosition = smoothedPosition + shakeOffset
+        cameraEntity.position = eyePosition
+        cameraEntity.look(at: lookTarget, from: eyePosition, relativeTo: nil)
+
+        currentFOV += (baseFOV + targetFOVBoost - currentFOV) * min(1, 4 * dt)
+        if var component = cameraEntity.components[PerspectiveCameraComponent.self] {
+            component.fieldOfViewInDegrees = currentFOV
+            cameraEntity.components.set(component)
+        }
     }
 }

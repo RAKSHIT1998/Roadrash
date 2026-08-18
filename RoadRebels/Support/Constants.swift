@@ -46,6 +46,14 @@ enum GameConstants {
     static let enemyCatchUpSpeed: Float = 40.0
     static let enemyAttackRange: Float = 3.0
 
+    // Nitro
+    static let nitroSpeedMultiplier: Float = 1.35
+    static let nitroAccelMultiplier: Float = 1.7
+    static let nitroDrainPerSecond: Float = 0.4
+    static let nitroGainOnAttack: Float = 0.16
+    static let nitroGainOnNearMiss: Float = 0.10
+    static let nitroGainOnOvertake: Float = 0.22
+
     // Simulation
     static let fixedTimestep: Double = 1.0 / 60.0
 }

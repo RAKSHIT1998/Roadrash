@@ -23,12 +23,14 @@ final class GameState: ObservableObject {
     @Published var playerSpeed: Float = 0
     @Published var playerHealth: Float = GameConstants.riderMaxHealth
     @Published var raceProgress: Float = 0 // 0...1
+    @Published var nitroMeter: Float = 0 // 0...1
 
     func startRace() {
         playerPosition = 1
         playerSpeed = 0
         playerHealth = GameConstants.riderMaxHealth
         raceProgress = 0
+        nitroMeter = 0
         screen = .racing
     }
 

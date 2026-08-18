@@ -19,15 +19,17 @@ enum BikePhysics {
     static func step(state: BikeState, control: BikeControlState, dt: Float) -> BikeState {
         var next = state
 
-        // Longitudinal: throttle/brake/drag.
+        // Longitudinal: throttle/brake/drag, with a nitro boost layered on top.
+        let accelMultiplier: Float = control.nitroActive ? GameConstants.nitroAccelMultiplier : 1
+        let speedCap = control.nitroActive ? GameConstants.bikeMaxSpeed * GameConstants.nitroSpeedMultiplier : GameConstants.bikeMaxSpeed
         if control.brake {
             next.speed -= GameConstants.bikeBrakeDeceleration * dt
         } else if control.throttle {
-            next.speed += GameConstants.bikeAcceleration * dt
+            next.speed += GameConstants.bikeAcceleration * accelMultiplier * dt
         } else {
             next.speed -= GameConstants.bikeDrag * dt
         }
-        next.speed = max(0, min(next.speed, GameConstants.bikeMaxSpeed))
+        next.speed = max(0, min(next.speed, speedCap))
 
         // Lateral: steer input drives a target lateral velocity, smoothed.
         let targetLateralVelocity = control.steer * maxLateralSpeed

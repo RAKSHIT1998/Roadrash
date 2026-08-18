@@ -47,5 +47,6 @@ final class TrafficManager {
         candidate = min(candidate, spline.totalLength - 5)
         vehicle.distance = max(candidate, playerDistance + GameConstants.trafficSafeSpawnGap)
         vehicle.speed = Float.random(in: GameConstants.trafficMinSpeed...GameConstants.trafficMaxSpeed)
+        vehicle.hasTriggeredNearMiss = false
     }
 }

@@ -13,6 +13,7 @@ struct RaceControlsOverlay: View {
                 steerZone(width: geo.size.width / 2)
                 VStack(spacing: 0) {
                     attackZone
+                    nitroZone
                     brakeZone
                 }
                 .frame(width: geo.size.width / 2)
@@ -39,6 +40,17 @@ struct RaceControlsOverlay: View {
             .contentShape(Rectangle())
             .onTapGesture { input.requestAttack() }
             .overlay(alignment: .center) { ControlLabel(text: "ATTACK") }
+    }
+
+    private var nitroZone: some View {
+        Color.white.opacity(0.001)
+            .contentShape(Rectangle())
+            .gesture(
+                DragGesture(minimumDistance: 0)
+                    .onChanged { _ in input.setNitroHeld(true) }
+                    .onEnded { _ in input.setNitroHeld(false) }
+            )
+            .overlay(alignment: .center) { ControlLabel(text: "NITRO") }
     }
 
     private var brakeZone: some View {

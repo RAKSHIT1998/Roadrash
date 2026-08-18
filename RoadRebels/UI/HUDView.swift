@@ -30,7 +30,10 @@ struct HUDView: View {
 
     private var bottomRow: some View {
         HStack(alignment: .bottom) {
-            HealthBar(value: gameState.playerHealth / GameConstants.riderMaxHealth)
+            VStack(alignment: .leading, spacing: 8) {
+                HealthBar(value: gameState.playerHealth / GameConstants.riderMaxHealth, color: .red)
+                NitroBar(value: gameState.nitroMeter)
+            }
             Spacer()
             Text("\(Int(gameState.playerSpeed * 3.6)) KM/H")
                 .font(.system(size: 20, weight: .bold, design: .monospaced))
@@ -40,12 +43,25 @@ struct HUDView: View {
     }
 }
 
-private struct HealthBar: View {
+private struct NitroBar: View {
     let value: Float
     var body: some View {
         ZStack(alignment: .leading) {
             Capsule().fill(Color.black.opacity(0.4))
-            Capsule().fill(Color.red)
+            Capsule().fill(Color.cyan)
+                .frame(width: 140 * CGFloat(max(0, min(1, value))))
+        }
+        .frame(width: 140, height: 10)
+    }
+}
+
+private struct HealthBar: View {
+    let value: Float
+    let color: Color
+    var body: some View {
+        ZStack(alignment: .leading) {
+            Capsule().fill(Color.black.opacity(0.4))
+            Capsule().fill(color)
                 .frame(width: 140 * CGFloat(max(0, min(1, value))))
         }
         .frame(width: 140, height: 14)

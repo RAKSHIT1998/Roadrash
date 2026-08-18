@@ -11,6 +11,9 @@ final class TrafficVehicle {
     var distance: Float
     let laneOffset: Float
     var speed: Float
+    /// Debounces the near-miss reward so one slow pass alongside this vehicle
+    /// only scores once, not every frame it stays close.
+    var hasTriggeredNearMiss = false
 
     init(distance: Float, laneOffset: Float, speed: Float) {
         self.distance = distance

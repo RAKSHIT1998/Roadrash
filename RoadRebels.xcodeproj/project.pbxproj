@@ -14,11 +14,13 @@
 		311177062C34026E546B25FE /* RaceControlsOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB8C0994545FB15590529AC /* RaceControlsOverlay.swift */; };
 		3EFB31206308DAC3960CF30B /* RaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42D2A4A2B023C7CD95E24ED /* RaceController.swift */; };
 		489468662EB5F4750936C040 /* HUDView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D471C7A642F27CE2EFBC88 /* HUDView.swift */; };
+		4A7006FAA5331CCA8171D704 /* AudioService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67C1E0C5F5E49CAFA9BF094 /* AudioService.swift */; };
 		53B8D27A21453F2732CFE0FD /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B938D385143363E01155FD9 /* MenuView.swift */; };
 		56B3713799FE083B85357B10 /* RoadSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2968A81A8367A717FD73DEC /* RoadSegment.swift */; };
 		5B8416EC68B99256E88BC858 /* HitReaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DCAE05B9737E1A2D0238074 /* HitReaction.swift */; };
 		5C6B68DF6CC573FAD566704B /* RoadBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5089D9F7ACC1588A143168F /* RoadBuilder.swift */; };
 		713C9CF9798BEE92616B14B0 /* FinishView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F63BD9118A2101EF4E18C1A5 /* FinishView.swift */; };
+		71BD7D054F2BC7C5A799D184 /* HapticsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012CC3F49D62C59E2FAA5303 /* HapticsService.swift */; };
 		7E77DD3567692103DCF96BAB /* BikePhysicsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E547C27D7FE08A9AC97AC45D /* BikePhysicsTests.swift */; };
 		862728461D65B80C30E6C105 /* TrafficVehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AF734B734F904D6AE3544F /* TrafficVehicle.swift */; };
 		8DBF282A7DB7F0345F98849B /* BikeEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05C6A9CE9FC47ADCD209542 /* BikeEntity.swift */; };
@@ -30,6 +32,7 @@
 		B50B53E930B6B637B1B87D92 /* BikePhysics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7479E881C993429E177DDE96 /* BikePhysics.swift */; };
 		BCD839F90FD536E37DF5E2B7 /* TrafficManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2AA40362A824C188EC9EEE /* TrafficManager.swift */; };
 		CCBE9863A8A2AD69B1344D18 /* BikeInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = E561C43ADF8850900BDDB09C /* BikeInput.swift */; };
+		DC64A7E21EB1F1EF7D0624DC /* ImpactEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2467FFC4862EF8F80820FA /* ImpactEffects.swift */; };
 		F7C3EEA5E04ED0F98CF30257 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE285B2E6A966478EB1D281 /* RootView.swift */; };
 		F867DE3235115D66632D18E3 /* ChaseCameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A60AE4D0FDF0946AAF01B9 /* ChaseCameraController.swift */; };
 /* End PBXBuildFile section */
@@ -45,6 +48,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		012CC3F49D62C59E2FAA5303 /* HapticsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticsService.swift; sourceTree = "<group>"; };
+		0E2467FFC4862EF8F80820FA /* ImpactEffects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpactEffects.swift; sourceTree = "<group>"; };
 		12F2FE67A01AEFE52FBDE208 /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
 		1ECA971E121375FEFD29F247 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		22F6DB6AC6136F4244D84037 /* CombatComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombatComponent.swift; sourceTree = "<group>"; };
@@ -68,6 +73,7 @@
 		CAB2EA57295C626BB5D21850 /* RoadRebels.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = RoadRebels.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFB8C0994545FB15590529AC /* RaceControlsOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaceControlsOverlay.swift; sourceTree = "<group>"; };
 		D42D2A4A2B023C7CD95E24ED /* RaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaceController.swift; sourceTree = "<group>"; };
+		D67C1E0C5F5E49CAFA9BF094 /* AudioService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioService.swift; sourceTree = "<group>"; };
 		E1692C3D05D91C1E0705F6D9 /* GameLoop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameLoop.swift; sourceTree = "<group>"; };
 		E547C27D7FE08A9AC97AC45D /* BikePhysicsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikePhysicsTests.swift; sourceTree = "<group>"; };
 		E561C43ADF8850900BDDB09C /* BikeInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeInput.swift; sourceTree = "<group>"; };
@@ -82,6 +88,22 @@
 				3F27D23EB7E5AC5FD9DC6D0A /* Constants.swift */,
 			);
 			path = Support;
+			sourceTree = "<group>";
+		};
+		128573F287D541E2F4AE7041 /* Effects */ = {
+			isa = PBXGroup;
+			children = (
+				0E2467FFC4862EF8F80820FA /* ImpactEffects.swift */,
+			);
+			path = Effects;
+			sourceTree = "<group>";
+		};
+		13740686B5A1369D684821B2 /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				D67C1E0C5F5E49CAFA9BF094 /* AudioService.swift */,
+			);
+			path = Audio;
 			sourceTree = "<group>";
 		};
 		3D979D28724A11469CCF0B6D = {
@@ -142,17 +164,28 @@
 			path = Road;
 			sourceTree = "<group>";
 		};
+		82ED50CA0DB904F75A20B86A /* Haptics */ = {
+			isa = PBXGroup;
+			children = (
+				012CC3F49D62C59E2FAA5303 /* HapticsService.swift */,
+			);
+			path = Haptics;
+			sourceTree = "<group>";
+		};
 		899A997EA0DE589590987AD1 /* RoadRebels */ = {
 			isa = PBXGroup;
 			children = (
 				C998CD54553AB5230B4AA16E /* Assets.xcassets */,
 				1ECA971E121375FEFD29F247 /* Info.plist */,
 				BA6CA0EEB6B35882C86C79D9 /* App */,
+				13740686B5A1369D684821B2 /* Audio */,
 				7BBF7C54028D44E89A9E3070 /* Bike */,
 				A435743ADB1AF06CC8CC29E6 /* Camera */,
 				F3C60236AA4E15EFBEAFB4D0 /* Combat */,
+				128573F287D541E2F4AE7041 /* Effects */,
 				EAE9A8F981BEF72AE0F3341B /* Enemy */,
 				488A54489F97C6B2F75843E1 /* GameCore */,
+				82ED50CA0DB904F75A20B86A /* Haptics */,
 				3F5E16343DB7DE996F67D212 /* Race */,
 				82AB9DF0B56AC5FFB144E7EA /* Road */,
 				08BCF81C787F3929029076EC /* Support */,
@@ -316,6 +349,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A7006FAA5331CCA8171D704 /* AudioService.swift in Sources */,
 				8DBF282A7DB7F0345F98849B /* BikeEntity.swift in Sources */,
 				CCBE9863A8A2AD69B1344D18 /* BikeInput.swift in Sources */,
 				B50B53E930B6B637B1B87D92 /* BikePhysics.swift in Sources */,
@@ -327,7 +361,9 @@
 				A85170B972075057C25FA7F5 /* GameLoop.swift in Sources */,
 				9FA43A79DF335B586160D877 /* GameState.swift in Sources */,
 				489468662EB5F4750936C040 /* HUDView.swift in Sources */,
+				71BD7D054F2BC7C5A799D184 /* HapticsService.swift in Sources */,
 				5B8416EC68B99256E88BC858 /* HitReaction.swift in Sources */,
+				DC64A7E21EB1F1EF7D0624DC /* ImpactEffects.swift in Sources */,
 				53B8D27A21453F2732CFE0FD /* MenuView.swift in Sources */,
 				3EFB31206308DAC3960CF30B /* RaceController.swift in Sources */,
 				311177062C34026E546B25FE /* RaceControlsOverlay.swift in Sources */,
