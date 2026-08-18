@@ -10,7 +10,7 @@ final class RaceControllerSmokeTests: XCTestCase {
     func testFullRaceRunsWithoutCrashing() {
         let gameState = GameState()
         let input = BikeInputController()
-        let controller = RaceController(input: input, gameState: gameState)
+        let controller = RaceController(input: input, gameState: gameState, config: .quickRace)
         controller.start()
 
         let dt: Float = 1.0 / 60.0

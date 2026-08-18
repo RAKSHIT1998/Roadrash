@@ -6,14 +6,14 @@ import simd
 /// quads. Phase 1 has one fixed spline; Phase 6 swaps this for chunked,
 /// streaming procedural generation without touching the sampling math here.
 enum RoadBuilder {
-    static func buildRoadEntity(spline: RoadSpline) -> Entity {
+    static func buildRoadEntity(spline: RoadSpline, finishDistance: Float) -> Entity {
         let root = Entity()
         root.addChild(buildRibbon(spline: spline, width: GameConstants.roadWidth, yOffset: 0,
                                    color: UIColor(white: 0.16, alpha: 1.0)))
         root.addChild(buildRibbon(spline: spline, width: 0.18, yOffset: 0.01,
                                    color: UIColor.systemYellow))
         root.addChild(buildCrossMarker(spline: spline, atDistance: 2, color: .white))
-        root.addChild(buildCrossMarker(spline: spline, atDistance: GameConstants.raceDistance, color: .systemRed))
+        root.addChild(buildCrossMarker(spline: spline, atDistance: finishDistance, color: .systemRed))
         return root
     }
 

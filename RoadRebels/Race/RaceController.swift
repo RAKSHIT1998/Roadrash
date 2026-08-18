@@ -2,10 +2,10 @@ import RealityKit
 import UIKit
 import Foundation
 
-/// Orchestrates one race: owns the road, player, single rival, traffic, and
-/// camera, and drives them all from a single fixed-step update. This is the
-/// Phase 1/2 "everything in one place" controller; as Career/multi-rival
-/// races land in later phases this splits into RaceController + RaceRuleset.
+/// Orchestrates one race: owns the road, player, a small field of archetyped
+/// rivals, traffic, and camera, and drives them all from a single fixed-step
+/// update. This is the "everything in one place" controller; Career's
+/// multi-race structure (Phase 4) wraps this rather than replacing it.
 @MainActor
 final class RaceController {
     let sceneAnchor: AnchorEntity
@@ -13,7 +13,7 @@ final class RaceController {
 
     private let spline: RoadSpline
     private let playerEntity: BikeEntity
-    private let rival: EnemyRider
+    private let rivals: [EnemyRider]
     private let traffic: TrafficManager
     private let input: BikeInputController
     private let gameState: GameState
@@ -27,24 +27,36 @@ final class RaceController {
 
     private var nitroMeter: Float = 0
     private var wasNitroActive = false
-    private var wasPlayerAheadOfRival = false
+    private var wasPlayerLeading = false
 
-    init(input: BikeInputController, gameState: GameState) {
+    private let config: RaceConfiguration
+
+    init(input: BikeInputController, gameState: GameState, config: RaceConfiguration) {
         self.input = input
         self.gameState = gameState
-        self.spline = .standardPhase1()
+        self.config = config
+        self.spline = .generate(totalLength: config.distance + 150)
         self.sceneAnchor = AnchorEntity(world: .zero)
         self.playerEntity = BikeEntity(role: .player)
-        self.rival = EnemyRider(startDistance: 20, startLateral: 3)
+        self.rivals = Self.makeRivals(from: config.rivals)
         self.traffic = TrafficManager(spline: spline, parent: sceneAnchor)
         self.cameraController = ChaseCameraController(initialPosition: SIMD3<Float>(0, GameConstants.cameraHeight, GameConstants.cameraFollowDistance))
         self.nitroTrail = ImpactEffects.attachNitroTrail(to: playerEntity.root)
 
-        sceneAnchor.addChild(RoadBuilder.buildRoadEntity(spline: spline))
+        sceneAnchor.addChild(RoadBuilder.buildRoadEntity(spline: spline, finishDistance: config.distance))
         sceneAnchor.addChild(playerEntity.root)
-        sceneAnchor.addChild(rival.entity.root)
+        for rival in rivals {
+            sceneAnchor.addChild(rival.entity.root)
+        }
         sceneAnchor.addChild(cameraController.cameraEntity)
         addSun()
+    }
+
+    private static func makeRivals(from profiles: [RivalProfile]) -> [EnemyRider] {
+        let laneOffsets: [Float] = [3, -3, 0, 5, -5]
+        return profiles.enumerated().map { index, profile in
+            EnemyRider(profile: profile, startDistance: Float(12 + index * 6), startLateral: laneOffsets[index % laneOffsets.count])
+        }
     }
 
     private func addSun() {
@@ -63,7 +75,7 @@ final class RaceController {
         playerCombatState = RiderCombatState()
         nitroMeter = 0
         wasNitroActive = false
-        wasPlayerAheadOfRival = false
+        wasPlayerLeading = false
     }
 
     func update(dt: Float) {
@@ -72,10 +84,7 @@ final class RaceController {
         stepPlayer(dt: dt)
         stepCombat()
         stepTrafficAndCollisions(dt: dt)
-        rival.update(playerDistance: playerBikeState.distance, playerLateral: playerBikeState.lateralOffset, dt: dt)
-        if let outcome = rival.attemptAttack(onPlayerDistance: playerBikeState.distance, playerLateral: playerBikeState.lateralOffset) {
-            applyOutcomeToPlayer(outcome)
-        }
+        stepRivals(dt: dt)
         stepOvertake()
 
         applyTransforms()
@@ -105,24 +114,42 @@ final class RaceController {
         playerCombatState = CombatResolver.tickCooldown(playerCombatState, dt: TimeInterval(dt))
     }
 
+    /// Player attacks whichever living rival is currently closest.
     private func stepCombat() {
         guard input.consumeAttackRequest() else { return }
+        guard let target = nearestLivingRival() else { return }
+
         let (updatedAttacker, outcome) = CombatResolver.attemptAttack(
             attackerState: playerCombatState,
             attackerDistance: playerBikeState.distance,
             attackerLateral: playerBikeState.lateralOffset,
-            defenderDistance: rival.bikeState.distance,
-            defenderLateral: rival.bikeState.lateralOffset
+            defenderDistance: target.bikeState.distance,
+            defenderLateral: target.bikeState.lateralOffset
         )
         playerCombatState = updatedAttacker
         guard let outcome else { return }
 
-        rival.receiveHit(outcome)
+        if target.attemptDefend() {
+            HapticsService.shared.play(.nearMiss)
+            return
+        }
+
+        target.receiveHit(outcome)
         nitroMeter = min(1, nitroMeter + GameConstants.nitroGainOnAttack)
         cameraController.addTrauma(0.35)
         HapticsService.shared.play(.attackImpact)
         AudioService.shared.play(.attackHit)
-        ImpactEffects.spawnHitSpark(at: rival.entity.root.position, in: sceneAnchor)
+        ImpactEffects.spawnHitSpark(at: target.entity.root.position, in: sceneAnchor)
+    }
+
+    private func nearestLivingRival() -> EnemyRider? {
+        rivals
+            .filter { !$0.combatState.isDefeated }
+            .min { lhs, rhs in
+                let lhsGap = abs(lhs.bikeState.distance - playerBikeState.distance)
+                let rhsGap = abs(rhs.bikeState.distance - playerBikeState.distance)
+                return lhsGap < rhsGap
+            }
     }
 
     private func stepTrafficAndCollisions(dt: Float) {
@@ -154,12 +181,22 @@ final class RaceController {
         }
     }
 
+    private func stepRivals(dt: Float) {
+        for rival in rivals {
+            guard !rival.combatState.isDefeated else { continue }
+            rival.update(playerDistance: playerBikeState.distance, playerLateral: playerBikeState.lateralOffset, dt: dt)
+            if let outcome = rival.attemptAttack(onPlayerDistance: playerBikeState.distance, playerLateral: playerBikeState.lateralOffset) {
+                applyOutcomeToPlayer(outcome)
+            }
+        }
+    }
+
     private func stepOvertake() {
-        let isAhead = playerBikeState.distance > rival.bikeState.distance
-        if isAhead && !wasPlayerAheadOfRival {
+        let isLeading = rivals.allSatisfy { playerBikeState.distance > $0.bikeState.distance }
+        if isLeading && !wasPlayerLeading {
             nitroMeter = min(1, nitroMeter + GameConstants.nitroGainOnOvertake)
         }
-        wasPlayerAheadOfRival = isAhead
+        wasPlayerLeading = isLeading
     }
 
     private func applyOutcomeToPlayer(_ outcome: AttackOutcome) {
@@ -174,7 +211,9 @@ final class RaceController {
 
     private func applyTransforms() {
         playerEntity.applyTransform(state: playerBikeState, spline: spline)
-        rival.applyTransform(spline: spline)
+        for rival in rivals {
+            rival.applyTransform(spline: spline)
+        }
     }
 
     private func updateCamera(dt: Float) {
@@ -182,23 +221,30 @@ final class RaceController {
         cameraController.update(targetPosition: t.position, targetForward: t.forward, dt: dt)
     }
 
+    private func currentPlayerPosition() -> Int {
+        1 + rivals.filter { $0.bikeState.distance > playerBikeState.distance }.count
+    }
+
     private func publishTelemetry() {
         gameState.playerSpeed = playerBikeState.speed
         gameState.playerHealth = playerCombatState.health
-        gameState.playerPosition = playerBikeState.distance >= rival.bikeState.distance ? 1 : 2
-        gameState.raceProgress = max(0, min(1, playerBikeState.distance / GameConstants.raceDistance))
+        gameState.playerPosition = currentPlayerPosition()
+        gameState.raceProgress = max(0, min(1, playerBikeState.distance / config.distance))
         gameState.nitroMeter = nitroMeter
     }
 
     private func checkFinish() {
-        guard playerBikeState.distance >= GameConstants.raceDistance else { return }
+        guard playerBikeState.distance >= config.distance else { return }
         raceEnded = true
-        let didWin = gameState.playerPosition == 1
+        let position = currentPlayerPosition()
+        let didWin = position == 1
         let result = RaceResult(
-            position: gameState.playerPosition,
-            totalRiders: 2,
+            position: position,
+            totalRiders: rivals.count + 1,
             elapsedTime: Date().timeIntervalSince(startTime),
-            didWin: didWin
+            didWin: didWin,
+            careerRaceID: config.careerRaceID,
+            creditsEarned: didWin ? config.creditReward : 0
         )
         if didWin {
             HapticsService.shared.play(.victory)

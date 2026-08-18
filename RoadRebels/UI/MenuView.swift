@@ -1,9 +1,11 @@
 import SwiftUI
 
-/// Phase 1 home screen: just enough to get into a race. Garage/career/
-/// leaderboard entry points arrive in their respective phases.
+/// Home screen: RIDE drops straight into a quick race, CAREER opens the
+/// region/race map. Garage/leaderboard entry points arrive in their
+/// respective phases.
 struct MenuView: View {
     let onRide: () -> Void
+    let onCareer: () -> Void
 
     var body: some View {
         ZStack {
@@ -24,15 +26,27 @@ struct MenuView: View {
                         .foregroundStyle(.white.opacity(0.55))
                 }
 
-                Button(action: onRide) {
-                    Text("RIDE")
-                        .font(.system(size: 24, weight: .heavy, design: .rounded))
-                        .foregroundStyle(.black)
-                        .padding(.horizontal, 52)
-                        .padding(.vertical, 18)
-                        .background(Color.red, in: Capsule())
+                VStack(spacing: 14) {
+                    Button(action: onRide) {
+                        Text("RIDE")
+                            .font(.system(size: 24, weight: .heavy, design: .rounded))
+                            .foregroundStyle(.black)
+                            .padding(.horizontal, 52)
+                            .padding(.vertical, 18)
+                            .background(Color.red, in: Capsule())
+                    }
+                    .buttonStyle(.plain)
+
+                    Button(action: onCareer) {
+                        Text("CAREER")
+                            .font(.system(size: 16, weight: .heavy, design: .rounded))
+                            .foregroundStyle(.white)
+                            .padding(.horizontal, 40)
+                            .padding(.vertical, 12)
+                            .overlay(Capsule().stroke(Color.white.opacity(0.4), lineWidth: 1.5))
+                    }
+                    .buttonStyle(.plain)
                 }
-                .buttonStyle(.plain)
             }
         }
     }

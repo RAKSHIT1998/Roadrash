@@ -58,10 +58,16 @@ struct RoadSpline {
         return (worldPosition, forward, heading)
     }
 
-    static func standardPhase1() -> RoadSpline {
+    /// Builds a straight/curve/straight spline scaled to fit `totalLength`,
+    /// used both for the fixed Phase 1 road and for Career races of varying
+    /// distance. A proper chunked/streaming procedural generator (mega-spec
+    /// section 39) is a larger, later change; this analytic version is
+    /// enough for single, bounded-length races.
+    static func generate(totalLength: Float) -> RoadSpline {
+        let straightALength = min(400, totalLength * 0.35)
         let straightA = RoadPathElement(
             startDistance: 0,
-            length: 400,
+            length: straightALength,
             startPosition: .zero,
             startHeading: 0,
             curvature: 0
@@ -78,11 +84,15 @@ struct RoadSpline {
         let curveEndTransform = RoadSpline(elements: [straightA, curve]).transform(atDistance: curve.endDistance)
         let straightB = RoadPathElement(
             startDistance: curve.endDistance,
-            length: max(0, GameConstants.roadLength - curve.endDistance),
+            length: max(50, totalLength - curve.endDistance),
             startPosition: curveEndTransform.position,
             startHeading: curve.endHeading,
             curvature: 0
         )
         return RoadSpline(elements: [straightA, curve, straightB])
+    }
+
+    static func standardPhase1() -> RoadSpline {
+        generate(totalLength: GameConstants.roadLength)
     }
 }

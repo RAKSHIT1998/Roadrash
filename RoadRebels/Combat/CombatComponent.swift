@@ -33,7 +33,10 @@ enum CombatResolver {
         attackerDistance: Float,
         attackerLateral: Float,
         defenderDistance: Float,
-        defenderLateral: Float
+        defenderLateral: Float,
+        cooldownMultiplier: Float = 1.0,
+        damageMultiplier: Float = 1.0,
+        knockbackMultiplier: Float = 1.0
     ) -> (updatedAttacker: RiderCombatState, outcome: AttackOutcome?) {
         guard attackerState.attackCooldownRemaining <= 0 else {
             return (attackerState, nil)
@@ -46,12 +49,12 @@ enum CombatResolver {
         }
 
         var updatedAttacker = attackerState
-        updatedAttacker.attackCooldownRemaining = GameConstants.attackCooldown
+        updatedAttacker.attackCooldownRemaining = GameConstants.attackCooldown * TimeInterval(cooldownMultiplier)
 
         let knockDirection: Float = defenderLateral >= attackerLateral ? 1 : -1
         let outcome = AttackOutcome(
-            damage: GameConstants.attackDamage,
-            lateralKnockback: knockDirection * GameConstants.attackKnockback,
+            damage: GameConstants.attackDamage * damageMultiplier,
+            lateralKnockback: knockDirection * GameConstants.attackKnockback * knockbackMultiplier,
             speedLoss: 4.0
         )
         return (updatedAttacker, outcome)

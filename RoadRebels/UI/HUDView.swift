@@ -17,7 +17,7 @@ struct HUDView: View {
 
     private var topRow: some View {
         HStack(alignment: .top) {
-            Text(gameState.playerPosition == 1 ? "1ST" : "2ND")
+            Text(ordinal(gameState.playerPosition))
                 .font(.system(size: 32, weight: .black, design: .rounded))
                 .foregroundStyle(.white)
                 .shadow(radius: 4)
@@ -39,6 +39,15 @@ struct HUDView: View {
                 .font(.system(size: 20, weight: .bold, design: .monospaced))
                 .foregroundStyle(.white)
                 .shadow(radius: 4)
+        }
+    }
+
+    private func ordinal(_ position: Int) -> String {
+        switch position {
+        case 1: return "1ST"
+        case 2: return "2ND"
+        case 3: return "3RD"
+        default: return "\(position)TH"
         }
     }
 }
