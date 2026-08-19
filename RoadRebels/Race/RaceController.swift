@@ -53,6 +53,7 @@ final class RaceController {
         self.nitroTrail = ImpactEffects.attachNitroTrail(to: playerEntity.root)
 
         sceneAnchor.addChild(RoadBuilder.buildRoadEntity(spline: spline, finishDistance: config.distance))
+        sceneAnchor.addChild(SceneryBuilder.buildProps(spline: spline, from: 0, to: spline.totalLength, theme: regionTheme))
         sceneAnchor.addChild(playerEntity.root)
         for rival in rivals {
             sceneAnchor.addChild(rival.entity.root)

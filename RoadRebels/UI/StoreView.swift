@@ -10,17 +10,11 @@ struct StoreView: View {
 
     var body: some View {
         ZStack {
-            Color.black.ignoresSafeArea()
+            GameBackground(accent: Theme.accentYellow)
             VStack(spacing: 0) {
-                header
+                ScreenHeader(title: "STORE", onBack: onBack) { HeaderSpacer() }
                 if storeService.products.isEmpty {
-                    Spacer()
-                    Text(storeService.isLoadingProducts ? "Loading…" : "Store unavailable.\nConfigure products in App Store Connect.")
-                        .multilineTextAlignment(.center)
-                        .font(.system(size: 14, weight: .semibold))
-                        .foregroundStyle(.white.opacity(0.5))
-                        .padding()
-                    Spacer()
+                    emptyState
                 } else {
                     ScrollView {
                         VStack(spacing: 12) {
@@ -38,42 +32,63 @@ struct StoreView: View {
         }
     }
 
-    private var header: some View {
-        HStack {
-            Button(action: onBack) {
-                Image(systemName: "chevron.left")
-                    .font(.system(size: 18, weight: .bold))
-                    .foregroundStyle(.white)
-                    .padding(10)
-            }
-            .accessibilityIdentifier("backButton")
+    private var emptyState: some View {
+        VStack(spacing: 12) {
             Spacer()
-            Text("STORE")
-                .font(.system(size: 18, weight: .heavy, design: .rounded))
-                .foregroundStyle(.white)
+            Image(systemName: storeService.isLoadingProducts ? "hourglass" : "bag.badge.questionmark")
+                .font(.system(size: 34, weight: .medium))
+                .foregroundStyle(Theme.textTertiary)
+            Text(storeService.isLoadingProducts ? "Loading…" : "Store unavailable.\nConfigure products in App Store Connect.")
+                .multilineTextAlignment(.center)
+                .font(.system(size: 14, weight: .semibold))
+                .foregroundStyle(Theme.textSecondary)
             Spacer()
-            Color.clear.frame(width: 38, height: 1)
         }
-        .padding(.horizontal, 16)
-        .padding(.top, 12)
+        .padding()
     }
 
     private func productRow(_ product: Product) -> some View {
         let owned = storeService.purchasedNonConsumables.contains(product.id)
-        return HStack {
+        let isPro = product.id == StoreProductID.pro.rawValue
+        return HStack(spacing: 14) {
+            ZStack {
+                Circle()
+                    .fill(isPro ? Theme.accentYellow.opacity(0.18) : Theme.cardFill)
+                    .frame(width: 40, height: 40)
+                Image(systemName: icon(for: product.id))
+                    .font(.system(size: 15, weight: .bold))
+                    .foregroundStyle(isPro ? Theme.accentYellow : Theme.accentCyan)
+            }
             VStack(alignment: .leading, spacing: 4) {
                 Text(product.displayName)
                     .font(.system(size: 15, weight: .bold))
-                    .foregroundStyle(.white)
+                    .foregroundStyle(Theme.textPrimary)
                 Text(product.description)
                     .font(.system(size: 12, weight: .medium))
-                    .foregroundStyle(.white.opacity(0.5))
+                    .foregroundStyle(Theme.textSecondary)
             }
             Spacer()
             purchaseButton(product, owned: owned)
         }
         .padding(14)
-        .background(Color.white.opacity(0.06), in: RoundedRectangle(cornerRadius: 12))
+        .background(
+            RoundedRectangle(cornerRadius: Theme.cardRadius, style: .continuous)
+                .fill(Theme.cardFill)
+                .overlay(
+                    RoundedRectangle(cornerRadius: Theme.cardRadius, style: .continuous)
+                        .stroke(isPro ? Theme.accentYellow.opacity(0.4) : Theme.cardStroke, lineWidth: isPro ? 1.5 : 1)
+                )
+        )
+    }
+
+    private func icon(for productID: String) -> String {
+        switch StoreProductID(rawValue: productID) {
+        case .pro: return "crown.fill"
+        case .removeAds: return "bolt.slash.fill"
+        case .starterPack: return "gift.fill"
+        case .creditsSmall, .creditsLarge: return "circle.hexagongrid.fill"
+        case .none: return "bag.fill"
+        }
     }
 
     private func purchaseButton(_ product: Product, owned: Bool) -> some View {
@@ -91,9 +106,9 @@ struct StoreView: View {
             }
             .padding(.horizontal, 14)
             .padding(.vertical, 8)
-            .background(owned ? Color.white.opacity(0.15) : Color.cyan, in: Capsule())
+            .background(owned ? Color.white.opacity(0.15) : Theme.accentCyan, in: Capsule())
         }
-        .buttonStyle(.plain)
+        .buttonStyle(RowPressStyle())
         .disabled(owned || purchasingID != nil)
     }
 

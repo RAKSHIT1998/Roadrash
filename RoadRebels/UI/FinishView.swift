@@ -7,56 +7,79 @@ struct FinishView: View {
     let onContinue: () -> Void
 
     @State private var isSharing = false
+    @State private var hasAppeared = false
 
     var body: some View {
         ZStack {
-            Color.black.opacity(0.94).ignoresSafeArea()
-            VStack(spacing: 22) {
+            GameBackground(accent: result.didWin ? Theme.accentYellow : Theme.accentRed)
+            Color.black.opacity(0.5).ignoresSafeArea()
+
+            VStack(spacing: 20) {
+                Image(systemName: result.didWin ? "trophy.fill" : "flag.checkered")
+                    .font(.system(size: 34, weight: .bold))
+                    .foregroundStyle(result.didWin ? Theme.accentYellow : Theme.textSecondary)
+                    .shadow(color: result.didWin ? Theme.accentYellow.opacity(0.6) : .clear, radius: 16)
+
                 Text("\(placeLabel(result.position)) PLACE")
-                    .font(.system(size: 42, weight: .black, design: .rounded))
-                    .foregroundStyle(result.didWin ? .yellow : .white)
+                    .font(.system(size: 44, weight: .black, design: .rounded))
+                    .foregroundStyle(result.didWin ? Theme.accentYellow : Theme.textPrimary)
 
-                Text(String(format: "TIME   %.1fs", result.elapsedTime))
-                    .font(.system(size: 17, weight: .semibold, design: .monospaced))
-                    .foregroundStyle(.white.opacity(0.8))
-
-                if result.creditsEarned > 0 {
-                    Text("+\(result.creditsEarned) CR")
-                        .font(.system(size: 20, weight: .bold, design: .monospaced))
-                        .foregroundStyle(.yellow)
-                }
+                statGrid
 
                 VStack(spacing: 12) {
                     Button(action: onContinue) {
                         Text("CONTINUE")
-                            .font(.system(size: 20, weight: .heavy, design: .rounded))
-                            .foregroundStyle(.black)
-                            .padding(.horizontal, 44)
-                            .padding(.vertical, 16)
-                            .background(Color.white, in: Capsule())
                     }
-                    .buttonStyle(.plain)
+                    .buttonStyle(PrimaryButtonStyle(color: .white))
 
                     Button {
                         isSharing = true
                     } label: {
                         Label("SHARE", systemImage: "square.and.arrow.up")
-                            .font(.system(size: 14, weight: .heavy, design: .rounded))
-                            .foregroundStyle(.white.opacity(0.7))
+                            .font(.system(size: 13, weight: .heavy, design: .rounded))
+                            .foregroundStyle(Theme.textSecondary)
                     }
-                    .buttonStyle(.plain)
+                    .buttonStyle(RowPressStyle())
                 }
             }
+            .opacity(hasAppeared ? 1 : 0)
+            .scaleEffect(hasAppeared ? 1 : 0.85)
         }
         .onAppear {
             if let raceID = result.careerRaceID, result.didWin {
                 careerState.completeRace(id: raceID, reward: result.creditsEarned)
             }
             progression.handleRaceFinished(result)
+            withAnimation(.spring(response: 0.55, dampingFraction: 0.7)) {
+                hasAppeared = true
+            }
         }
         .sheet(isPresented: $isSharing) {
             ShareSheet(items: [ShareText.raceResult(result)])
         }
+    }
+
+    private var statGrid: some View {
+        HStack(spacing: 10) {
+            statChip(icon: "stopwatch.fill", value: String(format: "%.1fs", result.elapsedTime), color: Theme.accentCyan)
+            statChip(icon: "arrow.triangle.swap", value: "\(result.nearMisses)", color: Theme.accentViolet)
+            if result.creditsEarned > 0 {
+                statChip(icon: "circle.hexagongrid.fill", value: "+\(result.creditsEarned)", color: Theme.accentYellow)
+            }
+        }
+    }
+
+    private func statChip(icon: String, value: String, color: Color) -> some View {
+        VStack(spacing: 6) {
+            Image(systemName: icon)
+                .font(.system(size: 14, weight: .bold))
+                .foregroundStyle(color)
+            Text(value)
+                .font(.system(size: 15, weight: .bold, design: .monospaced))
+                .foregroundStyle(Theme.textPrimary)
+        }
+        .frame(width: 78, height: 62)
+        .cardStyle()
     }
 
     private func placeLabel(_ position: Int) -> String {

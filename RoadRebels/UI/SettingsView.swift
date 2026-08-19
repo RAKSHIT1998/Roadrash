@@ -6,15 +6,15 @@ struct SettingsView: View {
 
     var body: some View {
         ZStack {
-            Color.black.ignoresSafeArea()
+            GameBackground(accent: Theme.accentGreen)
             VStack(spacing: 0) {
-                header
+                ScreenHeader(title: "SETTINGS", onBack: onBack) { HeaderSpacer() }
                 ScrollView {
                     VStack(spacing: 16) {
-                        sliderRow(title: "MUSIC VOLUME", value: $settings.musicVolume)
-                        sliderRow(title: "SFX VOLUME", value: $settings.sfxVolume)
-                        toggleRow(title: "HAPTICS", isOn: $settings.hapticsEnabled)
-                        toggleRow(title: "REDUCED MOTION", isOn: $settings.reducedMotionEnabled)
+                        sliderRow(title: "MUSIC VOLUME", icon: "music.note", value: $settings.musicVolume)
+                        sliderRow(title: "SFX VOLUME", icon: "speaker.wave.2.fill", value: $settings.sfxVolume)
+                        toggleRow(title: "HAPTICS", icon: "iphone.radiowaves.left.and.right", isOn: $settings.hapticsEnabled)
+                        toggleRow(title: "REDUCED MOTION", icon: "figure.walk.motion", isOn: $settings.reducedMotionEnabled)
                     }
                     .padding(20)
                 }
@@ -22,46 +22,26 @@ struct SettingsView: View {
         }
     }
 
-    private var header: some View {
-        HStack {
-            Button(action: onBack) {
-                Image(systemName: "chevron.left")
-                    .font(.system(size: 18, weight: .bold))
-                    .foregroundStyle(.white)
-                    .padding(10)
-            }
-            .accessibilityIdentifier("backButton")
-            Spacer()
-            Text("SETTINGS")
-                .font(.system(size: 18, weight: .heavy, design: .rounded))
-                .foregroundStyle(.white)
-            Spacer()
-            Color.clear.frame(width: 38, height: 1)
-        }
-        .padding(.horizontal, 16)
-        .padding(.top, 12)
-    }
-
-    private func sliderRow(title: String, value: Binding<Float>) -> some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Text(title)
+    private func sliderRow(title: String, icon: String, value: Binding<Float>) -> some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Label(title, systemImage: icon)
                 .font(.system(size: 13, weight: .bold))
-                .foregroundStyle(.white.opacity(0.8))
+                .foregroundStyle(Theme.textPrimary.opacity(0.85))
             Slider(value: Binding(get: { Double(value.wrappedValue) }, set: { value.wrappedValue = Float($0) }), in: 0...1)
-                .tint(.red)
+                .tint(Theme.accentRed)
         }
         .padding(16)
-        .background(Color.white.opacity(0.06), in: RoundedRectangle(cornerRadius: 14))
+        .cardStyle()
     }
 
-    private func toggleRow(title: String, isOn: Binding<Bool>) -> some View {
+    private func toggleRow(title: String, icon: String, isOn: Binding<Bool>) -> some View {
         Toggle(isOn: isOn) {
-            Text(title)
+            Label(title, systemImage: icon)
                 .font(.system(size: 13, weight: .bold))
-                .foregroundStyle(.white.opacity(0.8))
+                .foregroundStyle(Theme.textPrimary.opacity(0.85))
         }
-        .tint(.red)
+        .tint(Theme.accentRed)
         .padding(16)
-        .background(Color.white.opacity(0.06), in: RoundedRectangle(cornerRadius: 14))
+        .cardStyle()
     }
 }

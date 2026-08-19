@@ -15,73 +15,25 @@ struct MenuView: View {
     let onSettings: () -> Void
 
     @State private var showingGameCenter = false
+    @State private var hasAppeared = false
 
     var body: some View {
         ZStack {
-            LinearGradient(
-                colors: [Color.black, Color(red: 0.10, green: 0.05, blue: 0.16)],
-                startPoint: .top, endPoint: .bottom
-            )
-            .ignoresSafeArea()
+            GameBackground()
+            SpeedLinesBackground(opacity: 0.045)
 
-            VStack(spacing: 28) {
-                VStack(spacing: 6) {
-                    Text("ROAD REBELS")
-                        .font(.system(size: 46, weight: .black, design: .rounded))
-                        .foregroundStyle(.white)
-                    Text("RIDE.  FIGHT.  SURVIVE.")
-                        .font(.system(size: 14, weight: .semibold))
-                        .tracking(5)
-                        .foregroundStyle(.white.opacity(0.55))
-                }
-
-                VStack(spacing: 14) {
-                    Button(action: onRide) {
-                        Text("RIDE")
-                            .font(.system(size: 24, weight: .heavy, design: .rounded))
-                            .foregroundStyle(.black)
-                            .padding(.horizontal, 52)
-                            .padding(.vertical, 18)
-                            .background(Color.red, in: Capsule())
-                    }
-                    .buttonStyle(.plain)
-
-                    HStack(spacing: 12) {
-                        secondaryButton("CAREER", action: onCareer)
-                        secondaryButton("GARAGE", action: onGarage)
-                        secondaryButton("ENDLESS", action: onEndless)
-                    }
-                }
+            VStack(spacing: 34) {
+                titleBlock
+                actionBlock
             }
+            .opacity(hasAppeared ? 1 : 0)
+            .scaleEffect(hasAppeared ? 1 : 0.92)
 
-            VStack {
-                HStack {
-                    Button(action: onStore) {
-                        Image(systemName: "bag.fill")
-                            .font(.system(size: 18, weight: .semibold))
-                            .foregroundStyle(.white.opacity(0.7))
-                            .padding(12)
-                    }
-                    .buttonStyle(.plain)
-                    Spacer()
-                    Button {
-                        showingGameCenter = true
-                    } label: {
-                        Image(systemName: "trophy.fill")
-                            .font(.system(size: 18, weight: .semibold))
-                            .foregroundStyle(.white.opacity(0.7))
-                            .padding(12)
-                    }
-                    .buttonStyle(.plain)
-                    Button(action: onSettings) {
-                        Image(systemName: "gearshape.fill")
-                            .font(.system(size: 18, weight: .semibold))
-                            .foregroundStyle(.white.opacity(0.7))
-                            .padding(12)
-                    }
-                    .buttonStyle(.plain)
-                }
-                Spacer()
+            topBar
+        }
+        .onAppear {
+            withAnimation(.spring(response: 0.6, dampingFraction: 0.75)) {
+                hasAppeared = true
             }
         }
         .sheet(isPresented: $showingGameCenter) {
@@ -90,15 +42,77 @@ struct MenuView: View {
         }
     }
 
-    private func secondaryButton(_ title: String, action: @escaping () -> Void) -> some View {
-        Button(action: action) {
-            Text(title)
-                .font(.system(size: 14, weight: .heavy, design: .rounded))
-                .foregroundStyle(.white)
-                .padding(.horizontal, 22)
-                .padding(.vertical, 12)
-                .overlay(Capsule().stroke(Color.white.opacity(0.4), lineWidth: 1.5))
+    private var titleBlock: some View {
+        VStack(spacing: 8) {
+            Text("ROAD REBELS")
+                .font(.system(size: 50, weight: .black, design: .rounded))
+                .foregroundStyle(
+                    LinearGradient(colors: [.white, .white.opacity(0.82)], startPoint: .top, endPoint: .bottom)
+                )
+                .shadow(color: Theme.accentRed.opacity(0.45), radius: 22, y: 6)
+            HStack(spacing: 8) {
+                Text("RIDE")
+                Circle().fill(Theme.accentRed).frame(width: 4, height: 4)
+                Text("FIGHT")
+                Circle().fill(Theme.accentRed).frame(width: 4, height: 4)
+                Text("SURVIVE")
+            }
+            .font(.system(size: 13, weight: .bold))
+            .tracking(4)
+            .foregroundStyle(Theme.textSecondary)
         }
-        .buttonStyle(.plain)
+    }
+
+    private var actionBlock: some View {
+        VStack(spacing: 16) {
+            Button(action: onRide) {
+                HStack(spacing: 10) {
+                    Image(systemName: "bolt.fill")
+                    Text("RIDE")
+                }
+            }
+            .buttonStyle(PrimaryButtonStyle())
+
+            HStack(spacing: 12) {
+                secondaryButton("CAREER", icon: "flag.checkered", action: onCareer)
+                secondaryButton("GARAGE", icon: "wrench.fill", action: onGarage)
+                secondaryButton("ENDLESS", icon: "infinity", action: onEndless)
+            }
+        }
+    }
+
+    private var topBar: some View {
+        VStack {
+            HStack {
+                Button(action: onStore) {
+                    Image(systemName: "bag.fill")
+                }
+                .buttonStyle(IconButtonStyle())
+                Spacer()
+                Button {
+                    showingGameCenter = true
+                } label: {
+                    Image(systemName: "trophy.fill")
+                }
+                .buttonStyle(IconButtonStyle())
+                Button(action: onSettings) {
+                    Image(systemName: "gearshape.fill")
+                }
+                .buttonStyle(IconButtonStyle())
+            }
+            .padding(16)
+            Spacer()
+        }
+    }
+
+    private func secondaryButton(_ title: String, icon: String, action: @escaping () -> Void) -> some View {
+        Button(action: action) {
+            HStack(spacing: 7) {
+                Image(systemName: icon)
+                    .font(.system(size: 12, weight: .bold))
+                Text(title)
+            }
+        }
+        .buttonStyle(SecondaryButtonStyle())
     }
 }

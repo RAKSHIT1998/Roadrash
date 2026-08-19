@@ -18,12 +18,21 @@ struct TutorialOverlay: View {
             if !tutorialState.hasCompletedTutorial, currentStep != .none {
                 VStack {
                     HStack(spacing: 12) {
-                        Text(currentStep.message)
-                            .font(.system(size: 12, weight: .bold, design: .rounded))
-                            .foregroundStyle(.white)
-                            .padding(.horizontal, 14)
-                            .padding(.vertical, 10)
-                            .background(Color.black.opacity(0.75), in: RoundedRectangle(cornerRadius: 12))
+                        HStack(spacing: 8) {
+                            Image(systemName: "hand.tap.fill")
+                                .font(.system(size: 12, weight: .bold))
+                                .foregroundStyle(Theme.accentCyan)
+                            Text(currentStep.message)
+                                .font(.system(size: 12, weight: .bold, design: .rounded))
+                                .foregroundStyle(.white)
+                        }
+                        .padding(.horizontal, 14)
+                        .padding(.vertical, 10)
+                        .background(
+                            RoundedRectangle(cornerRadius: 12, style: .continuous)
+                                .fill(Color.black.opacity(0.75))
+                                .overlay(RoundedRectangle(cornerRadius: 12, style: .continuous).stroke(Theme.accentCyan.opacity(0.35), lineWidth: 1))
+                        )
                         Spacer()
                         Button {
                             tutorialState.markCompleted()
@@ -31,14 +40,17 @@ struct TutorialOverlay: View {
                             Text("SKIP")
                                 .font(.system(size: 11, weight: .heavy))
                                 .foregroundStyle(.white.opacity(0.6))
+                                .padding(.horizontal, 10)
+                                .padding(.vertical, 8)
+                                .background(Color.black.opacity(0.5), in: Capsule())
                         }
-                        .buttonStyle(.plain)
+                        .buttonStyle(RowPressStyle())
                     }
                     .padding(.horizontal, 20)
                     .padding(.top, 70)
                     Spacer()
                 }
-                .transition(.opacity)
+                .transition(.move(edge: .top).combined(with: .opacity))
             }
         }
         .onReceive(timer) { _ in

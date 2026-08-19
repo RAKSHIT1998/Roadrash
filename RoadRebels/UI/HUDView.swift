@@ -1,7 +1,6 @@
 import SwiftUI
 
-/// Minimal race HUD: position, progress, health, speed. Combo/nitro-meter/
-/// near-miss readouts arrive with the Phase 2 game-feel pass.
+/// Race HUD: position, progress, health, nitro, speed.
 struct HUDView: View {
     @ObservedObject var gameState: GameState
 
@@ -17,62 +16,32 @@ struct HUDView: View {
 
     private var topRow: some View {
         HStack(alignment: .top) {
-            Text(ordinal(gameState.playerPosition))
-                .font(.system(size: 32, weight: .black, design: .rounded))
-                .foregroundStyle(.white)
-                .shadow(radius: 4)
+            PositionBadge(position: gameState.playerPosition)
             Spacer()
-            ProgressView(value: Double(gameState.raceProgress))
-                .frame(width: 160)
-                .tint(.red)
+            raceProgressBar
         }
+    }
+
+    private var raceProgressBar: some View {
+        ZStack(alignment: .leading) {
+            Capsule().fill(Color.black.opacity(0.4))
+            Capsule()
+                .fill(LinearGradient(colors: [Theme.accentRed, Theme.accentYellow], startPoint: .leading, endPoint: .trailing))
+                .frame(width: 170 * CGFloat(max(0, min(1, gameState.raceProgress))))
+        }
+        .frame(width: 170, height: 8)
+        .overlay(Capsule().stroke(.white.opacity(0.2), lineWidth: 1))
+        .padding(.top, 10)
     }
 
     private var bottomRow: some View {
         HStack(alignment: .bottom) {
             VStack(alignment: .leading, spacing: 8) {
-                HealthBar(value: gameState.playerHealth / max(1, gameState.playerMaxHealth), color: .red)
-                NitroBar(value: gameState.nitroMeter)
+                HUDBar(icon: "heart.fill", value: gameState.playerHealth / max(1, gameState.playerMaxHealth), color: Theme.accentRed)
+                HUDBar(icon: "bolt.fill", value: gameState.nitroMeter, color: Theme.accentCyan)
             }
             Spacer()
-            Text("\(Int(gameState.playerSpeed * 3.6)) KM/H")
-                .font(.system(size: 20, weight: .bold, design: .monospaced))
-                .foregroundStyle(.white)
-                .shadow(radius: 4)
+            SpeedReadout(speed: gameState.playerSpeed)
         }
-    }
-
-    private func ordinal(_ position: Int) -> String {
-        switch position {
-        case 1: return "1ST"
-        case 2: return "2ND"
-        case 3: return "3RD"
-        default: return "\(position)TH"
-        }
-    }
-}
-
-private struct NitroBar: View {
-    let value: Float
-    var body: some View {
-        ZStack(alignment: .leading) {
-            Capsule().fill(Color.black.opacity(0.4))
-            Capsule().fill(Color.cyan)
-                .frame(width: 140 * CGFloat(max(0, min(1, value))))
-        }
-        .frame(width: 140, height: 10)
-    }
-}
-
-private struct HealthBar: View {
-    let value: Float
-    let color: Color
-    var body: some View {
-        ZStack(alignment: .leading) {
-            Capsule().fill(Color.black.opacity(0.4))
-            Capsule().fill(color)
-                .frame(width: 140 * CGFloat(max(0, min(1, value))))
-        }
-        .frame(width: 140, height: 14)
     }
 }

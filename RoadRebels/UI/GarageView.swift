@@ -18,9 +18,11 @@ struct GarageView: View {
 
     var body: some View {
         ZStack {
-            Color.black.ignoresSafeArea()
+            GameBackground(accent: Theme.accentCyan)
             VStack(spacing: 0) {
-                header
+                ScreenHeader(title: "GARAGE", onBack: onBack) {
+                    CreditsPill(amount: careerState.credits)
+                }
                 bikePicker
                 ScrollView {
                     VStack(spacing: 14) {
@@ -32,28 +34,6 @@ struct GarageView: View {
                 }
             }
         }
-    }
-
-    private var header: some View {
-        HStack {
-            Button(action: onBack) {
-                Image(systemName: "chevron.left")
-                    .font(.system(size: 18, weight: .bold))
-                    .foregroundStyle(.white)
-                    .padding(10)
-            }
-            .accessibilityIdentifier("backButton")
-            Spacer()
-            Text("GARAGE")
-                .font(.system(size: 18, weight: .heavy, design: .rounded))
-                .foregroundStyle(.white)
-            Spacer()
-            Text("\(careerState.credits) CR")
-                .font(.system(size: 15, weight: .bold, design: .monospaced))
-                .foregroundStyle(.yellow)
-        }
-        .padding(.horizontal, 16)
-        .padding(.top, 12)
     }
 
     private var bikePicker: some View {
@@ -72,28 +52,45 @@ struct GarageView: View {
         let owned = garageState.isOwned(bike)
         let isSelected = bike.id == selectedBikeID
         return Button {
-            selectedBikeID = bike.id
+            withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+                selectedBikeID = bike.id
+            }
         } label: {
             VStack(spacing: 4) {
                 Text(bike.name)
                     .font(.system(size: 13, weight: .bold))
                 if !owned {
-                    Text("\(bike.unlockCost) CR")
-                        .font(.system(size: 10, weight: .semibold, design: .monospaced))
+                    HStack(spacing: 3) {
+                        Image(systemName: "lock.fill").font(.system(size: 8))
+                        Text("\(bike.unlockCost) CR")
+                    }
+                    .font(.system(size: 10, weight: .semibold, design: .monospaced))
                 }
             }
-            .foregroundStyle(isSelected ? .black : .white)
+            .foregroundStyle(isSelected ? .black : Theme.textPrimary)
             .padding(.horizontal, 14)
             .padding(.vertical, 10)
-            .background(isSelected ? Color.white : Color.white.opacity(owned ? 0.1 : 0.05), in: RoundedRectangle(cornerRadius: 10))
-            .opacity(owned ? 1 : 0.6)
+            .background(
+                isSelected
+                    ? AnyShapeStyle(LinearGradient(colors: [.white, .white.opacity(0.85)], startPoint: .top, endPoint: .bottom))
+                    : AnyShapeStyle(Theme.cardFill),
+                in: RoundedRectangle(cornerRadius: 12, style: .continuous)
+            )
+            .overlay(
+                RoundedRectangle(cornerRadius: 12, style: .continuous)
+                    .stroke(isSelected ? .clear : Theme.cardStroke, lineWidth: 1)
+            )
+            .opacity(owned ? 1 : 0.65)
         }
-        .buttonStyle(.plain)
+        .buttonStyle(RowPressStyle())
     }
 
     private var statsCard: some View {
         let tuning = garageState.tuning(for: selectedBikeID)
-        return VStack(alignment: .leading, spacing: 10) {
+        return VStack(alignment: .leading, spacing: 12) {
+            Label("PERFORMANCE", systemImage: "chart.bar.fill")
+                .font(.system(size: 12, weight: .black, design: .rounded))
+                .foregroundStyle(Theme.textSecondary)
             statRow("SPEED", tuning.speedMultiplier)
             statRow("ACCELERATION", tuning.accelMultiplier)
             statRow("HANDLING", tuning.handlingMultiplier)
@@ -101,19 +98,20 @@ struct GarageView: View {
             statRow("DURABILITY", 1 + tuning.maxHealthBonus / GameConstants.riderMaxHealth)
         }
         .padding(16)
-        .background(Color.white.opacity(0.06), in: RoundedRectangle(cornerRadius: 14))
+        .cardStyle()
     }
 
     private func statRow(_ label: String, _ multiplier: Float) -> some View {
         HStack {
             Text(label)
                 .font(.system(size: 12, weight: .bold))
-                .foregroundStyle(.white.opacity(0.7))
+                .foregroundStyle(Theme.textSecondary)
             Spacer()
             GeometryReader { geo in
                 ZStack(alignment: .leading) {
-                    Capsule().fill(Color.white.opacity(0.15))
-                    Capsule().fill(Color.red)
+                    Capsule().fill(Color.white.opacity(0.12))
+                    Capsule()
+                        .fill(LinearGradient(colors: [Theme.accentRed.opacity(0.7), Theme.accentRed], startPoint: .leading, endPoint: .trailing))
                         .frame(width: geo.size.width * CGFloat(min(1.4, multiplier) / 1.4))
                 }
             }
@@ -123,15 +121,15 @@ struct GarageView: View {
 
     private var upgradesCard: some View {
         VStack(alignment: .leading, spacing: 12) {
-            Text("UPGRADES")
-                .font(.system(size: 13, weight: .black, design: .rounded))
-                .foregroundStyle(.white.opacity(0.6))
+            Label("UPGRADES", systemImage: "wrench.and.screwdriver.fill")
+                .font(.system(size: 12, weight: .black, design: .rounded))
+                .foregroundStyle(Theme.textSecondary)
             ForEach(UpgradeCategory.allCases, id: \.self) { category in
                 upgradeRow(category)
             }
         }
         .padding(16)
-        .background(Color.white.opacity(0.06), in: RoundedRectangle(cornerRadius: 14))
+        .cardStyle()
     }
 
     private func upgradeRow(_ category: UpgradeCategory) -> some View {
@@ -143,32 +141,35 @@ struct GarageView: View {
         return HStack {
             Text(category.displayName)
                 .font(.system(size: 13, weight: .semibold))
-                .foregroundStyle(.white)
+                .foregroundStyle(Theme.textPrimary)
             HStack(spacing: 3) {
                 ForEach(0..<BikeTuningCalculator.maxUpgradeLevel, id: \.self) { pip in
                     Circle()
-                        .fill(pip < level ? Color.cyan : Color.white.opacity(0.15))
+                        .fill(pip < level ? Theme.accentCyan : Color.white.opacity(0.15))
                         .frame(width: 7, height: 7)
                 }
             }
             Spacer()
             Button {
-                garageState.upgrade(category, for: selectedBikeID, careerState: careerState)
+                withAnimation(.spring(response: 0.3, dampingFraction: 0.6)) {
+                    _ = garageState.upgrade(category, for: selectedBikeID, careerState: careerState)
+                }
             } label: {
                 Text(maxed ? "MAX" : "+\(cost) CR")
                     .font(.system(size: 11, weight: .bold, design: .monospaced))
-                    .foregroundStyle(maxed ? .white.opacity(0.4) : .black)
+                    .foregroundStyle(maxed ? Theme.textTertiary : .black)
                     .padding(.horizontal, 10)
                     .padding(.vertical, 6)
-                    .background(maxed ? Color.white.opacity(0.1) : Color.cyan, in: Capsule())
+                    .background(maxed ? Color.white.opacity(0.1) : Theme.accentCyan, in: Capsule())
             }
-            .buttonStyle(.plain)
+            .buttonStyle(RowPressStyle())
             .disabled(maxed || !owned || careerState.credits < cost)
         }
     }
 
     private var actionButton: some View {
         let owned = garageState.isOwned(selectedBike)
+        let isCurrent = owned && garageState.selectedBikeID == selectedBikeID
         return Button {
             if owned {
                 garageState.selectBike(selectedBike)
@@ -176,14 +177,13 @@ struct GarageView: View {
                 garageState.unlockBike(selectedBike, careerState: careerState)
             }
         } label: {
-            Text(owned ? (garageState.selectedBikeID == selectedBikeID ? "SELECTED" : "SELECT") : "UNLOCK · \(selectedBike.unlockCost) CR")
-                .font(.system(size: 16, weight: .heavy, design: .rounded))
-                .foregroundStyle(.black)
-                .frame(maxWidth: .infinity)
-                .padding(.vertical, 14)
-                .background(Color.red, in: Capsule())
+            HStack {
+                Image(systemName: isCurrent ? "checkmark.circle.fill" : (owned ? "checkmark" : "lock.open.fill"))
+                Text(owned ? (isCurrent ? "SELECTED" : "SELECT") : "UNLOCK · \(selectedBike.unlockCost) CR")
+            }
+            .frame(maxWidth: .infinity)
         }
-        .buttonStyle(.plain)
-        .disabled(owned && garageState.selectedBikeID == selectedBikeID)
+        .buttonStyle(PrimaryButtonStyle())
+        .disabled(isCurrent)
     }
 }

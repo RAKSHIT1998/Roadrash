@@ -42,6 +42,7 @@ final class EndlessController {
         self.nitroTrail = ImpactEffects.attachNitroTrail(to: playerEntity.root)
 
         sceneAnchor.addChild(RoadBuilder.buildRoadChunk(spline: spline, from: 0, to: spline.totalLength))
+        sceneAnchor.addChild(SceneryBuilder.buildProps(spline: spline, from: 0, to: spline.totalLength, theme: .default))
         sceneAnchor.addChild(playerEntity.root)
         sceneAnchor.addChild(cameraController.cameraEntity)
         addSun()
@@ -111,6 +112,7 @@ final class EndlessController {
             let previousEnd = spline.totalLength
             let newElement = spline.appendRandomSegment()
             sceneAnchor.addChild(RoadBuilder.buildRoadChunk(spline: spline, from: previousEnd, to: newElement.endDistance))
+            sceneAnchor.addChild(SceneryBuilder.buildProps(spline: spline, from: previousEnd, to: newElement.endDistance, theme: .default))
         }
     }
 

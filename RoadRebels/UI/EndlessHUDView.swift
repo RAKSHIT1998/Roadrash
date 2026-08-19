@@ -16,14 +16,18 @@ struct EndlessHUDView: View {
 
     private var topRow: some View {
         HStack(alignment: .top) {
-            VStack(alignment: .leading, spacing: 2) {
+            VStack(alignment: .leading, spacing: 3) {
                 Text("\(Int(gameState.endlessDistance)) M")
-                    .font(.system(size: 28, weight: .black, design: .rounded))
+                    .font(.system(size: 30, weight: .black, design: .rounded))
                     .foregroundStyle(.white)
-                    .shadow(radius: 4)
-                Text("BEST \(highScore)")
-                    .font(.system(size: 11, weight: .semibold, design: .monospaced))
-                    .foregroundStyle(.white.opacity(0.5))
+                    .shadow(color: Theme.accentRed.opacity(0.4), radius: 8)
+                HStack(spacing: 4) {
+                    Image(systemName: "trophy.fill")
+                        .font(.system(size: 10, weight: .bold))
+                    Text("BEST \(highScore)")
+                        .font(.system(size: 11, weight: .bold, design: .monospaced))
+                }
+                .foregroundStyle(Theme.accentYellow.opacity(0.9))
             }
             Spacer()
         }
@@ -32,39 +36,11 @@ struct EndlessHUDView: View {
     private var bottomRow: some View {
         HStack(alignment: .bottom) {
             VStack(alignment: .leading, spacing: 8) {
-                HealthBarView(value: gameState.playerHealth / max(1, gameState.playerMaxHealth), color: .red)
-                NitroBarView(value: gameState.nitroMeter)
+                HUDBar(icon: "heart.fill", value: gameState.playerHealth / max(1, gameState.playerMaxHealth), color: Theme.accentRed)
+                HUDBar(icon: "bolt.fill", value: gameState.nitroMeter, color: Theme.accentCyan)
             }
             Spacer()
-            Text("\(Int(gameState.playerSpeed * 3.6)) KM/H")
-                .font(.system(size: 20, weight: .bold, design: .monospaced))
-                .foregroundStyle(.white)
-                .shadow(radius: 4)
+            SpeedReadout(speed: gameState.playerSpeed)
         }
-    }
-}
-
-struct NitroBarView: View {
-    let value: Float
-    var body: some View {
-        ZStack(alignment: .leading) {
-            Capsule().fill(Color.black.opacity(0.4))
-            Capsule().fill(Color.cyan)
-                .frame(width: 140 * CGFloat(max(0, min(1, value))))
-        }
-        .frame(width: 140, height: 10)
-    }
-}
-
-struct HealthBarView: View {
-    let value: Float
-    let color: Color
-    var body: some View {
-        ZStack(alignment: .leading) {
-            Capsule().fill(Color.black.opacity(0.4))
-            Capsule().fill(color)
-                .frame(width: 140 * CGFloat(max(0, min(1, value))))
-        }
-        .frame(width: 140, height: 14)
     }
 }
