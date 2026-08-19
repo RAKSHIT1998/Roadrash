@@ -61,6 +61,7 @@ schemes:
         RoadRebelsTests: [test]
     run:
       config: Debug
+      storeKitConfiguration: RoadRebels.storekit
     test:
       config: Debug
       targets:

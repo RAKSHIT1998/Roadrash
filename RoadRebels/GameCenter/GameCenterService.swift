@@ -45,7 +45,7 @@ final class GameCenterService: NSObject, ObservableObject {
         let achievement = GKAchievement(identifier: id.rawValue)
         achievement.percentComplete = percentComplete
         achievement.showsCompletionBanner = true
-        GKAchievement.report([achievement], completionHandler: { _ in })
+        GKAchievement.report([achievement], withCompletionHandler: { _ in })
     }
 
     private static func topViewController() -> UIViewController? {

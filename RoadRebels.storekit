@@ -1,0 +1,90 @@
+{
+  "identifier" : "8F5C2E10-0000-4000-8000-000000000001",
+  "nonRenewingSubscriptions" : [],
+  "products" : [
+    {
+      "displayPrice" : "4.99",
+      "familyShareable" : false,
+      "internalID" : "8F5C2E10-0000-4000-8000-000000000010",
+      "localizations" : [
+        {
+          "description" : "Removes ads and unlocks the Phantom R bike for free.",
+          "displayName" : "Road Rebels Pro",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "com.roadrebels.game.pro",
+      "referenceName" : "Road Rebels Pro",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "1.99",
+      "familyShareable" : false,
+      "internalID" : "8F5C2E10-0000-4000-8000-000000000011",
+      "localizations" : [
+        {
+          "description" : "Removes ads permanently.",
+          "displayName" : "Remove Ads",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "com.roadrebels.game.removeads",
+      "referenceName" : "Remove Ads",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "2.99",
+      "familyShareable" : false,
+      "internalID" : "8F5C2E10-0000-4000-8000-000000000012",
+      "localizations" : [
+        {
+          "description" : "500 credits to spend in the Garage.",
+          "displayName" : "Starter Pack",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "com.roadrebels.game.starterpack",
+      "referenceName" : "Starter Pack",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "0.99",
+      "familyShareable" : false,
+      "internalID" : "8F5C2E10-0000-4000-8000-000000000013",
+      "localizations" : [
+        {
+          "description" : "200 credits to spend in the Garage.",
+          "displayName" : "200 Credits",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "com.roadrebels.game.credits.small",
+      "referenceName" : "200 Credits",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "4.99",
+      "familyShareable" : false,
+      "internalID" : "8F5C2E10-0000-4000-8000-000000000014",
+      "localizations" : [
+        {
+          "description" : "1200 credits to spend in the Garage.",
+          "displayName" : "1200 Credits",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "com.roadrebels.game.credits.large",
+      "referenceName" : "1200 Credits",
+      "type" : "Consumable"
+    }
+  ],
+  "settings" : {
+    "_askToBuyEnabled" : false,
+    "_billingIssuesEnabled" : false
+  },
+  "subscriptionGroups" : [],
+  "version" : {
+    "major" : 3,
+    "minor" : 0
+  }
+}

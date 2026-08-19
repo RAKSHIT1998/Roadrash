@@ -47,6 +47,12 @@ final class CareerState: ObservableObject {
         return true
     }
 
+    /// Credits granted from outside race completion, e.g. a Store purchase.
+    func grantCredits(_ amount: Int) {
+        credits += amount
+        saveManager.saveCredits(credits)
+    }
+
     func completeRace(id: String, reward: Int) {
         guard !completedRaceIDs.contains(id) else { return }
         completedRaceIDs.insert(id)

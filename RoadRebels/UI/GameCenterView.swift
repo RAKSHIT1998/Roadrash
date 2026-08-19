@@ -5,7 +5,7 @@ import GameKit
 /// sheet. If the player isn't authenticated, GameKit shows its own sign-in
 /// prompt inside this view rather than us needing to build one.
 struct GameCenterView: UIViewControllerRepresentable {
-    let state: GKGameCenterViewController.State
+    let state: GKGameCenterViewControllerState
     let onDismiss: () -> Void
 
     func makeUIViewController(context: Context) -> GKGameCenterViewController {

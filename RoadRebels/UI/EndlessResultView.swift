@@ -2,7 +2,7 @@ import SwiftUI
 
 struct EndlessResultView: View {
     let result: EndlessResult
-    @ObservedObject var endlessState: EndlessState
+    let progression: ProgressionCoordinator
     let onContinue: () -> Void
 
     @State private var isNewHighScore = false
@@ -45,7 +45,7 @@ struct EndlessResultView: View {
             }
         }
         .onAppear {
-            isNewHighScore = endlessState.submit(score: result.score)
+            isNewHighScore = progression.handleEndlessFinished(result)
         }
     }
 }

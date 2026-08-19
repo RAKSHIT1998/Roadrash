@@ -3,6 +3,7 @@ import SwiftUI
 struct FinishView: View {
     let result: RaceResult
     @ObservedObject var careerState: CareerState
+    let progression: ProgressionCoordinator
     let onContinue: () -> Void
 
     var body: some View {
@@ -38,6 +39,7 @@ struct FinishView: View {
             if let raceID = result.careerRaceID, result.didWin {
                 careerState.completeRace(id: raceID, reward: result.creditsEarned)
             }
+            progression.handleRaceFinished(result)
         }
     }
 

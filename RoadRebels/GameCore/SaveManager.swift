@@ -14,6 +14,7 @@ final class SaveManager {
         static let garage = "garage.data"
         static let endlessHighScore = "endless.highScore"
         static let playerStats = "player.stats"
+        static let settings = "app.settings"
     }
 
     init(defaults: UserDefaults = .standard) {
@@ -71,6 +72,20 @@ final class SaveManager {
         guard let data = try? JSONEncoder().encode(value) else { return }
         defaults.set(data, forKey: Key.playerStats)
     }
+
+    func loadSettings() -> SettingsSaveData {
+        guard let data = defaults.data(forKey: Key.settings),
+              let decoded = try? JSONDecoder().decode(SettingsSaveData.self, from: data)
+        else {
+            return SettingsSaveData()
+        }
+        return decoded
+    }
+
+    func saveSettings(_ value: SettingsSaveData) {
+        guard let data = try? JSONEncoder().encode(value) else { return }
+        defaults.set(data, forKey: Key.settings)
+    }
 }
 
 struct GarageSaveData: Codable {
@@ -85,4 +100,11 @@ struct PlayerStatsSaveData: Codable {
     var totalBossWins: Int = 0
     var totalNearMisses: Int = 0
     var unlockedAchievementIDs: Set<String> = []
+}
+
+struct SettingsSaveData: Codable {
+    var musicVolume: Float = 0.8
+    var sfxVolume: Float = 1.0
+    var hapticsEnabled: Bool = true
+    var reducedMotionOverride: Bool = false
 }

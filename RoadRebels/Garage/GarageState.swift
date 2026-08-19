@@ -59,6 +59,14 @@ final class GarageState: ObservableObject {
         return true
     }
 
+    /// Grants ownership with no credit cost, e.g. the Road Rebels Pro
+    /// purchase unlocking a bike outright.
+    func grantBikeFree(_ bike: BikeModel) {
+        guard !isOwned(bike) else { return }
+        ownedBikeIDs.insert(bike.id)
+        persist()
+    }
+
     @discardableResult
     func upgrade(_ category: UpgradeCategory, for bikeID: String, careerState: CareerState) -> Bool {
         guard upgradeLevel(category, for: bikeID) < BikeTuningCalculator.maxUpgradeLevel else { return false }
