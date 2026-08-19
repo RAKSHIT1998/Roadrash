@@ -21,6 +21,10 @@ final class CareerState: ObservableObject {
         completedRaceIDs.contains(race.id)
     }
 
+    var isFullyComplete: Bool {
+        CareerContent.regions.allSatisfy { region in region.races.allSatisfy(isRaceCompleted) }
+    }
+
     func isRegionUnlocked(_ region: CareerRegion) -> Bool {
         guard let index = CareerContent.regions.firstIndex(where: { $0.id == region.id }) else { return false }
         guard index > 0 else { return true }

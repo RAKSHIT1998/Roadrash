@@ -29,6 +29,10 @@ final class RaceController {
     private var wasNitroActive = false
     private var wasPlayerLeading = false
 
+    private var hadAnyCollision = false
+    private var tookAnyDamage = false
+    private var nearMissCount = 0
+
     private let config: RaceConfiguration
     private let tuning: BikeTuning
 
@@ -78,6 +82,9 @@ final class RaceController {
         nitroMeter = 0
         wasNitroActive = false
         wasPlayerLeading = false
+        hadAnyCollision = false
+        tookAnyDamage = false
+        nearMissCount = 0
         gameState.playerMaxHealth = GameConstants.riderMaxHealth + tuning.maxHealthBonus
     }
 
@@ -172,6 +179,7 @@ final class RaceController {
                     speedLoss: 14 * tuning.collisionResistance
                 )
                 trafficCollisionCooldown = 0.6
+                hadAnyCollision = true
                 cameraController.addTrauma(0.55)
                 HapticsService.shared.play(.collision)
                 AudioService.shared.play(.collision)
@@ -181,6 +189,7 @@ final class RaceController {
 
             if !vehicle.hasTriggeredNearMiss && longitudinalGap < 3.5 && lateralGap >= 1.7 && lateralGap < 3.0 {
                 vehicle.hasTriggeredNearMiss = true
+                nearMissCount += 1
                 nitroMeter = min(1, nitroMeter + GameConstants.nitroGainOnNearMiss)
                 HapticsService.shared.play(.nearMiss)
             } else if longitudinalGap > 8 {
@@ -216,6 +225,7 @@ final class RaceController {
         let (updatedBike, updatedCombat) = HitReaction.apply(outcome: resisted, toBike: playerBikeState, combat: playerCombatState)
         playerBikeState = updatedBike
         playerCombatState = updatedCombat
+        tookAnyDamage = true
         cameraController.addTrauma(0.35)
         HapticsService.shared.play(.attackImpact)
         AudioService.shared.play(.collision)
@@ -257,7 +267,10 @@ final class RaceController {
             elapsedTime: Date().timeIntervalSince(startTime),
             didWin: didWin,
             careerRaceID: config.careerRaceID,
-            creditsEarned: didWin ? config.creditReward : 0
+            creditsEarned: didWin ? config.creditReward : 0,
+            hadAnyCollision: hadAnyCollision,
+            tookAnyDamage: tookAnyDamage,
+            nearMisses: nearMissCount
         )
         if didWin {
             HapticsService.shared.play(.victory)

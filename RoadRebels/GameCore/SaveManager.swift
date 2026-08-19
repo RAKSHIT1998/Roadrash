@@ -13,6 +13,7 @@ final class SaveManager {
         static let credits = "career.credits"
         static let garage = "garage.data"
         static let endlessHighScore = "endless.highScore"
+        static let playerStats = "player.stats"
     }
 
     init(defaults: UserDefaults = .standard) {
@@ -56,10 +57,32 @@ final class SaveManager {
     func saveEndlessHighScore(_ value: Int) {
         defaults.set(value, forKey: Key.endlessHighScore)
     }
+
+    func loadPlayerStats() -> PlayerStatsSaveData {
+        guard let data = defaults.data(forKey: Key.playerStats),
+              let decoded = try? JSONDecoder().decode(PlayerStatsSaveData.self, from: data)
+        else {
+            return PlayerStatsSaveData()
+        }
+        return decoded
+    }
+
+    func savePlayerStats(_ value: PlayerStatsSaveData) {
+        guard let data = try? JSONEncoder().encode(value) else { return }
+        defaults.set(data, forKey: Key.playerStats)
+    }
 }
 
 struct GarageSaveData: Codable {
     var ownedBikeIDs: Set<String> = [BikeCatalog.all[0].id]
     var selectedBikeID: String = BikeCatalog.all[0].id
     var upgradeLevels: [String: [String: Int]] = [:] // bikeID -> UpgradeCategory.rawValue -> level
+}
+
+struct PlayerStatsSaveData: Codable {
+    var totalRacesStarted: Int = 0
+    var totalWins: Int = 0
+    var totalBossWins: Int = 0
+    var totalNearMisses: Int = 0
+    var unlockedAchievementIDs: Set<String> = []
 }

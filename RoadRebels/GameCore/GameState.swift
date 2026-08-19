@@ -17,6 +17,9 @@ struct RaceResult: Equatable {
     let didWin: Bool
     let careerRaceID: String?
     let creditsEarned: Int
+    let hadAnyCollision: Bool
+    let tookAnyDamage: Bool
+    let nearMisses: Int
 }
 
 /// Top-level observable state shared between SwiftUI and the game world.
