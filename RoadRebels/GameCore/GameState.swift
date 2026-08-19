@@ -3,6 +3,7 @@ import Foundation
 enum AppScreen: Equatable {
     case menu
     case careerMap
+    case garage
     case racing(RaceConfiguration)
     case raceFinished(result: RaceResult)
 }
@@ -25,6 +26,7 @@ final class GameState: ObservableObject {
     @Published var playerPosition: Int = 1
     @Published var playerSpeed: Float = 0
     @Published var playerHealth: Float = GameConstants.riderMaxHealth
+    @Published var playerMaxHealth: Float = GameConstants.riderMaxHealth
     @Published var raceProgress: Float = 0 // 0...1
     @Published var nitroMeter: Float = 0 // 0...1
 
@@ -32,10 +34,15 @@ final class GameState: ObservableObject {
         screen = .careerMap
     }
 
+    func openGarage() {
+        screen = .garage
+    }
+
     func startRace(config: RaceConfiguration) {
         playerPosition = 1
         playerSpeed = 0
         playerHealth = GameConstants.riderMaxHealth
+        playerMaxHealth = GameConstants.riderMaxHealth
         raceProgress = 0
         nitroMeter = 0
         screen = .racing(config)

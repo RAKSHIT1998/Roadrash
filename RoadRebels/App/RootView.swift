@@ -3,6 +3,7 @@ import SwiftUI
 struct RootView: View {
     @StateObject private var gameState = GameState()
     @StateObject private var careerState = CareerState()
+    @StateObject private var garageState = GarageState()
 
     var body: some View {
         Group {
@@ -10,7 +11,8 @@ struct RootView: View {
             case .menu:
                 MenuView(
                     onRide: { gameState.startRace(config: .quickRace) },
-                    onCareer: gameState.openCareerMap
+                    onCareer: gameState.openCareerMap,
+                    onGarage: gameState.openGarage
                 )
             case .careerMap:
                 CareerMapView(
@@ -18,8 +20,10 @@ struct RootView: View {
                     onSelectRace: { race in gameState.startRace(config: RaceConfiguration(careerRace: race)) },
                     onBack: gameState.returnToMenu
                 )
+            case .garage:
+                GarageView(garageState: garageState, careerState: careerState, onBack: gameState.returnToMenu)
             case .racing(let config):
-                RaceView(gameState: gameState, config: config)
+                RaceView(gameState: gameState, config: config, tuning: garageState.tuning(for: garageState.selectedBikeID))
             case .raceFinished(let result):
                 FinishView(
                     result: result,

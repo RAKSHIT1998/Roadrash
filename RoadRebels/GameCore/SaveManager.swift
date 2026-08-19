@@ -11,6 +11,8 @@ final class SaveManager {
     private enum Key {
         static let completedRaceIDs = "career.completedRaceIDs"
         static let credits = "career.credits"
+        static let garage = "garage.data"
+        static let endlessHighScore = "endless.highScore"
     }
 
     init(defaults: UserDefaults = .standard) {
@@ -32,4 +34,32 @@ final class SaveManager {
     func saveCredits(_ value: Int) {
         defaults.set(value, forKey: Key.credits)
     }
+
+    func loadGarage() -> GarageSaveData {
+        guard let data = defaults.data(forKey: Key.garage),
+              let decoded = try? JSONDecoder().decode(GarageSaveData.self, from: data)
+        else {
+            return GarageSaveData()
+        }
+        return decoded
+    }
+
+    func saveGarage(_ value: GarageSaveData) {
+        guard let data = try? JSONEncoder().encode(value) else { return }
+        defaults.set(data, forKey: Key.garage)
+    }
+
+    func loadEndlessHighScore() -> Int {
+        defaults.integer(forKey: Key.endlessHighScore)
+    }
+
+    func saveEndlessHighScore(_ value: Int) {
+        defaults.set(value, forKey: Key.endlessHighScore)
+    }
+}
+
+struct GarageSaveData: Codable {
+    var ownedBikeIDs: Set<String> = [BikeCatalog.all[0].id]
+    var selectedBikeID: String = BikeCatalog.all[0].id
+    var upgradeLevels: [String: [String: Int]] = [:] // bikeID -> UpgradeCategory.rawValue -> level
 }

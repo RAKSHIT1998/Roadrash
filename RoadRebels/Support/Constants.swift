@@ -54,6 +54,14 @@ enum GameConstants {
     static let nitroGainOnNearMiss: Float = 0.10
     static let nitroGainOnOvertake: Float = 0.22
 
+    // Endless mode
+    static let endlessRoadExtendBuffer: Float = 350.0
+    static let endlessDifficultyRampInterval: Float = 12.0 // seconds
+    static let endlessTrafficSpeedBoostPerRamp: Float = 1.2
+    static let endlessTrafficSpeedCap: Float = 30.0
+    static let endlessMaxTrafficCount: Int = 18
+    static let endlessNearMissScore: Int = 50
+
     // Simulation
     static let fixedTimestep: Double = 1.0 / 60.0
 }

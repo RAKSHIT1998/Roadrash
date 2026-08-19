@@ -6,6 +6,7 @@ import SwiftUI
 struct MenuView: View {
     let onRide: () -> Void
     let onCareer: () -> Void
+    let onGarage: () -> Void
 
     var body: some View {
         ZStack {
@@ -37,15 +38,27 @@ struct MenuView: View {
                     }
                     .buttonStyle(.plain)
 
-                    Button(action: onCareer) {
-                        Text("CAREER")
-                            .font(.system(size: 16, weight: .heavy, design: .rounded))
-                            .foregroundStyle(.white)
-                            .padding(.horizontal, 40)
-                            .padding(.vertical, 12)
-                            .overlay(Capsule().stroke(Color.white.opacity(0.4), lineWidth: 1.5))
+                    HStack(spacing: 14) {
+                        Button(action: onCareer) {
+                            Text("CAREER")
+                                .font(.system(size: 16, weight: .heavy, design: .rounded))
+                                .foregroundStyle(.white)
+                                .padding(.horizontal, 32)
+                                .padding(.vertical, 12)
+                                .overlay(Capsule().stroke(Color.white.opacity(0.4), lineWidth: 1.5))
+                        }
+                        .buttonStyle(.plain)
+
+                        Button(action: onGarage) {
+                            Text("GARAGE")
+                                .font(.system(size: 16, weight: .heavy, design: .rounded))
+                                .foregroundStyle(.white)
+                                .padding(.horizontal, 32)
+                                .padding(.vertical, 12)
+                                .overlay(Capsule().stroke(Color.white.opacity(0.4), lineWidth: 1.5))
+                        }
+                        .buttonStyle(.plain)
                     }
-                    .buttonStyle(.plain)
                 }
             }
         }

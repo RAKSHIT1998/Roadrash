@@ -16,14 +16,16 @@ enum BikePhysics {
     static let maxLateralSpeed: Float = 10.0
     static let lateralResponse: Float = 8.0
 
-    static func step(state: BikeState, control: BikeControlState, dt: Float) -> BikeState {
+    static func step(state: BikeState, control: BikeControlState, dt: Float, tuning: BikeTuning = .default) -> BikeState {
         var next = state
 
-        // Longitudinal: throttle/brake/drag, with a nitro boost layered on top.
-        let accelMultiplier: Float = control.nitroActive ? GameConstants.nitroAccelMultiplier : 1
-        let speedCap = control.nitroActive ? GameConstants.bikeMaxSpeed * GameConstants.nitroSpeedMultiplier : GameConstants.bikeMaxSpeed
+        // Longitudinal: throttle/brake/drag, with a nitro boost and the
+        // bike/upgrade tuning multipliers layered on top.
+        let accelMultiplier: Float = (control.nitroActive ? GameConstants.nitroAccelMultiplier : 1) * tuning.accelMultiplier
+        let baseMaxSpeed = GameConstants.bikeMaxSpeed * tuning.speedMultiplier
+        let speedCap = control.nitroActive ? baseMaxSpeed * GameConstants.nitroSpeedMultiplier : baseMaxSpeed
         if control.brake {
-            next.speed -= GameConstants.bikeBrakeDeceleration * dt
+            next.speed -= GameConstants.bikeBrakeDeceleration * tuning.brakeMultiplier * dt
         } else if control.throttle {
             next.speed += GameConstants.bikeAcceleration * accelMultiplier * dt
         } else {
@@ -32,7 +34,7 @@ enum BikePhysics {
         next.speed = max(0, min(next.speed, speedCap))
 
         // Lateral: steer input drives a target lateral velocity, smoothed.
-        let targetLateralVelocity = control.steer * maxLateralSpeed
+        let targetLateralVelocity = control.steer * maxLateralSpeed * tuning.handlingMultiplier
         next.lateralVelocity += (targetLateralVelocity - next.lateralVelocity) * min(1, lateralResponse * dt)
         next.lateralOffset += next.lateralVelocity * dt
         let halfRange = GameConstants.bikeHalfLaneRange

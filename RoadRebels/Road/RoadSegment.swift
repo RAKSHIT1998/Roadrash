@@ -21,15 +21,47 @@ func roadRight(forHeading heading: Float) -> SIMD3<Float> {
     SIMD3<Float>(cos(heading), 0, sin(heading))
 }
 
-/// Analytic centerline built from straight + arc segments. Phase 1 uses a single
-/// fixed spline (one curve); the infinite procedural version arrives in Phase 6.
-struct RoadSpline {
-    let elements: [RoadPathElement]
-    let totalLength: Float
+/// Analytic centerline built from straight + arc segments. A reference type
+/// so that Endless mode can append segments as the player approaches the end
+/// and have every holder (traffic, road mesh, camera) see the same growing
+/// road without passing a new copy around each time.
+final class RoadSpline {
+    private(set) var elements: [RoadPathElement]
+    private(set) var totalLength: Float
 
     init(elements: [RoadPathElement]) {
         self.elements = elements
         self.totalLength = elements.last?.endDistance ?? 0
+    }
+
+    /// Appends one more segment continuing seamlessly from the current end,
+    /// for Endless mode's rolling road. Alternates long straights with gentle
+    /// curves so the road stays drivable at high speed.
+    @discardableResult
+    func appendRandomSegment(minLength: Float = 220, maxLength: Float = 420) -> RoadPathElement {
+        let previousEnd = elements.last?.endDistance ?? 0
+        let previousHeading = elements.last?.endHeading ?? 0
+        let previousEndPosition = transform(atDistance: previousEnd).position
+
+        let length = Float.random(in: minLength...maxLength)
+        let curvature: Float
+        if Bool.random() {
+            curvature = 0
+        } else {
+            let radius = Float.random(in: 160...320)
+            curvature = (Bool.random() ? 1 : -1) / radius
+        }
+
+        let element = RoadPathElement(
+            startDistance: previousEnd,
+            length: length,
+            startPosition: previousEndPosition,
+            startHeading: previousHeading,
+            curvature: curvature
+        )
+        elements.append(element)
+        totalLength = element.endDistance
+        return element
     }
 
     /// World-space position, forward direction, and heading at a given distance

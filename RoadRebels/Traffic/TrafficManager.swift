@@ -3,11 +3,16 @@ import Foundation
 
 /// Owns a pooled set of traffic vehicles and keeps them cycling ahead of the
 /// player. Pooling avoids the per-frame allocate/destroy churn called out as
-/// a performance requirement in the mega-spec (section 40).
+/// a performance requirement in the mega-spec (section 40). Endless mode
+/// grows the pool and raises the speed range over time via
+/// `addVehicle`/`increaseDifficulty` instead of building a new manager.
 final class TrafficManager {
     private(set) var vehicles: [TrafficVehicle] = []
     private let laneOffsets: [Float]
     private let spline: RoadSpline
+
+    private var minSpeed = GameConstants.trafficMinSpeed
+    private var maxSpeed = GameConstants.trafficMaxSpeed
 
     init(spline: RoadSpline, parent: Entity) {
         self.spline = spline
@@ -20,7 +25,7 @@ final class TrafficManager {
             let vehicle = TrafficVehicle(
                 distance: Float.random(in: 40...GameConstants.trafficSpawnAheadDistance),
                 laneOffset: laneOffsets.randomElement() ?? 0,
-                speed: Float.random(in: GameConstants.trafficMinSpeed...GameConstants.trafficMaxSpeed)
+                speed: Float.random(in: minSpeed...maxSpeed)
             )
             vehicles.append(vehicle)
             parent.addChild(vehicle.root)
@@ -46,7 +51,26 @@ final class TrafficManager {
         var candidate = playerDistance + Float.random(in: GameConstants.trafficSafeSpawnGap...GameConstants.trafficSpawnAheadDistance)
         candidate = min(candidate, spline.totalLength - 5)
         vehicle.distance = max(candidate, playerDistance + GameConstants.trafficSafeSpawnGap)
-        vehicle.speed = Float.random(in: GameConstants.trafficMinSpeed...GameConstants.trafficMaxSpeed)
+        vehicle.speed = Float.random(in: minSpeed...maxSpeed)
         vehicle.hasTriggeredNearMiss = false
+    }
+
+    /// Endless mode: raises the traffic speed band, capped so it stays
+    /// dodgeable rather than becoming unfair.
+    func increaseDifficulty(speedBoost: Float, cap: Float) {
+        minSpeed = min(minSpeed + speedBoost, cap)
+        maxSpeed = min(maxSpeed + speedBoost, cap * 1.3)
+    }
+
+    /// Endless mode: grows the pool as the run gets harder, up to `maxCount`.
+    func addVehicle(parent: Entity, aheadOfPlayer playerDistance: Float, maxCount: Int) {
+        guard vehicles.count < maxCount else { return }
+        let vehicle = TrafficVehicle(
+            distance: playerDistance + Float.random(in: GameConstants.trafficSafeSpawnGap...GameConstants.trafficSpawnAheadDistance),
+            laneOffset: laneOffsets.randomElement() ?? 0,
+            speed: Float.random(in: minSpeed...maxSpeed)
+        )
+        vehicles.append(vehicle)
+        parent.addChild(vehicle.root)
     }
 }

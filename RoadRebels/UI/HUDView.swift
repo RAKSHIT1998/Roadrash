@@ -31,7 +31,7 @@ struct HUDView: View {
     private var bottomRow: some View {
         HStack(alignment: .bottom) {
             VStack(alignment: .leading, spacing: 8) {
-                HealthBar(value: gameState.playerHealth / GameConstants.riderMaxHealth, color: .red)
+                HealthBar(value: gameState.playerHealth / max(1, gameState.playerMaxHealth), color: .red)
                 NitroBar(value: gameState.nitroMeter)
             }
             Spacer()

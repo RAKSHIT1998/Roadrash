@@ -30,11 +30,13 @@ final class RaceController {
     private var wasPlayerLeading = false
 
     private let config: RaceConfiguration
+    private let tuning: BikeTuning
 
-    init(input: BikeInputController, gameState: GameState, config: RaceConfiguration) {
+    init(input: BikeInputController, gameState: GameState, config: RaceConfiguration, tuning: BikeTuning = .default) {
         self.input = input
         self.gameState = gameState
         self.config = config
+        self.tuning = tuning
         self.spline = .generate(totalLength: config.distance + 150)
         self.sceneAnchor = AnchorEntity(world: .zero)
         self.playerEntity = BikeEntity(role: .player)
@@ -72,10 +74,11 @@ final class RaceController {
         startTime = Date()
         raceEnded = false
         playerBikeState = BikeState(distance: 0, lateralOffset: -1.5)
-        playerCombatState = RiderCombatState()
+        playerCombatState = RiderCombatState(health: GameConstants.riderMaxHealth + tuning.maxHealthBonus)
         nitroMeter = 0
         wasNitroActive = false
         wasPlayerLeading = false
+        gameState.playerMaxHealth = GameConstants.riderMaxHealth + tuning.maxHealthBonus
     }
 
     func update(dt: Float) {
@@ -96,7 +99,7 @@ final class RaceController {
     private func stepPlayer(dt: Float) {
         let nitroActive = input.state.nitroHeld && nitroMeter > 0
         if nitroActive {
-            nitroMeter = max(0, nitroMeter - GameConstants.nitroDrainPerSecond * dt)
+            nitroMeter = max(0, nitroMeter - GameConstants.nitroDrainPerSecond * tuning.nitroDrainMultiplier * dt)
         }
         if nitroActive != wasNitroActive {
             cameraController.setNitroBoost(active: nitroActive)
@@ -110,7 +113,7 @@ final class RaceController {
 
         var control = input.state
         control.nitroActive = nitroActive
-        playerBikeState = BikePhysics.step(state: playerBikeState, control: control, dt: dt)
+        playerBikeState = BikePhysics.step(state: playerBikeState, control: control, dt: dt, tuning: tuning)
         playerCombatState = CombatResolver.tickCooldown(playerCombatState, dt: TimeInterval(dt))
     }
 
@@ -124,7 +127,8 @@ final class RaceController {
             attackerDistance: playerBikeState.distance,
             attackerLateral: playerBikeState.lateralOffset,
             defenderDistance: target.bikeState.distance,
-            defenderLateral: target.bikeState.lateralOffset
+            defenderLateral: target.bikeState.lateralOffset,
+            damageMultiplier: tuning.attackDamageMultiplier
         )
         playerCombatState = updatedAttacker
         guard let outcome else { return }
@@ -162,7 +166,11 @@ final class RaceController {
 
             if trafficCollisionCooldown <= 0 && longitudinalGap < 2.4 && lateralGap < 1.7 {
                 let pushDirection: Float = playerBikeState.lateralOffset >= vehicle.laneOffset ? 1 : -1
-                playerBikeState = BikePhysics.applyKnockback(to: playerBikeState, lateralImpulse: pushDirection * 4, speedLoss: 14)
+                playerBikeState = BikePhysics.applyKnockback(
+                    to: playerBikeState,
+                    lateralImpulse: pushDirection * 4 * tuning.collisionResistance,
+                    speedLoss: 14 * tuning.collisionResistance
+                )
                 trafficCollisionCooldown = 0.6
                 cameraController.addTrauma(0.55)
                 HapticsService.shared.play(.collision)
@@ -200,7 +208,12 @@ final class RaceController {
     }
 
     private func applyOutcomeToPlayer(_ outcome: AttackOutcome) {
-        let (updatedBike, updatedCombat) = HitReaction.apply(outcome: outcome, toBike: playerBikeState, combat: playerCombatState)
+        let resisted = AttackOutcome(
+            damage: outcome.damage,
+            lateralKnockback: outcome.lateralKnockback * tuning.collisionResistance,
+            speedLoss: outcome.speedLoss * tuning.collisionResistance
+        )
+        let (updatedBike, updatedCombat) = HitReaction.apply(outcome: resisted, toBike: playerBikeState, combat: playerCombatState)
         playerBikeState = updatedBike
         playerCombatState = updatedCombat
         cameraController.addTrauma(0.35)

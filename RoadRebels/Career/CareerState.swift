@@ -35,6 +35,14 @@ final class CareerState: ObservableObject {
         return isRaceCompleted(region.races[index - 1])
     }
 
+    @discardableResult
+    func spendCredits(_ amount: Int) -> Bool {
+        guard credits >= amount else { return false }
+        credits -= amount
+        saveManager.saveCredits(credits)
+        return true
+    }
+
     func completeRace(id: String, reward: Int) {
         guard !completedRaceIDs.contains(id) else { return }
         completedRaceIDs.insert(id)

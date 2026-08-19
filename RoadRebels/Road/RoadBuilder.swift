@@ -3,21 +3,28 @@ import UIKit
 import simd
 
 /// Builds a procedural road mesh by sampling the RoadSpline into a ribbon of
-/// quads. Phase 1 has one fixed spline; Phase 6 swaps this for chunked,
-/// streaming procedural generation without touching the sampling math here.
+/// quads. `buildRoadEntity` builds the whole thing at once for bounded races;
+/// `buildRoadChunk` builds just one distance range, for Endless mode to call
+/// each time it appends a new segment instead of re-meshing the whole road.
 enum RoadBuilder {
     static func buildRoadEntity(spline: RoadSpline, finishDistance: Float) -> Entity {
         let root = Entity()
-        root.addChild(buildRibbon(spline: spline, width: GameConstants.roadWidth, yOffset: 0,
-                                   color: UIColor(white: 0.16, alpha: 1.0)))
-        root.addChild(buildRibbon(spline: spline, width: 0.18, yOffset: 0.01,
-                                   color: UIColor.systemYellow))
+        root.addChild(buildRoadChunk(spline: spline, from: 0, to: spline.totalLength))
         root.addChild(buildCrossMarker(spline: spline, atDistance: 2, color: .white))
         root.addChild(buildCrossMarker(spline: spline, atDistance: finishDistance, color: .systemRed))
         return root
     }
 
-    private static func buildRibbon(spline: RoadSpline, width: Float, yOffset: Float, color: UIColor) -> ModelEntity {
+    static func buildRoadChunk(spline: RoadSpline, from: Float, to: Float) -> Entity {
+        let root = Entity()
+        root.addChild(buildRibbon(spline: spline, width: GameConstants.roadWidth, yOffset: 0,
+                                   color: UIColor(white: 0.16, alpha: 1.0), from: from, to: to))
+        root.addChild(buildRibbon(spline: spline, width: 0.18, yOffset: 0.01,
+                                   color: UIColor.systemYellow, from: from, to: to))
+        return root
+    }
+
+    private static func buildRibbon(spline: RoadSpline, width: Float, yOffset: Float, color: UIColor, from: Float, to: Float) -> ModelEntity {
         let sampleSpacing: Float = 5.0
         let halfWidth = width / 2
         var positions: [SIMD3<Float>] = []
@@ -25,9 +32,11 @@ enum RoadBuilder {
         var uvs: [SIMD2<Float>] = []
         var indices: [UInt32] = []
 
-        var distance: Float = 0
+        // Start one sample before `from` (when possible) so this chunk's
+        // ribbon seams seamlessly with the previous chunk's last quad.
+        var distance: Float = max(0, from - sampleSpacing)
         var sampleIndex: UInt32 = 0
-        while distance <= spline.totalLength {
+        while distance <= to {
             let t = spline.transform(atDistance: distance)
             let right = roadRight(forHeading: t.heading)
             let up = SIMD3<Float>(0, yOffset, 0)
@@ -53,7 +62,7 @@ enum RoadBuilder {
         descriptor.textureCoordinates = MeshBuffer(uvs)
         descriptor.primitives = .triangles(indices)
 
-        let mesh = (try? MeshResource.generate(from: [descriptor])) ?? MeshResource.generateBox(size: SIMD3<Float>(width, 0.01, spline.totalLength))
+        let mesh = (try? MeshResource.generate(from: [descriptor])) ?? MeshResource.generateBox(size: SIMD3<Float>(width, 0.01, max(1, to - from)))
         let material = SimpleMaterial(color: color, isMetallic: false)
         return ModelEntity(mesh: mesh, materials: [material])
     }
