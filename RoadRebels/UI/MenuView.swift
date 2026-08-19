@@ -4,13 +4,15 @@ import GameKit
 /// Home screen: RIDE drops straight into a quick race, CAREER opens the
 /// region/race map, GARAGE manages bikes/upgrades, ENDLESS starts the
 /// Highway Rush survival mode. The trophy button opens Game Center's native
-/// leaderboard/achievements UI. Settings arrives in a later phase.
+/// leaderboard/achievements UI; the bag opens the Store; the gear opens
+/// audio/haptics/accessibility Settings.
 struct MenuView: View {
     let onRide: () -> Void
     let onCareer: () -> Void
     let onGarage: () -> Void
     let onEndless: () -> Void
     let onStore: () -> Void
+    let onSettings: () -> Void
 
     @State private var showingGameCenter = false
 
@@ -66,6 +68,13 @@ struct MenuView: View {
                         showingGameCenter = true
                     } label: {
                         Image(systemName: "trophy.fill")
+                            .font(.system(size: 18, weight: .semibold))
+                            .foregroundStyle(.white.opacity(0.7))
+                            .padding(12)
+                    }
+                    .buttonStyle(.plain)
+                    Button(action: onSettings) {
+                        Image(systemName: "gearshape.fill")
                             .font(.system(size: 18, weight: .semibold))
                             .foregroundStyle(.white.opacity(0.7))
                             .padding(12)

@@ -8,6 +8,7 @@ struct RootView: View {
     @StateObject private var playerStats = PlayerStatsState()
     @StateObject private var gameCenter = GameCenterService.shared
     @StateObject private var storeService = StoreService.shared
+    @StateObject private var settingsState = SettingsState()
 
     private var progression: ProgressionCoordinator {
         ProgressionCoordinator(playerStats: playerStats, careerState: careerState, endlessState: endlessState, gameCenter: gameCenter)
@@ -32,7 +33,8 @@ struct RootView: View {
                         progression.handleRaceStart()
                         gameState.startEndless()
                     },
-                    onStore: gameState.openStore
+                    onStore: gameState.openStore,
+                    onSettings: gameState.openSettings
                 )
             case .careerMap:
                 CareerMapView(
@@ -47,6 +49,8 @@ struct RootView: View {
                 GarageView(garageState: garageState, careerState: careerState, onBack: gameState.returnToMenu)
             case .store:
                 StoreView(storeService: storeService, coordinator: purchaseCoordinator, onBack: gameState.returnToMenu)
+            case .settings:
+                SettingsView(settings: settingsState, onBack: gameState.returnToMenu)
             case .racing(let config):
                 RaceView(gameState: gameState, config: config, tuning: garageState.tuning(for: garageState.selectedBikeID))
             case .raceFinished(let result):

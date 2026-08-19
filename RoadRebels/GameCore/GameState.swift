@@ -5,6 +5,7 @@ enum AppScreen: Equatable {
     case careerMap
     case garage
     case store
+    case settings
     case racing(RaceConfiguration)
     case raceFinished(result: RaceResult)
     case endless
@@ -47,6 +48,10 @@ final class GameState: ObservableObject {
 
     func openStore() {
         screen = .store
+    }
+
+    func openSettings() {
+        screen = .settings
     }
 
     func startRace(config: RaceConfiguration) {

@@ -4,6 +4,11 @@ import simd
 /// Smoothed third-person chase camera with trauma-based shake and a nitro
 /// FOV punch on top of the Phase 1 follow/lag/prediction behavior.
 final class ChaseCameraController {
+    /// Accessibility setting (mega-spec section 43): when true, shake and
+    /// the nitro FOV punch are suppressed everywhere, not just in whichever
+    /// controller instance is currently running a race.
+    static var reducedMotionEnabled = false
+
     let cameraEntity: Entity
     private var smoothedPosition: SIMD3<Float>
     private var smoothedForward: SIMD3<Float>
@@ -27,11 +32,12 @@ final class ChaseCameraController {
     }
 
     func addTrauma(_ amount: Float) {
+        guard !Self.reducedMotionEnabled else { return }
         trauma = min(1, trauma + amount)
     }
 
     func setNitroBoost(active: Bool) {
-        targetFOVBoost = active ? 14 : 0
+        targetFOVBoost = (active && !Self.reducedMotionEnabled) ? 14 : 0
     }
 
     /// `targetPosition`/`targetForward` describe the bike being followed.
