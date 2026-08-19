@@ -163,6 +163,7 @@ final class EndlessController {
         gameState.playerPosition = 1
         gameState.raceProgress = 0
         gameState.nitroMeter = nitroMeter
+        gameState.endlessDistance = playerBikeState.distance
     }
 
     private var currentScore: Int {
@@ -177,8 +178,7 @@ final class EndlessController {
         gameState.finishEndless(result: EndlessResult(
             distance: playerBikeState.distance,
             nearMisses: nearMissCount,
-            score: currentScore,
-            isNewHighScore: false // GameState/RootView checks this against EndlessState
+            score: currentScore
         ))
     }
 }

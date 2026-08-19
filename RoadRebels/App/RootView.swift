@@ -4,6 +4,7 @@ struct RootView: View {
     @StateObject private var gameState = GameState()
     @StateObject private var careerState = CareerState()
     @StateObject private var garageState = GarageState()
+    @StateObject private var endlessState = EndlessState()
 
     var body: some View {
         Group {
@@ -12,7 +13,8 @@ struct RootView: View {
                 MenuView(
                     onRide: { gameState.startRace(config: .quickRace) },
                     onCareer: gameState.openCareerMap,
-                    onGarage: gameState.openGarage
+                    onGarage: gameState.openGarage,
+                    onEndless: gameState.startEndless
                 )
             case .careerMap:
                 CareerMapView(
@@ -30,6 +32,10 @@ struct RootView: View {
                     careerState: careerState,
                     onContinue: result.careerRaceID != nil ? gameState.openCareerMap : gameState.returnToMenu
                 )
+            case .endless:
+                EndlessView(gameState: gameState, endlessState: endlessState, tuning: garageState.tuning(for: garageState.selectedBikeID))
+            case .endlessFinished(let result):
+                EndlessResultView(result: result, endlessState: endlessState, onContinue: gameState.returnToMenu)
             }
         }
         .preferredColorScheme(.dark)

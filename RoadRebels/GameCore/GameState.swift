@@ -6,6 +6,8 @@ enum AppScreen: Equatable {
     case garage
     case racing(RaceConfiguration)
     case raceFinished(result: RaceResult)
+    case endless
+    case endlessFinished(result: EndlessResult)
 }
 
 struct RaceResult: Equatable {
@@ -29,6 +31,7 @@ final class GameState: ObservableObject {
     @Published var playerMaxHealth: Float = GameConstants.riderMaxHealth
     @Published var raceProgress: Float = 0 // 0...1
     @Published var nitroMeter: Float = 0 // 0...1
+    @Published var endlessDistance: Float = 0
 
     func openCareerMap() {
         screen = .careerMap
@@ -39,12 +42,7 @@ final class GameState: ObservableObject {
     }
 
     func startRace(config: RaceConfiguration) {
-        playerPosition = 1
-        playerSpeed = 0
-        playerHealth = GameConstants.riderMaxHealth
-        playerMaxHealth = GameConstants.riderMaxHealth
-        raceProgress = 0
-        nitroMeter = 0
+        resetTelemetry()
         screen = .racing(config)
     }
 
@@ -52,7 +50,26 @@ final class GameState: ObservableObject {
         screen = .raceFinished(result: result)
     }
 
+    func startEndless() {
+        resetTelemetry()
+        screen = .endless
+    }
+
+    func finishEndless(result: EndlessResult) {
+        screen = .endlessFinished(result: result)
+    }
+
     func returnToMenu() {
         screen = .menu
+    }
+
+    private func resetTelemetry() {
+        playerPosition = 1
+        playerSpeed = 0
+        playerHealth = GameConstants.riderMaxHealth
+        playerMaxHealth = GameConstants.riderMaxHealth
+        raceProgress = 0
+        nitroMeter = 0
+        endlessDistance = 0
     }
 }

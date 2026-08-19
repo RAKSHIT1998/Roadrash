@@ -1,12 +1,14 @@
 import SwiftUI
 
 /// Home screen: RIDE drops straight into a quick race, CAREER opens the
-/// region/race map. Garage/leaderboard entry points arrive in their
-/// respective phases.
+/// region/race map, GARAGE manages bikes/upgrades, ENDLESS starts the
+/// Highway Rush survival mode. Leaderboard/settings entry points arrive in
+/// their respective later phases.
 struct MenuView: View {
     let onRide: () -> Void
     let onCareer: () -> Void
     let onGarage: () -> Void
+    let onEndless: () -> Void
 
     var body: some View {
         ZStack {
@@ -38,29 +40,25 @@ struct MenuView: View {
                     }
                     .buttonStyle(.plain)
 
-                    HStack(spacing: 14) {
-                        Button(action: onCareer) {
-                            Text("CAREER")
-                                .font(.system(size: 16, weight: .heavy, design: .rounded))
-                                .foregroundStyle(.white)
-                                .padding(.horizontal, 32)
-                                .padding(.vertical, 12)
-                                .overlay(Capsule().stroke(Color.white.opacity(0.4), lineWidth: 1.5))
-                        }
-                        .buttonStyle(.plain)
-
-                        Button(action: onGarage) {
-                            Text("GARAGE")
-                                .font(.system(size: 16, weight: .heavy, design: .rounded))
-                                .foregroundStyle(.white)
-                                .padding(.horizontal, 32)
-                                .padding(.vertical, 12)
-                                .overlay(Capsule().stroke(Color.white.opacity(0.4), lineWidth: 1.5))
-                        }
-                        .buttonStyle(.plain)
+                    HStack(spacing: 12) {
+                        secondaryButton("CAREER", action: onCareer)
+                        secondaryButton("GARAGE", action: onGarage)
+                        secondaryButton("ENDLESS", action: onEndless)
                     }
                 }
             }
         }
+    }
+
+    private func secondaryButton(_ title: String, action: @escaping () -> Void) -> some View {
+        Button(action: action) {
+            Text(title)
+                .font(.system(size: 14, weight: .heavy, design: .rounded))
+                .foregroundStyle(.white)
+                .padding(.horizontal, 22)
+                .padding(.vertical, 12)
+                .overlay(Capsule().stroke(Color.white.opacity(0.4), lineWidth: 1.5))
+        }
+        .buttonStyle(.plain)
     }
 }
