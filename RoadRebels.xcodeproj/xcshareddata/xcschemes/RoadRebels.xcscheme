@@ -35,6 +35,20 @@
                ReferencedContainer = "container:RoadRebels.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "AF2A27D7758EB2F434AA7EAE"
+               BuildableName = "RoadRebelsUITests.xctest"
+               BlueprintName = "RoadRebelsUITests"
+               ReferencedContainer = "container:RoadRebels.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -61,6 +75,17 @@
                BlueprintIdentifier = "2EB1E94BB2941321324A9EB4"
                BuildableName = "RoadRebelsTests.xctest"
                BlueprintName = "RoadRebelsTests"
+               ReferencedContainer = "container:RoadRebels.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "AF2A27D7758EB2F434AA7EAE"
+               BuildableName = "RoadRebelsUITests.xctest"
+               BlueprintName = "RoadRebelsUITests"
                ReferencedContainer = "container:RoadRebels.xcodeproj">
             </BuildableReference>
          </TestableReference>

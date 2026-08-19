@@ -7,12 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		01198BB7A72305F3C2D737BB /* RegionTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6A377B60980005C8386FE4 /* RegionTheme.swift */; };
+		02D1E66743BFB130269BC6F2 /* ShareTextTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 547B9472093DEA650CBD71D5 /* ShareTextTests.swift */; };
+		0315716EB19C8CF06D780EEC /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C2BBA0077A8D93D54282C9 /* ShareSheet.swift */; };
 		06D7AA444FFD647D6F9D8A66 /* EnemyArchetype.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305150C47D8DD1D861787E17 /* EnemyArchetype.swift */; };
 		06FDFAF0160670AE64F8FC51 /* EndlessState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34F975F3B719D37F44A72EC /* EndlessState.swift */; };
 		08697E81EF62925D9653413C /* EnemyAITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437A7928BAF8066853046E38 /* EnemyAITests.swift */; };
+		119993253506C9B826AFE92C /* RegionThemeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18134A959EDD18AA00C8FA5 /* RegionThemeTests.swift */; };
 		13B377CA3992E5720CFC84EB /* EndlessSceneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21431A94B476FAA02F39979F /* EndlessSceneView.swift */; };
 		188EEBB3A3A59A4403EEBB22 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F27D23EB7E5AC5FD9DC6D0A /* Constants.swift */; };
 		23CABFFBBF682F7EC7BF2D59 /* RaceSceneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35263B3A9772D144A8AAD84F /* RaceSceneView.swift */; };
+		267C2A30CA7B660956E9703F /* AnalyticsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5633A40300B0E678915DDD /* AnalyticsService.swift */; };
 		2949CC21BDCF89F9D9873745 /* AchievementEvaluator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5878D8865212500D00A51416 /* AchievementEvaluator.swift */; };
 		2A62C35A879574622CA4089C /* PlayerStatsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE4513A311E057131FAB326 /* PlayerStatsState.swift */; };
 		2D9493FD86DC65A5A79CBC82 /* CombatComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F6DB6AC6136F4244D84037 /* CombatComponent.swift */; };
@@ -20,6 +25,7 @@
 		311177062C34026E546B25FE /* RaceControlsOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB8C0994545FB15590529AC /* RaceControlsOverlay.swift */; };
 		35F903A18F82EE03E59CCEA1 /* EndlessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70857814EC930DE4BA82B082 /* EndlessView.swift */; };
 		362FC7BFD9FF2C157ACB478C /* BikeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D1E12FC94478BB4D865DED /* BikeModel.swift */; };
+		3A04B4549A326BA9B7B9FB03 /* TutorialStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53A6FAAB7A3A10A10CF0470D /* TutorialStep.swift */; };
 		3EFB31206308DAC3960CF30B /* RaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42D2A4A2B023C7CD95E24ED /* RaceController.swift */; };
 		3F7A7ED6812DADA2293112A0 /* EndlessHUDView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE7FEFD97DB4FAFA7A95DA1 /* EndlessHUDView.swift */; };
 		41A38F09B87186DAA2373A7D /* CareerStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA052E17664FCFDCA68618FF /* CareerStateTests.swift */; };
@@ -44,6 +50,8 @@
 		7C7114395BF9F6F5D724DA03 /* SettingsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450E416B314A4E16592A3EA0 /* SettingsState.swift */; };
 		7E77DD3567692103DCF96BAB /* BikePhysicsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E547C27D7FE08A9AC97AC45D /* BikePhysicsTests.swift */; };
 		80BB8F719E2C3F155E42102A /* EndlessTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09549C4BC32E0F9BEDD5B6B7 /* EndlessTests.swift */; };
+		821240DF0B4B786B15A7CD80 /* TutorialOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF19477029901240A1FCDCD9 /* TutorialOverlay.swift */; };
+		83964423DFDC2C5DF069E615 /* TutorialState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7BB3A7BF8A9B6D7BF6EFC4 /* TutorialState.swift */; };
 		862728461D65B80C30E6C105 /* TrafficVehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AF734B734F904D6AE3544F /* TrafficVehicle.swift */; };
 		8840172020104C6340968B8B /* BikeTuning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2B292300B2E53DACDEAE45 /* BikeTuning.swift */; };
 		895B8694BBF8C9415E4C5A3D /* CareerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6ABD97373BC1802A9EEE2E5 /* CareerState.swift */; };
@@ -64,6 +72,8 @@
 		B50B53E930B6B637B1B87D92 /* BikePhysics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7479E881C993429E177DDE96 /* BikePhysics.swift */; };
 		BB7A92D33FA32A73B378227B /* GameCenterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391A0FC01370BBE04262BAA6 /* GameCenterView.swift */; };
 		BCD839F90FD536E37DF5E2B7 /* TrafficManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2AA40362A824C188EC9EEE /* TrafficManager.swift */; };
+		C503303BDEB4C3E6822979E3 /* RoadRebelsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77527284B74C9E078CC600E0 /* RoadRebelsUITests.swift */; };
+		C53A0AA0D69A872281B2F805 /* TutorialStepSelectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9CFDC1CB964110B7F915A45 /* TutorialStepSelectorTests.swift */; };
 		CB9A51D1A35C084E5395DEA3 /* EndlessControlsOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E78B220B59D6F81A350426 /* EndlessControlsOverlay.swift */; };
 		CCBE9863A8A2AD69B1344D18 /* BikeInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = E561C43ADF8850900BDDB09C /* BikeInput.swift */; };
 		CCD7B6A5129E4C738E9C0D04 /* EnemyAIState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325B5C799497641B17A118DF /* EnemyAIState.swift */; };
@@ -86,6 +96,13 @@
 			remoteGlobalIDString = 27582C28D83D47E5152355B6;
 			remoteInfo = RoadRebels;
 		};
+		DB28DC0B7FA73F8989ABF279 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AC5D4D6B5FD016CF0D5CE467 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 27582C28D83D47E5152355B6;
+			remoteInfo = RoadRebels;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -93,6 +110,7 @@
 		02CFF50971D425B629CEB32D /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		07D1E12FC94478BB4D865DED /* BikeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeModel.swift; sourceTree = "<group>"; };
 		09549C4BC32E0F9BEDD5B6B7 /* EndlessTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndlessTests.swift; sourceTree = "<group>"; };
+		0B6A377B60980005C8386FE4 /* RegionTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionTheme.swift; sourceTree = "<group>"; };
 		0E2467FFC4862EF8F80820FA /* ImpactEffects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpactEffects.swift; sourceTree = "<group>"; };
 		12616837C5A6D5D46C16275A /* GameCenterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCenterService.swift; sourceTree = "<group>"; };
 		12F2FE67A01AEFE52FBDE208 /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
@@ -100,8 +118,11 @@
 		1ECA971E121375FEFD29F247 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		21431A94B476FAA02F39979F /* EndlessSceneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndlessSceneView.swift; sourceTree = "<group>"; };
 		22F6DB6AC6136F4244D84037 /* CombatComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombatComponent.swift; sourceTree = "<group>"; };
+		238A71BEE8C3C2639FABF68B /* RoadRebelsUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = RoadRebelsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CB3FAF0ADE0736D398E0AE2 /* SettingsStateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsStateTests.swift; sourceTree = "<group>"; };
+		2D5633A40300B0E678915DDD /* AnalyticsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsService.swift; sourceTree = "<group>"; };
 		2DCAE05B9737E1A2D0238074 /* HitReaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitReaction.swift; sourceTree = "<group>"; };
+		2E7BB3A7BF8A9B6D7BF6EFC4 /* TutorialState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialState.swift; sourceTree = "<group>"; };
 		2F4789AC54C5728B40872817 /* CareerModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareerModels.swift; sourceTree = "<group>"; };
 		305150C47D8DD1D861787E17 /* EnemyArchetype.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyArchetype.swift; sourceTree = "<group>"; };
 		307FD4654CD201CCD14E6179 /* StoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreService.swift; sourceTree = "<group>"; };
@@ -112,7 +133,10 @@
 		3F27D23EB7E5AC5FD9DC6D0A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		437A7928BAF8066853046E38 /* EnemyAITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyAITests.swift; sourceTree = "<group>"; };
 		450E416B314A4E16592A3EA0 /* SettingsState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsState.swift; sourceTree = "<group>"; };
+		45C2BBA0077A8D93D54282C9 /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
 		51CA1A1A29FE941F565B9E2C /* EndlessController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndlessController.swift; sourceTree = "<group>"; };
+		53A6FAAB7A3A10A10CF0470D /* TutorialStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialStep.swift; sourceTree = "<group>"; };
+		547B9472093DEA650CBD71D5 /* ShareTextTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareTextTests.swift; sourceTree = "<group>"; };
 		55891B4533B82D6169608BB9 /* GameCenterModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCenterModels.swift; sourceTree = "<group>"; };
 		5878D8865212500D00A51416 /* AchievementEvaluator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementEvaluator.swift; sourceTree = "<group>"; };
 		5B2B292300B2E53DACDEAE45 /* BikeTuning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeTuning.swift; sourceTree = "<group>"; };
@@ -121,6 +145,7 @@
 		70857814EC930DE4BA82B082 /* EndlessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndlessView.swift; sourceTree = "<group>"; };
 		7479E881C993429E177DDE96 /* BikePhysics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikePhysics.swift; sourceTree = "<group>"; };
 		76AF734B734F904D6AE3544F /* TrafficVehicle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrafficVehicle.swift; sourceTree = "<group>"; };
+		77527284B74C9E078CC600E0 /* RoadRebelsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoadRebelsUITests.swift; sourceTree = "<group>"; };
 		7EC0250D7B692F485674C67D /* StoreProductID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreProductID.swift; sourceTree = "<group>"; };
 		7FE285B2E6A966478EB1D281 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		7FE7FEFD97DB4FAFA7A95DA1 /* EndlessHUDView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndlessHUDView.swift; sourceTree = "<group>"; };
@@ -135,6 +160,7 @@
 		9B938D385143363E01155FD9 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		9E92ADDCC1C365D083F1F645 /* CareerMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareerMapView.swift; sourceTree = "<group>"; };
 		A0D471C7A642F27CE2EFBC88 /* HUDView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUDView.swift; sourceTree = "<group>"; };
+		A18134A959EDD18AA00C8FA5 /* RegionThemeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionThemeTests.swift; sourceTree = "<group>"; };
 		A1C09B3E282C56101BC549C5 /* RaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaceView.swift; sourceTree = "<group>"; };
 		A797DB12F7B226EBDD90B342 /* ProgressionCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressionCoordinator.swift; sourceTree = "<group>"; };
 		A89A2E8266738B300E763CAB /* GarageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GarageTests.swift; sourceTree = "<group>"; };
@@ -147,13 +173,14 @@
 		C2968A81A8367A717FD73DEC /* RoadSegment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoadSegment.swift; sourceTree = "<group>"; };
 		C6ABD97373BC1802A9EEE2E5 /* CareerState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareerState.swift; sourceTree = "<group>"; };
 		C998CD54553AB5230B4AA16E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		CAB2EA57295C626BB5D21850 /* RoadRebels.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = RoadRebels.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CAB2EA57295C626BB5D21850 /* RoadRebels.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RoadRebels.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFB8C0994545FB15590529AC /* RaceControlsOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaceControlsOverlay.swift; sourceTree = "<group>"; };
 		D00B06F32EE232F812D63587 /* PurchaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseCoordinator.swift; sourceTree = "<group>"; };
 		D3060510905B6662D9EB7488 /* CareerContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareerContent.swift; sourceTree = "<group>"; };
 		D42D2A4A2B023C7CD95E24ED /* RaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaceController.swift; sourceTree = "<group>"; };
 		D67C1E0C5F5E49CAFA9BF094 /* AudioService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioService.swift; sourceTree = "<group>"; };
 		DC3BD1A58DB7686C60A5E3B4 /* RaceConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaceConfiguration.swift; sourceTree = "<group>"; };
+		DF19477029901240A1FCDCD9 /* TutorialOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialOverlay.swift; sourceTree = "<group>"; };
 		E1035C7E65D243E060E26335 /* StoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreView.swift; sourceTree = "<group>"; };
 		E1692C3D05D91C1E0705F6D9 /* GameLoop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameLoop.swift; sourceTree = "<group>"; };
 		E547C27D7FE08A9AC97AC45D /* BikePhysicsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikePhysicsTests.swift; sourceTree = "<group>"; };
@@ -161,6 +188,7 @@
 		F42D39B677554B10D98890AF /* EndlessResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndlessResult.swift; sourceTree = "<group>"; };
 		F5089D9F7ACC1588A143168F /* RoadBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoadBuilder.swift; sourceTree = "<group>"; };
 		F63BD9118A2101EF4E18C1A5 /* FinishView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishView.swift; sourceTree = "<group>"; };
+		F9CFDC1CB964110B7F915A45 /* TutorialStepSelectorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialStepSelectorTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -170,6 +198,22 @@
 				3F27D23EB7E5AC5FD9DC6D0A /* Constants.swift */,
 			);
 			path = Support;
+			sourceTree = "<group>";
+		};
+		08F238706BDD9F4F99BA2919 /* RoadRebelsUITests */ = {
+			isa = PBXGroup;
+			children = (
+				77527284B74C9E078CC600E0 /* RoadRebelsUITests.swift */,
+			);
+			path = RoadRebelsUITests;
+			sourceTree = "<group>";
+		};
+		0D506B69D29D5DED3F522794 /* Environment */ = {
+			isa = PBXGroup;
+			children = (
+				0B6A377B60980005C8386FE4 /* RegionTheme.swift */,
+			);
+			path = Environment;
 			sourceTree = "<group>";
 		};
 		128573F287D541E2F4AE7041 /* Effects */ = {
@@ -213,6 +257,7 @@
 			children = (
 				899A997EA0DE589590987AD1 /* RoadRebels */,
 				B83EE88165135652E9A2859C /* RoadRebelsTests */,
+				08F238706BDD9F4F99BA2919 /* RoadRebelsUITests */,
 				D4A44979F155A0F5774F76B2 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -264,7 +309,9 @@
 				35263B3A9772D144A8AAD84F /* RaceSceneView.swift */,
 				A1C09B3E282C56101BC549C5 /* RaceView.swift */,
 				02CFF50971D425B629CEB32D /* SettingsView.swift */,
+				45C2BBA0077A8D93D54282C9 /* ShareSheet.swift */,
 				E1035C7E65D243E060E26335 /* StoreView.swift */,
+				DF19477029901240A1FCDCD9 /* TutorialOverlay.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -291,6 +338,7 @@
 			children = (
 				C998CD54553AB5230B4AA16E /* Assets.xcassets */,
 				1ECA971E121375FEFD29F247 /* Info.plist */,
+				A7E5783567404BD2C76D15CE /* Analytics */,
 				BA6CA0EEB6B35882C86C79D9 /* App */,
 				13740686B5A1369D684821B2 /* Audio */,
 				7BBF7C54028D44E89A9E3070 /* Bike */,
@@ -300,6 +348,7 @@
 				128573F287D541E2F4AE7041 /* Effects */,
 				202CCFE4C2CCB6DE2E38FCD1 /* Endless */,
 				EAE9A8F981BEF72AE0F3341B /* Enemy */,
+				0D506B69D29D5DED3F522794 /* Environment */,
 				FA86CCE91D1602162EB088A3 /* GameCenter */,
 				488A54489F97C6B2F75843E1 /* GameCore */,
 				3A1D772BD4BA49D14DC6877A /* Garage */,
@@ -310,6 +359,7 @@
 				C29E05184C514DA52F24323E /* Store */,
 				08BCF81C787F3929029076EC /* Support */,
 				8DF35AC8A241236A6B30D333 /* Traffic */,
+				E3BBF0ECEC5D585B35F5E44C /* Tutorial */,
 				8276F36373D7ED0012CAA376 /* UI */,
 			);
 			path = RoadRebels;
@@ -340,6 +390,14 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
+		A7E5783567404BD2C76D15CE /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				2D5633A40300B0E678915DDD /* AnalyticsService.swift */,
+			);
+			path = Analytics;
+			sourceTree = "<group>";
+		};
 		B83EE88165135652E9A2859C /* RoadRebelsTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -350,8 +408,11 @@
 				437A7928BAF8066853046E38 /* EnemyAITests.swift */,
 				A89A2E8266738B300E763CAB /* GarageTests.swift */,
 				1B8561E8D9BB9632C257B875 /* RaceControllerSmokeTests.swift */,
+				A18134A959EDD18AA00C8FA5 /* RegionThemeTests.swift */,
 				2CB3FAF0ADE0736D398E0AE2 /* SettingsStateTests.swift */,
+				547B9472093DEA650CBD71D5 /* ShareTextTests.swift */,
 				61E90E1782502D4F68D515DB /* StoreProductIDTests.swift */,
+				F9CFDC1CB964110B7F915A45 /* TutorialStepSelectorTests.swift */,
 			);
 			path = RoadRebelsTests;
 			sourceTree = "<group>";
@@ -380,8 +441,18 @@
 			children = (
 				CAB2EA57295C626BB5D21850 /* RoadRebels.app */,
 				399F81DD3A82D49C928543C7 /* RoadRebelsTests.xctest */,
+				238A71BEE8C3C2639FABF68B /* RoadRebelsUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		E3BBF0ECEC5D585B35F5E44C /* Tutorial */ = {
+			isa = PBXGroup;
+			children = (
+				2E7BB3A7BF8A9B6D7BF6EFC4 /* TutorialState.swift */,
+				53A6FAAB7A3A10A10CF0470D /* TutorialStep.swift */,
+			);
+			path = Tutorial;
 			sourceTree = "<group>";
 		};
 		EAE9A8F981BEF72AE0F3341B /* Enemy */ = {
@@ -465,6 +536,24 @@
 			productReference = 399F81DD3A82D49C928543C7 /* RoadRebelsTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		AF2A27D7758EB2F434AA7EAE /* RoadRebelsUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D6DCE9DAAFEDE7C5CC520392 /* Build configuration list for PBXNativeTarget "RoadRebelsUITests" */;
+			buildPhases = (
+				AB9DE050DF0F176B8A6E240C /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E59604E3AD55CE1190493263 /* PBXTargetDependency */,
+			);
+			name = RoadRebelsUITests;
+			packageProductDependencies = (
+			);
+			productName = RoadRebelsUITests;
+			productReference = 238A71BEE8C3C2639FABF68B /* RoadRebelsUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -475,12 +564,16 @@
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
 					27582C28D83D47E5152355B6 = {
-						DevelopmentTeam = "";
 						ProvisioningStyle = Automatic;
 					};
 					2EB1E94BB2941321324A9EB4 = {
 						DevelopmentTeam = "";
 						ProvisioningStyle = Automatic;
+					};
+					AF2A27D7758EB2F434AA7EAE = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+						TestTargetID = 27582C28D83D47E5152355B6;
 					};
 				};
 			};
@@ -500,6 +593,7 @@
 			targets = (
 				27582C28D83D47E5152355B6 /* RoadRebels */,
 				2EB1E94BB2941321324A9EB4 /* RoadRebelsTests */,
+				AF2A27D7758EB2F434AA7EAE /* RoadRebelsUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -521,6 +615,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2949CC21BDCF89F9D9873745 /* AchievementEvaluator.swift in Sources */,
+				267C2A30CA7B660956E9703F /* AnalyticsService.swift in Sources */,
 				4A7006FAA5331CCA8171D704 /* AudioService.swift in Sources */,
 				8DBF282A7DB7F0345F98849B /* BikeEntity.swift in Sources */,
 				CCBE9863A8A2AD69B1344D18 /* BikeInput.swift in Sources */,
@@ -566,6 +661,7 @@
 				311177062C34026E546B25FE /* RaceControlsOverlay.swift in Sources */,
 				23CABFFBBF682F7EC7BF2D59 /* RaceSceneView.swift in Sources */,
 				A241CD01FE1C2A9990B0D248 /* RaceView.swift in Sources */,
+				01198BB7A72305F3C2D737BB /* RegionTheme.swift in Sources */,
 				6F55A1AC2BDCC3A605D1582E /* RivalProfile.swift in Sources */,
 				5C6B68DF6CC573FAD566704B /* RoadBuilder.swift in Sources */,
 				B18E592294DBF89818283A1A /* RoadRebelsApp.swift in Sources */,
@@ -574,11 +670,15 @@
 				D6515EC86BE7567D82DB76CC /* SaveManager.swift in Sources */,
 				7C7114395BF9F6F5D724DA03 /* SettingsState.swift in Sources */,
 				F05A8E43C5816F5D02FC21AA /* SettingsView.swift in Sources */,
+				0315716EB19C8CF06D780EEC /* ShareSheet.swift in Sources */,
 				A0D874B1C0718D691D76A2D3 /* StoreProductID.swift in Sources */,
 				587DE66784E83DAADCA7A382 /* StoreService.swift in Sources */,
 				E73D988408566E6688FFE402 /* StoreView.swift in Sources */,
 				BCD839F90FD536E37DF5E2B7 /* TrafficManager.swift in Sources */,
 				862728461D65B80C30E6C105 /* TrafficVehicle.swift in Sources */,
+				821240DF0B4B786B15A7CD80 /* TutorialOverlay.swift in Sources */,
+				83964423DFDC2C5DF069E615 /* TutorialState.swift in Sources */,
+				3A04B4549A326BA9B7B9FB03 /* TutorialStep.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -593,8 +693,19 @@
 				08697E81EF62925D9653413C /* EnemyAITests.swift in Sources */,
 				596A482DCC84E443CAD79156 /* GarageTests.swift in Sources */,
 				541CB1807A3CA30927123176 /* RaceControllerSmokeTests.swift in Sources */,
+				119993253506C9B826AFE92C /* RegionThemeTests.swift in Sources */,
 				9276E703476DA8264568672E /* SettingsStateTests.swift in Sources */,
+				02D1E66743BFB130269BC6F2 /* ShareTextTests.swift in Sources */,
 				684C4632DBE28A3DD6E04508 /* StoreProductIDTests.swift in Sources */,
+				C53A0AA0D69A872281B2F805 /* TutorialStepSelectorTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AB9DE050DF0F176B8A6E240C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C503303BDEB4C3E6822979E3 /* RoadRebelsUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -605,6 +716,11 @@
 			isa = PBXTargetDependency;
 			target = 27582C28D83D47E5152355B6 /* RoadRebels */;
 			targetProxy = 5BACE77F43E30E9E058D5587 /* PBXContainerItemProxy */;
+		};
+		E59604E3AD55CE1190493263 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 27582C28D83D47E5152355B6 /* RoadRebels */;
+			targetProxy = DB28DC0B7FA73F8989ABF279 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -690,6 +806,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = 48TGY734WW;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = RoadRebels/Info.plist;
@@ -702,6 +819,23 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
+		};
+		6AEA17DB27BF2B915C0AA073 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.roadrebels.RoadRebelsUITests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = RoadRebels;
+			};
+			name = Debug;
 		};
 		78707B08A1C0D9441E2F2E50 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -720,11 +854,29 @@
 			};
 			name = Release;
 		};
+		A5E2B859BC2DF04D39A01332 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.roadrebels.RoadRebelsUITests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = RoadRebels;
+			};
+			name = Release;
+		};
 		C38A1431E48D0DB82E12ED58 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = 48TGY734WW;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = RoadRebels/Info.plist;
@@ -830,6 +982,15 @@
 			buildConfigurations = (
 				F4A73B71C8F85CE5997D8F47 /* Debug */,
 				1CF46962ACFE30DB9A27A73C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		D6DCE9DAAFEDE7C5CC520392 /* Build configuration list for PBXNativeTarget "RoadRebelsUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6AEA17DB27BF2B915C0AA073 /* Debug */,
+				A5E2B859BC2DF04D39A01332 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

@@ -18,6 +18,10 @@ enum CareerContent {
         regions.lazy.compactMap { region in region.races.first { $0.id == id } }.first
     }
 
+    static func region(forRaceID raceID: String) -> CareerRegion? {
+        regions.first { region in region.races.contains { $0.id == raceID } }
+    }
+
     private static func region(id: String, name: String, baseDistance: Float, rivalPool: [RivalProfile], boss: RivalProfile) -> CareerRegion {
         let sprint = CareerRace(
             id: "\(id).sprint",

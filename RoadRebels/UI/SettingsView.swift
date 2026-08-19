@@ -30,6 +30,7 @@ struct SettingsView: View {
                     .foregroundStyle(.white)
                     .padding(10)
             }
+            .accessibilityIdentifier("backButton")
             Spacer()
             Text("SETTINGS")
                 .font(.system(size: 18, weight: .heavy, design: .rounded))

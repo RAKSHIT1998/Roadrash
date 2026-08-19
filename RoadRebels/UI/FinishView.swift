@@ -6,6 +6,8 @@ struct FinishView: View {
     let progression: ProgressionCoordinator
     let onContinue: () -> Void
 
+    @State private var isSharing = false
+
     var body: some View {
         ZStack {
             Color.black.opacity(0.94).ignoresSafeArea()
@@ -24,15 +26,26 @@ struct FinishView: View {
                         .foregroundStyle(.yellow)
                 }
 
-                Button(action: onContinue) {
-                    Text("CONTINUE")
-                        .font(.system(size: 20, weight: .heavy, design: .rounded))
-                        .foregroundStyle(.black)
-                        .padding(.horizontal, 44)
-                        .padding(.vertical, 16)
-                        .background(Color.white, in: Capsule())
+                VStack(spacing: 12) {
+                    Button(action: onContinue) {
+                        Text("CONTINUE")
+                            .font(.system(size: 20, weight: .heavy, design: .rounded))
+                            .foregroundStyle(.black)
+                            .padding(.horizontal, 44)
+                            .padding(.vertical, 16)
+                            .background(Color.white, in: Capsule())
+                    }
+                    .buttonStyle(.plain)
+
+                    Button {
+                        isSharing = true
+                    } label: {
+                        Label("SHARE", systemImage: "square.and.arrow.up")
+                            .font(.system(size: 14, weight: .heavy, design: .rounded))
+                            .foregroundStyle(.white.opacity(0.7))
+                    }
+                    .buttonStyle(.plain)
                 }
-                .buttonStyle(.plain)
             }
         }
         .onAppear {
@@ -40,6 +53,9 @@ struct FinishView: View {
                 careerState.completeRace(id: raceID, reward: result.creditsEarned)
             }
             progression.handleRaceFinished(result)
+        }
+        .sheet(isPresented: $isSharing) {
+            ShareSheet(items: [ShareText.raceResult(result)])
         }
     }
 

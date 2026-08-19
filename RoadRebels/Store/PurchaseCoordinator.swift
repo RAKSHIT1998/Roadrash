@@ -18,9 +18,16 @@ final class PurchaseCoordinator {
 
     @discardableResult
     func purchase(_ product: Product) async -> PurchaseOutcome {
+        AnalyticsService.shared.log(.purchaseStarted(productID: product.id))
         let outcome = await storeService.purchase(product)
-        if case .success(let productID) = outcome {
+        switch outcome {
+        case .success(let productID):
             applyEffect(for: productID)
+            AnalyticsService.shared.log(.purchaseCompleted(productID: productID))
+        case .failed:
+            AnalyticsService.shared.log(.purchaseFailed(productID: product.id))
+        case .cancelled, .pending:
+            break
         }
         return outcome
     }

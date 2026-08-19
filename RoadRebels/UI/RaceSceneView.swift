@@ -10,7 +10,7 @@ struct RaceSceneView: UIViewRepresentable {
 
     func makeUIView(context: Context) -> ARView {
         let arView = ARView(frame: .zero, cameraMode: .nonAR, automaticallyConfigureSession: false)
-        arView.environment.background = .color(UIColor(red: 0.55, green: 0.75, blue: 0.95, alpha: 1.0))
+        arView.environment.background = .color(raceController.regionTheme.skyColor)
         arView.renderOptions.insert(.disableMotionBlur)
         arView.scene.addAnchor(raceController.sceneAnchor)
         return arView

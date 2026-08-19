@@ -30,6 +30,7 @@ struct CareerMapView: View {
                     .foregroundStyle(.white)
                     .padding(10)
             }
+            .accessibilityIdentifier("backButton")
             Spacer()
             Text("CAREER")
                 .font(.system(size: 18, weight: .heavy, design: .rounded))

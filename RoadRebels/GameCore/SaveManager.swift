@@ -15,6 +15,7 @@ final class SaveManager {
         static let endlessHighScore = "endless.highScore"
         static let playerStats = "player.stats"
         static let settings = "app.settings"
+        static let hasCompletedTutorial = "tutorial.completed"
     }
 
     init(defaults: UserDefaults = .standard) {
@@ -85,6 +86,14 @@ final class SaveManager {
     func saveSettings(_ value: SettingsSaveData) {
         guard let data = try? JSONEncoder().encode(value) else { return }
         defaults.set(data, forKey: Key.settings)
+    }
+
+    func loadHasCompletedTutorial() -> Bool {
+        defaults.bool(forKey: Key.hasCompletedTutorial)
+    }
+
+    func saveHasCompletedTutorial(_ value: Bool) {
+        defaults.set(value, forKey: Key.hasCompletedTutorial)
     }
 }
 

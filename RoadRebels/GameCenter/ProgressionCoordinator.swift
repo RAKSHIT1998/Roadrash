@@ -28,6 +28,9 @@ final class ProgressionCoordinator {
         let isBossRace = result.careerRaceID.flatMap(CareerContent.race(withID:))?.isBossRace ?? false
         playerStats.recordRaceFinish(didWin: result.didWin, isBossRace: isBossRace)
         playerStats.addNearMisses(result.nearMisses)
+        if result.didWin, isBossRace, let raceID = result.careerRaceID {
+            AnalyticsService.shared.log(.bossDefeated(raceID: raceID))
+        }
         if result.didWin {
             let centiseconds = Int((result.elapsedTime * 100).rounded())
             gameCenter.submitScore(centiseconds, leaderboard: .fastestRace)

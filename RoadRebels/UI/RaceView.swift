@@ -7,6 +7,7 @@ struct RaceView: View {
     @ObservedObject var gameState: GameState
     let config: RaceConfiguration
     let tuning: BikeTuning
+    @ObservedObject var tutorialState: TutorialState
     @StateObject private var input = BikeInputController()
     @State private var raceController: RaceController?
     @State private var loop: GameLoop?
@@ -19,6 +20,7 @@ struct RaceView: View {
             }
             RaceControlsOverlay(input: input)
             HUDView(gameState: gameState)
+            TutorialOverlay(gameState: gameState, tutorialState: tutorialState)
         }
         .statusBarHidden(true)
         .onAppear(perform: setup)

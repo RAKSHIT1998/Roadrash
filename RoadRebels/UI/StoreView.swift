@@ -46,6 +46,7 @@ struct StoreView: View {
                     .foregroundStyle(.white)
                     .padding(10)
             }
+            .accessibilityIdentifier("backButton")
             Spacer()
             Text("STORE")
                 .font(.system(size: 18, weight: .heavy, design: .rounded))

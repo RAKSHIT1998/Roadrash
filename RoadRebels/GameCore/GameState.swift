@@ -47,6 +47,7 @@ final class GameState: ObservableObject {
     }
 
     func openStore() {
+        AnalyticsService.shared.log(.storeOpened)
         screen = .store
     }
 
@@ -56,19 +57,25 @@ final class GameState: ObservableObject {
 
     func startRace(config: RaceConfiguration) {
         resetTelemetry()
+        AnalyticsService.shared.log(.raceStarted(mode: config.careerRaceID != nil ? "career" : "quick"))
         screen = .racing(config)
     }
 
     func finishRace(result: RaceResult) {
+        let mode = result.careerRaceID != nil ? "career" : "quick"
+        AnalyticsService.shared.log(.raceFinished(mode: mode, position: result.position))
+        AnalyticsService.shared.log(result.didWin ? .raceWon(mode: mode) : .raceLost(mode: mode))
         screen = .raceFinished(result: result)
     }
 
     func startEndless() {
         resetTelemetry()
+        AnalyticsService.shared.log(.endlessStarted)
         screen = .endless
     }
 
     func finishEndless(result: EndlessResult) {
+        AnalyticsService.shared.log(.endlessFinished(score: result.score))
         screen = .endlessFinished(result: result)
     }
 

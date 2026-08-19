@@ -6,6 +6,7 @@ struct EndlessResultView: View {
     let onContinue: () -> Void
 
     @State private var isNewHighScore = false
+    @State private var isSharing = false
 
     var body: some View {
         ZStack {
@@ -33,19 +34,33 @@ struct EndlessResultView: View {
                 .font(.system(size: 14, weight: .semibold, design: .monospaced))
                 .foregroundStyle(.white.opacity(0.7))
 
-                Button(action: onContinue) {
-                    Text("CONTINUE")
-                        .font(.system(size: 20, weight: .heavy, design: .rounded))
-                        .foregroundStyle(.black)
-                        .padding(.horizontal, 44)
-                        .padding(.vertical, 16)
-                        .background(Color.white, in: Capsule())
+                VStack(spacing: 12) {
+                    Button(action: onContinue) {
+                        Text("CONTINUE")
+                            .font(.system(size: 20, weight: .heavy, design: .rounded))
+                            .foregroundStyle(.black)
+                            .padding(.horizontal, 44)
+                            .padding(.vertical, 16)
+                            .background(Color.white, in: Capsule())
+                    }
+                    .buttonStyle(.plain)
+
+                    Button {
+                        isSharing = true
+                    } label: {
+                        Label("SHARE", systemImage: "square.and.arrow.up")
+                            .font(.system(size: 14, weight: .heavy, design: .rounded))
+                            .foregroundStyle(.white.opacity(0.7))
+                    }
+                    .buttonStyle(.plain)
                 }
-                .buttonStyle(.plain)
             }
         }
         .onAppear {
             isNewHighScore = progression.handleEndlessFinished(result)
+        }
+        .sheet(isPresented: $isSharing) {
+            ShareSheet(items: [ShareText.endlessResult(result)])
         }
     }
 }

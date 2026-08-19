@@ -56,6 +56,7 @@ final class GarageState: ObservableObject {
         guard careerState.spendCredits(bike.unlockCost) else { return false }
         ownedBikeIDs.insert(bike.id)
         persist()
+        AnalyticsService.shared.log(.bikeUnlocked(bikeID: bike.id))
         return true
     }
 
@@ -76,6 +77,7 @@ final class GarageState: ObservableObject {
         bikeUpgrades[category.rawValue] = upgradeLevel(category, for: bikeID) + 1
         upgradeLevels[bikeID] = bikeUpgrades
         persist()
+        AnalyticsService.shared.log(.upgradePurchased(category: category.rawValue, bikeID: bikeID))
         return true
     }
 

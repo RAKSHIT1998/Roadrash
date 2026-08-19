@@ -9,6 +9,7 @@ struct RootView: View {
     @StateObject private var gameCenter = GameCenterService.shared
     @StateObject private var storeService = StoreService.shared
     @StateObject private var settingsState = SettingsState()
+    @StateObject private var tutorialState = TutorialState()
 
     private var progression: ProgressionCoordinator {
         ProgressionCoordinator(playerStats: playerStats, careerState: careerState, endlessState: endlessState, gameCenter: gameCenter)
@@ -52,7 +53,7 @@ struct RootView: View {
             case .settings:
                 SettingsView(settings: settingsState, onBack: gameState.returnToMenu)
             case .racing(let config):
-                RaceView(gameState: gameState, config: config, tuning: garageState.tuning(for: garageState.selectedBikeID))
+                RaceView(gameState: gameState, config: config, tuning: garageState.tuning(for: garageState.selectedBikeID), tutorialState: tutorialState)
             case .raceFinished(let result):
                 FinishView(
                     result: result,
@@ -69,6 +70,7 @@ struct RootView: View {
         .preferredColorScheme(.dark)
         .onAppear {
             gameCenter.authenticate()
+            AnalyticsService.shared.log(.gameStarted)
         }
     }
 }

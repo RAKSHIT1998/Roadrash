@@ -53,12 +53,24 @@ targets:
       base:
         GENERATE_INFOPLIST_FILE: YES
 
+  RoadRebelsUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources:
+      - path: RoadRebelsUITests
+    dependencies:
+      - target: RoadRebels
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+
 schemes:
   RoadRebels:
     build:
       targets:
         RoadRebels: all
         RoadRebelsTests: [test]
+        RoadRebelsUITests: [test]
     run:
       config: Debug
       storeKitConfiguration: RoadRebels.storekit
@@ -66,3 +78,4 @@ schemes:
       config: Debug
       targets:
         - RoadRebelsTests
+        - RoadRebelsUITests

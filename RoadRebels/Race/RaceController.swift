@@ -10,6 +10,7 @@ import Foundation
 final class RaceController {
     let sceneAnchor: AnchorEntity
     let cameraController: ChaseCameraController
+    let regionTheme: RegionTheme
 
     private let spline: RoadSpline
     private let playerEntity: BikeEntity
@@ -41,6 +42,8 @@ final class RaceController {
         self.gameState = gameState
         self.config = config
         self.tuning = tuning
+        let regionID = config.careerRaceID.flatMap(CareerContent.region(forRaceID:))?.id
+        self.regionTheme = RegionThemeCatalog.theme(forRegionID: regionID)
         self.spline = .generate(totalLength: config.distance + 150)
         self.sceneAnchor = AnchorEntity(world: .zero)
         self.playerEntity = BikeEntity(role: .player)
@@ -66,7 +69,7 @@ final class RaceController {
     }
 
     private func addSun() {
-        var light = DirectionalLightComponent(color: .white, intensity: 4000)
+        var light = DirectionalLightComponent(color: regionTheme.sunColor, intensity: regionTheme.sunIntensity)
         light.isRealWorldProxy = false
         let sunEntity = Entity()
         sunEntity.components.set(light)

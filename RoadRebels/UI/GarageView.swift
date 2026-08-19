@@ -42,6 +42,7 @@ struct GarageView: View {
                     .foregroundStyle(.white)
                     .padding(10)
             }
+            .accessibilityIdentifier("backButton")
             Spacer()
             Text("GARAGE")
                 .font(.system(size: 18, weight: .heavy, design: .rounded))
