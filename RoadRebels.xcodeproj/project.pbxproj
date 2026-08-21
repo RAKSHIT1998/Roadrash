@@ -138,7 +138,7 @@
 		1ECA971E121375FEFD29F247 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		21431A94B476FAA02F39979F /* EndlessSceneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndlessSceneView.swift; sourceTree = "<group>"; };
 		22F6DB6AC6136F4244D84037 /* CombatComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombatComponent.swift; sourceTree = "<group>"; };
-		238A71BEE8C3C2639FABF68B /* RoadRebelsUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = RoadRebelsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		238A71BEE8C3C2639FABF68B /* RoadRebelsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RoadRebelsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AF8066A13462F486108E2CB /* engineRev.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = engineRev.wav; sourceTree = "<group>"; };
 		2CB3FAF0ADE0736D398E0AE2 /* SettingsStateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsStateTests.swift; sourceTree = "<group>"; };
 		2D5633A40300B0E678915DDD /* AnalyticsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsService.swift; sourceTree = "<group>"; };
@@ -150,7 +150,7 @@
 		325B5C799497641B17A118DF /* EnemyAIState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyAIState.swift; sourceTree = "<group>"; };
 		35263B3A9772D144A8AAD84F /* RaceSceneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaceSceneView.swift; sourceTree = "<group>"; };
 		391A0FC01370BBE04262BAA6 /* GameCenterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCenterView.swift; sourceTree = "<group>"; };
-		399F81DD3A82D49C928543C7 /* RoadRebelsTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = RoadRebelsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		399F81DD3A82D49C928543C7 /* RoadRebelsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RoadRebelsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F27D23EB7E5AC5FD9DC6D0A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		437A7928BAF8066853046E38 /* EnemyAITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyAITests.swift; sourceTree = "<group>"; };
 		450E416B314A4E16592A3EA0 /* SettingsState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsState.swift; sourceTree = "<group>"; };
@@ -202,7 +202,7 @@
 		C6ABD97373BC1802A9EEE2E5 /* CareerState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareerState.swift; sourceTree = "<group>"; };
 		C7591D08A6EC28EA998EA3AF /* SceneryBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneryBuilder.swift; sourceTree = "<group>"; };
 		C998CD54553AB5230B4AA16E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		CAB2EA57295C626BB5D21850 /* RoadRebels.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = RoadRebels.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CAB2EA57295C626BB5D21850 /* RoadRebels.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RoadRebels.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFB8C0994545FB15590529AC /* RaceControlsOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaceControlsOverlay.swift; sourceTree = "<group>"; };
 		D00B06F32EE232F812D63587 /* PurchaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseCoordinator.swift; sourceTree = "<group>"; };
 		D3060510905B6662D9EB7488 /* CareerContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareerContent.swift; sourceTree = "<group>"; };
@@ -625,7 +625,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastUpgradeCheck = 1430;
+				LastUpgradeCheck = 1620;
 				TargetAttributes = {
 					27582C28D83D47E5152355B6 = {
 						DevelopmentTeam = "";
@@ -810,6 +810,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -845,6 +846,7 @@
 				DEVELOPMENT_TEAM = "";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -973,6 +975,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1008,6 +1011,7 @@
 				DEVELOPMENT_TEAM = "";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
