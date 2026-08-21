@@ -628,7 +628,6 @@
 				LastUpgradeCheck = 1620;
 				TargetAttributes = {
 					27582C28D83D47E5152355B6 = {
-						DevelopmentTeam = "";
 						ProvisioningStyle = Automatic;
 					};
 					2EB1E94BB2941321324A9EB4 = {
@@ -889,6 +888,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = 48TGY734WW;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = RoadRebels/Info.plist;
@@ -958,6 +958,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = 48TGY734WW;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = RoadRebels/Info.plist;
