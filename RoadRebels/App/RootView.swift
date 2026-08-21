@@ -53,7 +53,7 @@ struct RootView: View {
             case .settings:
                 SettingsView(settings: settingsState, onBack: gameState.returnToMenu)
             case .racing(let config):
-                RaceView(gameState: gameState, config: config, tuning: garageState.tuning(for: garageState.selectedBikeID), tutorialState: tutorialState)
+                RaceView(gameState: gameState, config: config, tuning: garageState.tuning(for: garageState.selectedBikeID), appearance: garageState.appearance, tutorialState: tutorialState)
             case .raceFinished(let result):
                 FinishView(
                     result: result,
@@ -62,7 +62,7 @@ struct RootView: View {
                     onContinue: result.careerRaceID != nil ? gameState.openCareerMap : gameState.returnToMenu
                 )
             case .endless:
-                EndlessView(gameState: gameState, endlessState: endlessState, tuning: garageState.tuning(for: garageState.selectedBikeID))
+                EndlessView(gameState: gameState, endlessState: endlessState, tuning: garageState.tuning(for: garageState.selectedBikeID), appearance: garageState.appearance)
             case .endlessFinished(let result):
                 EndlessResultView(result: result, progression: progression, onContinue: gameState.returnToMenu)
             }

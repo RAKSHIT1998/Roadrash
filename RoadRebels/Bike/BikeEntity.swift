@@ -28,14 +28,14 @@ final class BikeEntity {
     private static let legRestRotation = simd_quatf(angle: 0, axis: SIMD3<Float>(0, 0, 1))
     private static let legKickRotation = simd_quatf(angle: -1.1, axis: SIMD3<Float>(0, 0, 1))
 
-    init(role: BikeRole) {
+    init(role: BikeRole, appearance: BikeAppearance = .default) {
         self.role = role
         self.root = Entity()
         self.bodyPitchNode = Entity()
         root.addChild(bodyPitchNode)
 
         let rider = BikeEntity.RiderPivots()
-        bodyPitchNode.addChild(Self.buildModel(role: role, rider: rider))
+        bodyPitchNode.addChild(Self.buildModel(role: role, appearance: appearance, rider: rider))
         self.rightShoulderPivot = rider.rightShoulder
         self.rightHipPivot = rider.rightHip
 
@@ -81,9 +81,9 @@ final class BikeEntity {
         let rightHip = Entity()
     }
 
-    private static func buildModel(role: BikeRole, rider: RiderPivots) -> Entity {
+    private static func buildModel(role: BikeRole, appearance: BikeAppearance, rider: RiderPivots) -> Entity {
         let container = Entity()
-        let accentColor: UIColor = role == .player ? .systemRed : .systemBlue
+        let accentColor: UIColor = role == .player ? appearance.paintColor : .systemBlue
 
         let bodyMesh = MeshResource.generateBox(size: SIMD3<Float>(0.55, 0.55, 1.7), cornerRadius: 0.08)
         let bodyMaterial = SimpleMaterial(color: accentColor, isMetallic: true)
@@ -108,7 +108,45 @@ final class BikeEntity {
         rearWheel.position = SIMD3<Float>(0, 0.32, -0.85)
         container.addChild(rearWheel)
 
-        container.addChild(buildRider(role: role, pivots: rider))
+        // Brake discs — thin dark rings just inboard of each wheel, purely
+        // cosmetic detail so the bike doesn't read as bare cylinders.
+        let discMaterial = SimpleMaterial(color: UIColor(white: 0.2, alpha: 1), isMetallic: true)
+        let discMesh = MeshResource.generateCylinder(height: 0.02, radius: 0.19)
+        for z: Float in [0.85, -0.85] {
+            let disc = ModelEntity(mesh: discMesh, materials: [discMaterial])
+            disc.transform.rotation = simd_quatf(angle: .pi / 2, axis: SIMD3<Float>(0, 0, 1))
+            disc.position = SIMD3<Float>(0.17, 0.32, z)
+            container.addChild(disc)
+        }
+
+        let headlight = ModelEntity(
+            mesh: .generateSphere(radius: 0.09),
+            materials: [SimpleMaterial(color: UIColor(red: 1.0, green: 0.97, blue: 0.86, alpha: 1), isMetallic: false)]
+        )
+        headlight.position = SIMD3<Float>(0, 0.85, 0.92)
+        container.addChild(headlight)
+
+        let mirrorMaterial = SimpleMaterial(color: UIColor(white: 0.12, alpha: 1), isMetallic: true)
+        for mirrorX: Float in [-0.3, 0.3] {
+            let stalk = ModelEntity(mesh: .generateCylinder(height: 0.16, radius: 0.015), materials: [mirrorMaterial])
+            stalk.transform.rotation = simd_quatf(angle: mirrorX > 0 ? 1.3 : -1.3, axis: SIMD3<Float>(0, 0, 1))
+            stalk.position = SIMD3<Float>(mirrorX * 0.75, 1.02, 0.6)
+            container.addChild(stalk)
+
+            let mirror = ModelEntity(mesh: .generateBox(size: SIMD3<Float>(0.1, 0.06, 0.03), cornerRadius: 0.02), materials: [mirrorMaterial])
+            mirror.position = SIMD3<Float>(mirrorX, 1.08, 0.66)
+            container.addChild(mirror)
+        }
+
+        let exhaust = ModelEntity(
+            mesh: .generateCylinder(height: 0.55, radius: 0.07),
+            materials: [SimpleMaterial(color: UIColor(white: 0.75, alpha: 1), isMetallic: true)]
+        )
+        exhaust.transform.rotation = simd_quatf(angle: .pi / 2, axis: SIMD3<Float>(1, 0, 0))
+        exhaust.position = SIMD3<Float>(0.28, 0.4, -0.95)
+        container.addChild(exhaust)
+
+        container.addChild(buildRider(role: role, appearance: appearance, pivots: rider))
 
         return container
     }
@@ -116,7 +154,7 @@ final class BikeEntity {
     /// A jointed rider: torso + head fixed to the bike, two shoulder pivots
     /// (right one is the "punch" arm), two hip pivots (right one is the
     /// "kick" leg). Left limbs stay in a resting grip/foot-peg pose.
-    private static func buildRider(role: BikeRole, pivots: RiderPivots) -> Entity {
+    private static func buildRider(role: BikeRole, appearance: BikeAppearance, pivots: RiderPivots) -> Entity {
         let rider = Entity()
         let suitColor: UIColor = role == .player ? UIColor(red: 0.12, green: 0.12, blue: 0.14, alpha: 1) : UIColor(red: 0.14, green: 0.12, blue: 0.20, alpha: 1)
         let skinColor = UIColor(red: 0.75, green: 0.55, blue: 0.42, alpha: 1)
@@ -128,7 +166,7 @@ final class BikeEntity {
         torso.position = SIMD3<Float>(0, 1.35, 0.05)
         rider.addChild(torso)
 
-        let helmetColor: UIColor = role == .player ? .systemRed : .systemBlue
+        let helmetColor: UIColor = role == .player ? appearance.helmetColor : .systemBlue
         let head = ModelEntity(mesh: .generateSphere(radius: 0.16), materials: [SimpleMaterial(color: helmetColor, isMetallic: true)])
         head.position = SIMD3<Float>(0, 1.72, 0.05)
         rider.addChild(head)

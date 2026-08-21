@@ -7,6 +7,7 @@ struct RaceView: View {
     @ObservedObject var gameState: GameState
     let config: RaceConfiguration
     let tuning: BikeTuning
+    let appearance: BikeAppearance
     @ObservedObject var tutorialState: TutorialState
     @StateObject private var input = BikeInputController()
     @State private var raceController: RaceController?
@@ -32,7 +33,7 @@ struct RaceView: View {
     }
 
     private func setup() {
-        let controller = RaceController(input: input, gameState: gameState, config: config, tuning: tuning)
+        let controller = RaceController(input: input, gameState: gameState, config: config, tuning: tuning, appearance: appearance)
         controller.start()
         raceController = controller
 

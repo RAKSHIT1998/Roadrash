@@ -29,6 +29,7 @@ struct GarageView: View {
                         statsCard
                         upgradesCard
                         actionButton
+                        appearanceCard
                     }
                     .padding(20)
                 }
@@ -185,5 +186,105 @@ struct GarageView: View {
         }
         .buttonStyle(PrimaryButtonStyle())
         .disabled(isCurrent)
+    }
+
+    private var appearanceCard: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            Label("APPEARANCE", systemImage: "paintbrush.fill")
+                .font(.system(size: 12, weight: .black, design: .rounded))
+                .foregroundStyle(Theme.textSecondary)
+
+            Text("PAINT")
+                .font(.system(size: 10, weight: .bold, design: .monospaced))
+                .foregroundStyle(Theme.textTertiary)
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 10) {
+                    ForEach(PaintCatalog.all) { paint in
+                        swatch(
+                            color: Color(paint.color),
+                            name: paint.name,
+                            cost: paint.cost,
+                            owned: garageState.isOwned(paint),
+                            selected: garageState.selectedPaintID == paint.id,
+                            canAfford: careerState.credits >= paint.cost
+                        ) {
+                            if garageState.isOwned(paint) {
+                                garageState.selectPaint(paint)
+                            } else {
+                                garageState.unlockPaint(paint, careerState: careerState)
+                            }
+                        }
+                    }
+                }
+            }
+
+            Text("HELMET")
+                .font(.system(size: 10, weight: .bold, design: .monospaced))
+                .foregroundStyle(Theme.textTertiary)
+                .padding(.top, 4)
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 10) {
+                    ForEach(HelmetCatalog.all) { helmet in
+                        swatch(
+                            color: Color(helmet.color),
+                            name: helmet.name,
+                            cost: helmet.cost,
+                            owned: garageState.isOwned(helmet),
+                            selected: garageState.selectedHelmetID == helmet.id,
+                            canAfford: careerState.credits >= helmet.cost
+                        ) {
+                            if garageState.isOwned(helmet) {
+                                garageState.selectHelmet(helmet)
+                            } else {
+                                garageState.unlockHelmet(helmet, careerState: careerState)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .padding(16)
+        .cardStyle()
+    }
+
+    private func swatch(color: Color, name: String, cost: Int, owned: Bool, selected: Bool, canAfford: Bool, action: @escaping () -> Void) -> some View {
+        Button(action: action) {
+            VStack(spacing: 6) {
+                Circle()
+                    .fill(color)
+                    .frame(width: 40, height: 40)
+                    .overlay(
+                        Circle().stroke(selected ? Color.white : Theme.cardStroke, lineWidth: selected ? 3 : 1)
+                    )
+                    .overlay(
+                        Group {
+                            if selected {
+                                Image(systemName: "checkmark")
+                                    .font(.system(size: 13, weight: .bold))
+                                    .foregroundStyle(color.isLight ? .black : .white)
+                            } else if !owned {
+                                Image(systemName: "lock.fill")
+                                    .font(.system(size: 11, weight: .bold))
+                                    .foregroundStyle(color.isLight ? .black : .white)
+                            }
+                        }
+                    )
+                Text(owned ? name : "\(cost) CR")
+                    .font(.system(size: 9, weight: .semibold, design: .monospaced))
+                    .foregroundStyle(Theme.textSecondary)
+                    .lineLimit(1)
+            }
+        }
+        .buttonStyle(RowPressStyle())
+        .disabled(owned ? selected : !canAfford)
+        .opacity(!owned && !canAfford ? 0.5 : 1)
+    }
+}
+
+private extension Color {
+    var isLight: Bool {
+        guard let components = UIColor(self).cgColor.components, components.count >= 3 else { return false }
+        let brightness = (components[0] * 299 + components[1] * 587 + components[2] * 114) / 1000
+        return brightness > 0.6
     }
 }

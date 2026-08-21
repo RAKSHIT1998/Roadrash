@@ -101,6 +101,10 @@ struct GarageSaveData: Codable {
     var ownedBikeIDs: Set<String> = [BikeCatalog.all[0].id]
     var selectedBikeID: String = BikeCatalog.all[0].id
     var upgradeLevels: [String: [String: Int]] = [:] // bikeID -> UpgradeCategory.rawValue -> level
+    var ownedPaintIDs: Set<String> = [PaintCatalog.all[0].id]
+    var selectedPaintID: String = PaintCatalog.all[0].id
+    var ownedHelmetIDs: Set<String> = [HelmetCatalog.all[0].id]
+    var selectedHelmetID: String = HelmetCatalog.all[0].id
 }
 
 struct PlayerStatsSaveData: Codable {

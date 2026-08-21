@@ -40,13 +40,13 @@ final class EndlessController {
     private var nearMissCount = 0
     private var runEnded = false
 
-    init(input: BikeInputController, gameState: GameState, tuning: BikeTuning = .default) {
+    init(input: BikeInputController, gameState: GameState, tuning: BikeTuning = .default, appearance: BikeAppearance = .default) {
         self.input = input
         self.gameState = gameState
         self.tuning = tuning
         self.spline = .generate(totalLength: 700)
         self.sceneAnchor = AnchorEntity(world: .zero)
-        self.playerEntity = BikeEntity(role: .player)
+        self.playerEntity = BikeEntity(role: .player, appearance: appearance)
         self.traffic = TrafficManager(spline: spline, parent: sceneAnchor)
         self.cameraController = ChaseCameraController(initialPosition: SIMD3<Float>(0, GameConstants.cameraHeight, GameConstants.cameraFollowDistance))
         self.nitroTrail = ImpactEffects.attachNitroTrail(to: playerEntity.root)

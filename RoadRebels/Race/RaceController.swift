@@ -41,7 +41,7 @@ final class RaceController {
     private let config: RaceConfiguration
     private let tuning: BikeTuning
 
-    init(input: BikeInputController, gameState: GameState, config: RaceConfiguration, tuning: BikeTuning = .default) {
+    init(input: BikeInputController, gameState: GameState, config: RaceConfiguration, tuning: BikeTuning = .default, appearance: BikeAppearance = .default) {
         self.input = input
         self.gameState = gameState
         self.config = config
@@ -50,7 +50,7 @@ final class RaceController {
         self.regionTheme = RegionThemeCatalog.theme(forRegionID: regionID)
         self.spline = .generate(totalLength: config.distance + 150)
         self.sceneAnchor = AnchorEntity(world: .zero)
-        self.playerEntity = BikeEntity(role: .player)
+        self.playerEntity = BikeEntity(role: .player, appearance: appearance)
         self.rivals = Self.makeRivals(from: config.rivals)
         self.traffic = TrafficManager(spline: spline, parent: sceneAnchor)
         self.ramps = Self.makeRamps(routeLength: config.distance)

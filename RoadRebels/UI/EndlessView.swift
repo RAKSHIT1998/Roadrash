@@ -4,6 +4,7 @@ struct EndlessView: View {
     @ObservedObject var gameState: GameState
     @ObservedObject var endlessState: EndlessState
     let tuning: BikeTuning
+    let appearance: BikeAppearance
     @StateObject private var input = BikeInputController()
     @State private var controller: EndlessController?
     @State private var loop: GameLoop?
@@ -27,7 +28,7 @@ struct EndlessView: View {
     }
 
     private func setup() {
-        let endlessController = EndlessController(input: input, gameState: gameState, tuning: tuning)
+        let endlessController = EndlessController(input: input, gameState: gameState, tuning: tuning, appearance: appearance)
         endlessController.start()
         controller = endlessController
 
