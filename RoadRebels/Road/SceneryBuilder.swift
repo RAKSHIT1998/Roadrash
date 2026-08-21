@@ -105,6 +105,23 @@ enum SceneryBuilder {
         return rock
     }
 
+    private struct StreetSignSpec {
+        let text: String
+        let background: UIColor
+        let textColor: UIColor
+        let size: SIMD3<Float>
+    }
+
+    private static let streetSignSpecs: [StreetSignSpec] = [
+        .init(text: "STOP", background: UIColor(red: 0.72, green: 0.05, blue: 0.06, alpha: 1), textColor: .white, size: SIMD3(0.55, 0.55, 0.06)),
+        .init(text: "YIELD", background: .white, textColor: UIColor(red: 0.72, green: 0.05, blue: 0.06, alpha: 1), size: SIMD3(0.55, 0.5, 0.06)),
+        .init(text: "SPEED\nLIMIT 45", background: .white, textColor: .black, size: SIMD3(0.5, 0.62, 0.06)),
+        .init(text: "ONE WAY", background: UIColor(white: 0.1, alpha: 1), textColor: .white, size: SIMD3(0.7, 0.32, 0.06)),
+        .init(text: "NO\nPARKING", background: .white, textColor: UIColor(red: 0.72, green: 0.05, blue: 0.06, alpha: 1), size: SIMD3(0.5, 0.55, 0.06)),
+        .init(text: "MAIN ST", background: UIColor(red: 0.05, green: 0.32, blue: 0.18, alpha: 1), textColor: .white, size: SIMD3(0.75, 0.32, 0.06)),
+        .init(text: "SCHOOL\nZONE", background: UIColor(red: 0.95, green: 0.85, blue: 0.1, alpha: 1), textColor: .black, size: SIMD3(0.55, 0.55, 0.06)),
+    ]
+
     private static func buildStreetSign() -> Entity {
         let root = Entity()
         let post = ModelEntity(
@@ -114,22 +131,14 @@ enum SceneryBuilder {
         post.position.y = 1.05
         root.addChild(post)
 
-        let sign = ModelEntity(mesh: .generateBox(size: signSize(), cornerRadius: 0.05), materials: [SimpleMaterial(color: signColor(), isMetallic: false)])
+        let spec = streetSignSpecs.randomElement() ?? streetSignSpecs[0]
+        let sign = ModelEntity(
+            mesh: .generateBox(size: spec.size, cornerRadius: 0.05),
+            materials: [SignTextureFactory.material(text: spec.text, background: spec.background, textColor: spec.textColor)]
+        )
         sign.position.y = 1.95
         root.addChild(sign)
         return root
-    }
-
-    private static func signSize() -> SIMD3<Float> {
-        switch Int.random(in: 0...2) {
-        case 0: return SIMD3<Float>(0.55, 0.55, 0.06)
-        case 1: return SIMD3<Float>(0.5, 0.35, 0.06)
-        default: return SIMD3<Float>(0.5, 0.5, 0.06)
-        }
-    }
-
-    private static func signColor() -> UIColor {
-        [UIColor.systemRed, .white, .systemYellow].randomElement() ?? .white
     }
 
     private static func foliageColor(theme: RegionTheme) -> UIColor {
@@ -146,12 +155,17 @@ enum SceneryBuilder {
 
     private static func buildRandomUrbanProp() -> Prop {
         switch Float.random(in: 0...1) {
-        case ..<0.34: return Prop(entity: buildBuilding(), bias: .far)
+        case ..<0.34: return Prop(entity: buildBuilding(), isFacingSensitive: true, bias: .far)
         case ..<0.64: return Prop(entity: buildPedestrian(), isFacingSensitive: true, bias: .sidewalk)
         case ..<0.86: return Prop(entity: buildParkedCar(), isFacingSensitive: true, bias: .curb)
         default: return Prop(entity: buildLampPost(), bias: .curb)
         }
     }
+
+    private static let shopNames = [
+        "DINER", "CITY MART", "GARAGE", "PIZZA CO", "CAFE 24", "LAUNDRY",
+        "BARBER SHOP", "MOTEL", "PAWN SHOP", "AUTO PARTS", "DONUT HOUSE", "ARCADE",
+    ]
 
     private static func buildBuilding() -> Entity {
         let container = Entity()
@@ -184,7 +198,25 @@ enum SceneryBuilder {
             band.position.y = Float(floor) * 3 + 2.0
             container.addChild(band)
         }
+
+        if Bool.random() {
+            let name = shopNames.randomElement() ?? "SHOP"
+            let signWidth = min(width * 0.85, 4.0)
+            let material = SignTextureFactory.material(text: name, background: UIColor(white: 0.04, alpha: 1), textColor: signAccentColor())
+            for zSide: Float in [1, -1] {
+                let storefront = ModelEntity(
+                    mesh: .generateBox(size: SIMD3<Float>(signWidth, 0.65, 0.06), cornerRadius: 0.02),
+                    materials: [material]
+                )
+                storefront.position = SIMD3<Float>(0, 1.6, zSide * (depth / 2 + 0.05))
+                container.addChild(storefront)
+            }
+        }
         return container
+    }
+
+    private static func signAccentColor() -> UIColor {
+        [UIColor.white, UIColor.systemYellow, UIColor(red: 0.4, green: 0.9, blue: 1.0, alpha: 1), UIColor.systemOrange].randomElement() ?? .white
     }
 
     /// A simple jointed figure — same idea as the rider on the bike, just

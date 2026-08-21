@@ -7,6 +7,7 @@ import simd
 /// flashing. Catching the player (staying within bust range long enough)
 /// ends the run — matches the mega-spec's "POLICE ESCAPE" race type
 /// (section 6) as an emergent Endless-mode event rather than a separate mode.
+@MainActor
 final class PoliceCar {
     let entity: Entity
     var distance: Float
@@ -16,6 +17,7 @@ final class PoliceCar {
     private let redLight: Entity
     private let blueLight: Entity
     private var lightPhase: Float = 0
+    private var sirenAudio: AudioPlaybackController?
 
     init(startDistance: Float, laneOffset: Float) {
         self.distance = startDistance
@@ -64,7 +66,42 @@ final class PoliceCar {
             }
         }
 
+        // A visible officer behind the wheel so the cruiser reads as
+        // crewed, not an empty prop chasing the player.
+        let officer = Entity()
+        let torso = ModelEntity(
+            mesh: .generateBox(size: SIMD3<Float>(0.4, 0.5, 0.35), cornerRadius: 0.08),
+            materials: [SimpleMaterial(color: UIColor(red: 0.05, green: 0.1, blue: 0.35, alpha: 1), isMetallic: false)]
+        )
+        torso.position.y = 0.25
+        officer.addChild(torso)
+        let head = ModelEntity(mesh: .generateSphere(radius: 0.14), materials: [SimpleMaterial(color: UIColor(red: 0.75, green: 0.55, blue: 0.42, alpha: 1), isMetallic: false)])
+        head.position.y = 0.62
+        officer.addChild(head)
+        let cap = ModelEntity(mesh: .generateBox(size: SIMD3<Float>(0.28, 0.1, 0.28), cornerRadius: 0.04), materials: [SimpleMaterial(color: UIColor(white: 0.07, alpha: 1), isMetallic: false)])
+        cap.position.y = 0.73
+        officer.addChild(cap)
+        officer.position = SIMD3<Float>(-0.35, 0.75, 0.15)
+        container.addChild(officer)
+
         self.entity = container
+        startSiren()
+    }
+
+    private func startSiren() {
+        guard let url = Bundle.main.url(forResource: "siren", withExtension: "wav") else { return }
+        entity.components.set(SpatialAudioComponent(gain: -10))
+        Task { [weak self] in
+            guard let self, let resource = try? await AudioFileResource(
+                contentsOf: url, withName: "siren-\(ObjectIdentifier(self.entity))",
+                configuration: .init(shouldLoop: true)
+            ) else { return }
+            let controller = self.entity.prepareAudio(resource)
+            let muted = AudioService.shared.isMuted
+            controller.gain = muted ? -80 : -6 + Double(AudioService.shared.sfxVolume - 1) * 12
+            controller.play()
+            self.sirenAudio = controller
+        }
     }
 
     func update(dt: Float) {

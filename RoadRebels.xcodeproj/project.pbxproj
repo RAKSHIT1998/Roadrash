@@ -17,6 +17,7 @@
 		119993253506C9B826AFE92C /* RegionThemeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18134A959EDD18AA00C8FA5 /* RegionThemeTests.swift */; };
 		13B377CA3992E5720CFC84EB /* EndlessSceneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21431A94B476FAA02F39979F /* EndlessSceneView.swift */; };
 		188EEBB3A3A59A4403EEBB22 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F27D23EB7E5AC5FD9DC6D0A /* Constants.swift */; };
+		19272BE25F0FEA69BD6CD043 /* SignTextureFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2FF00359491D7AC2ADF6E9 /* SignTextureFactory.swift */; };
 		23CABFFBBF682F7EC7BF2D59 /* RaceSceneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35263B3A9772D144A8AAD84F /* RaceSceneView.swift */; };
 		267C2A30CA7B660956E9703F /* AnalyticsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5633A40300B0E678915DDD /* AnalyticsService.swift */; };
 		2949CC21BDCF89F9D9873745 /* AchievementEvaluator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5878D8865212500D00A51416 /* AchievementEvaluator.swift */; };
@@ -33,6 +34,7 @@
 		3F7A7ED6812DADA2293112A0 /* EndlessHUDView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE7FEFD97DB4FAFA7A95DA1 /* EndlessHUDView.swift */; };
 		41A38F09B87186DAA2373A7D /* CareerStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA052E17664FCFDCA68618FF /* CareerStateTests.swift */; };
 		44977D94DF098D89F6BB99BF /* EndlessResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42D39B677554B10D98890AF /* EndlessResult.swift */; };
+		449CC6F4DE3E382B2FA3DF6F /* siren.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9005AEA20258AE49F9B43F54 /* siren.wav */; };
 		48619D5273298EB57B91ECFF /* CareerModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4789AC54C5728B40872817 /* CareerModels.swift */; };
 		489468662EB5F4750936C040 /* HUDView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D471C7A642F27CE2EFBC88 /* HUDView.swift */; };
 		4A7006FAA5331CCA8171D704 /* AudioService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67C1E0C5F5E49CAFA9BF094 /* AudioService.swift */; };
@@ -83,6 +85,7 @@
 		BCD839F90FD536E37DF5E2B7 /* TrafficManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2AA40362A824C188EC9EEE /* TrafficManager.swift */; };
 		C503303BDEB4C3E6822979E3 /* RoadRebelsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77527284B74C9E078CC600E0 /* RoadRebelsUITests.swift */; };
 		C53A0AA0D69A872281B2F805 /* TutorialStepSelectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9CFDC1CB964110B7F915A45 /* TutorialStepSelectorTests.swift */; };
+		C644DB567CA7AAEAC448E7CC /* CustomizationCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 772C282A8B09FD3B735A7BA1 /* CustomizationCatalog.swift */; };
 		CB9A51D1A35C084E5395DEA3 /* EndlessControlsOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E78B220B59D6F81A350426 /* EndlessControlsOverlay.swift */; };
 		CBE007224402E4BCA8735EFE /* UrbanSceneryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024F5364559ADAC7A8762918 /* UrbanSceneryTests.swift */; };
 		CCBE9863A8A2AD69B1344D18 /* BikeInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = E561C43ADF8850900BDDB09C /* BikeInput.swift */; };
@@ -138,7 +141,7 @@
 		1ECA971E121375FEFD29F247 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		21431A94B476FAA02F39979F /* EndlessSceneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndlessSceneView.swift; sourceTree = "<group>"; };
 		22F6DB6AC6136F4244D84037 /* CombatComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombatComponent.swift; sourceTree = "<group>"; };
-		238A71BEE8C3C2639FABF68B /* RoadRebelsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RoadRebelsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		238A71BEE8C3C2639FABF68B /* RoadRebelsUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = RoadRebelsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AF8066A13462F486108E2CB /* engineRev.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = engineRev.wav; sourceTree = "<group>"; };
 		2CB3FAF0ADE0736D398E0AE2 /* SettingsStateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsStateTests.swift; sourceTree = "<group>"; };
 		2D5633A40300B0E678915DDD /* AnalyticsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsService.swift; sourceTree = "<group>"; };
@@ -150,7 +153,7 @@
 		325B5C799497641B17A118DF /* EnemyAIState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyAIState.swift; sourceTree = "<group>"; };
 		35263B3A9772D144A8AAD84F /* RaceSceneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaceSceneView.swift; sourceTree = "<group>"; };
 		391A0FC01370BBE04262BAA6 /* GameCenterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCenterView.swift; sourceTree = "<group>"; };
-		399F81DD3A82D49C928543C7 /* RoadRebelsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RoadRebelsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		399F81DD3A82D49C928543C7 /* RoadRebelsTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = RoadRebelsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F27D23EB7E5AC5FD9DC6D0A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		437A7928BAF8066853046E38 /* EnemyAITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyAITests.swift; sourceTree = "<group>"; };
 		450E416B314A4E16592A3EA0 /* SettingsState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsState.swift; sourceTree = "<group>"; };
@@ -169,6 +172,7 @@
 		730618C1CA3BDCB354D48BFF /* attackHit.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = attackHit.wav; sourceTree = "<group>"; };
 		7479E881C993429E177DDE96 /* BikePhysics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikePhysics.swift; sourceTree = "<group>"; };
 		76AF734B734F904D6AE3544F /* TrafficVehicle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrafficVehicle.swift; sourceTree = "<group>"; };
+		772C282A8B09FD3B735A7BA1 /* CustomizationCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizationCatalog.swift; sourceTree = "<group>"; };
 		77527284B74C9E078CC600E0 /* RoadRebelsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoadRebelsUITests.swift; sourceTree = "<group>"; };
 		7EC0250D7B692F485674C67D /* StoreProductID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreProductID.swift; sourceTree = "<group>"; };
 		7FE285B2E6A966478EB1D281 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
@@ -179,7 +183,9 @@
 		866899FD62D8A959930EE783 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		8981806897A487E84E303ADE /* RoadObstacles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoadObstacles.swift; sourceTree = "<group>"; };
 		8B2AA40362A824C188EC9EEE /* TrafficManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrafficManager.swift; sourceTree = "<group>"; };
+		8B2FF00359491D7AC2ADF6E9 /* SignTextureFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignTextureFactory.swift; sourceTree = "<group>"; };
 		8DE4513A311E057131FAB326 /* PlayerStatsState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerStatsState.swift; sourceTree = "<group>"; };
+		9005AEA20258AE49F9B43F54 /* siren.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = siren.wav; sourceTree = "<group>"; };
 		903052158492A9E162DC357C /* RivalProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RivalProfile.swift; sourceTree = "<group>"; };
 		9876A3F056B0AC72401AEB9B /* uiTap.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = uiTap.wav; sourceTree = "<group>"; };
 		996DBCC4AB0E7F19D155D5F6 /* EnemyRider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyRider.swift; sourceTree = "<group>"; };
@@ -202,7 +208,7 @@
 		C6ABD97373BC1802A9EEE2E5 /* CareerState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareerState.swift; sourceTree = "<group>"; };
 		C7591D08A6EC28EA998EA3AF /* SceneryBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneryBuilder.swift; sourceTree = "<group>"; };
 		C998CD54553AB5230B4AA16E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		CAB2EA57295C626BB5D21850 /* RoadRebels.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RoadRebels.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CAB2EA57295C626BB5D21850 /* RoadRebels.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = RoadRebels.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFB8C0994545FB15590529AC /* RaceControlsOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaceControlsOverlay.swift; sourceTree = "<group>"; };
 		D00B06F32EE232F812D63587 /* PurchaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseCoordinator.swift; sourceTree = "<group>"; };
 		D3060510905B6662D9EB7488 /* CareerContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareerContent.swift; sourceTree = "<group>"; };
@@ -280,6 +286,7 @@
 			children = (
 				07D1E12FC94478BB4D865DED /* BikeModel.swift */,
 				5B2B292300B2E53DACDEAE45 /* BikeTuning.swift */,
+				772C282A8B09FD3B735A7BA1 /* CustomizationCatalog.swift */,
 				B9C7B8F28E8E4B25BDDC21AE /* GarageState.swift */,
 			);
 			path = Garage;
@@ -356,6 +363,7 @@
 				8981806897A487E84E303ADE /* RoadObstacles.swift */,
 				C2968A81A8367A717FD73DEC /* RoadSegment.swift */,
 				C7591D08A6EC28EA998EA3AF /* SceneryBuilder.swift */,
+				8B2FF00359491D7AC2ADF6E9 /* SignTextureFactory.swift */,
 			);
 			path = Road;
 			sourceTree = "<group>";
@@ -494,6 +502,7 @@
 				07AF8717B19080893F464A21 /* defeat.wav */,
 				2AF8066A13462F486108E2CB /* engineRev.wav */,
 				083D0670975C5D8A0661804C /* nitro.wav */,
+				9005AEA20258AE49F9B43F54 /* siren.wav */,
 				9876A3F056B0AC72401AEB9B /* uiTap.wav */,
 				D8D6D33187C587DF521378BB /* victory.wav */,
 			);
@@ -625,9 +634,10 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastUpgradeCheck = 1620;
+				LastUpgradeCheck = 1430;
 				TargetAttributes = {
 					27582C28D83D47E5152355B6 = {
+						DevelopmentTeam = "";
 						ProvisioningStyle = Automatic;
 					};
 					2EB1E94BB2941321324A9EB4 = {
@@ -673,6 +683,7 @@
 				D1EF5A01280CFB5D80684057 /* defeat.wav in Resources */,
 				BB2E7B5A78B1DEBF578C6BC6 /* engineRev.wav in Resources */,
 				0B60F3633A3648E26CE003C8 /* nitro.wav in Resources */,
+				449CC6F4DE3E382B2FA3DF6F /* siren.wav in Resources */,
 				DC6411760FAA053E1D565D26 /* uiTap.wav in Resources */,
 				A824017FF186FAEB00B9AEF3 /* victory.wav in Resources */,
 			);
@@ -701,6 +712,7 @@
 				F867DE3235115D66632D18E3 /* ChaseCameraController.swift in Sources */,
 				2D9493FD86DC65A5A79CBC82 /* CombatComponent.swift in Sources */,
 				188EEBB3A3A59A4403EEBB22 /* Constants.swift in Sources */,
+				C644DB567CA7AAEAC448E7CC /* CustomizationCatalog.swift in Sources */,
 				FA84865ECA784B4FCC625705 /* DirectionalControls.swift in Sources */,
 				71E2A505751DDB42829FE967 /* EndlessController.swift in Sources */,
 				CB9A51D1A35C084E5395DEA3 /* EndlessControlsOverlay.swift in Sources */,
@@ -749,6 +761,7 @@
 				7C7114395BF9F6F5D724DA03 /* SettingsState.swift in Sources */,
 				F05A8E43C5816F5D02FC21AA /* SettingsView.swift in Sources */,
 				0315716EB19C8CF06D780EEC /* ShareSheet.swift in Sources */,
+				19272BE25F0FEA69BD6CD043 /* SignTextureFactory.swift in Sources */,
 				A0D874B1C0718D691D76A2D3 /* StoreProductID.swift in Sources */,
 				587DE66784E83DAADCA7A382 /* StoreService.swift in Sources */,
 				E73D988408566E6688FFE402 /* StoreView.swift in Sources */,
@@ -809,7 +822,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -845,7 +857,6 @@
 				DEVELOPMENT_TEAM = "";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -888,7 +899,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = 48TGY734WW;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = RoadRebels/Info.plist;
@@ -958,7 +968,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = 48TGY734WW;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = RoadRebels/Info.plist;
@@ -976,7 +985,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1012,7 +1020,6 @@
 				DEVELOPMENT_TEAM = "";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;

@@ -9,6 +9,7 @@ enum SFXCue: String {
     case nitro
     case victory
     case defeat
+    case siren
 }
 
 /// Abstraction over sound effect/music playback. Looks for an audio asset
