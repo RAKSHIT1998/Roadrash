@@ -11,13 +11,18 @@ struct EndlessControlsOverlay: View {
 
     var body: some View {
         GeometryReader { geo in
-            HStack(spacing: 0) {
-                steerZone(width: geo.size.width / 2)
-                VStack(spacing: 0) {
-                    nitroZone
-                    brakeZone
+            ZStack(alignment: .bottomLeading) {
+                HStack(spacing: 0) {
+                    steerZone(width: geo.size.width / 2)
+                    VStack(spacing: 0) {
+                        nitroZone
+                        brakeZone
+                    }
+                    .frame(width: geo.size.width / 2)
                 }
-                .frame(width: geo.size.width / 2)
+                DirectionalJumpControls(input: input)
+                    .padding(.leading, 24)
+                    .padding(.bottom, 22)
             }
         }
         .ignoresSafeArea()

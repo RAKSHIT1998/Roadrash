@@ -18,7 +18,7 @@ struct StoreView: View {
                 } else {
                     ScrollView {
                         VStack(spacing: 12) {
-                            ForEach(storeService.products.sorted(by: { ($0.price ?? 0) < ($1.price ?? 0) }), id: \.id) { product in
+                            ForEach(storeService.products.sorted(by: { ($0.price) < ($1.price) }), id: \.id) { product in
                                 productRow(product)
                             }
                         }

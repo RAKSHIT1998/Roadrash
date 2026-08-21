@@ -62,6 +62,19 @@ enum GameConstants {
     static let endlessMaxTrafficCount: Int = 18
     static let endlessNearMissScore: Int = 50
 
+    // Stunts / obstacles
+    static let rampLaunchSpeed: Float = 9.5
+    static let rampLaneTolerance: Float = 2.0
+    static let rampSpacing: Float = 300.0
+    static let barrierSpacing: Float = 240.0
+    static let barrierLaneTolerance: Float = 1.6
+
+    // Police chase (Endless mode late-game threat)
+    static let policeChaseStartDistance: Float = 900.0
+    static let policeMaxSpeed: Float = 38.0
+    static let policeBustDistance: Float = 4.5
+    static let policeBustDuration: Float = 1.6 // seconds sustained within bust distance before "BUSTED"
+
     // Simulation
     static let fixedTimestep: Double = 1.0 / 60.0
 }

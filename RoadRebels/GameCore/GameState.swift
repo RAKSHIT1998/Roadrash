@@ -37,6 +37,8 @@ final class GameState: ObservableObject {
     @Published var raceProgress: Float = 0 // 0...1
     @Published var nitroMeter: Float = 0 // 0...1
     @Published var endlessDistance: Float = 0
+    @Published var endlessPoliceGap: Float?
+    @Published var endlessBustProgress: Float = 0
 
     func openCareerMap() {
         screen = .careerMap
@@ -91,5 +93,7 @@ final class GameState: ObservableObject {
         raceProgress = 0
         nitroMeter = 0
         endlessDistance = 0
+        endlessPoliceGap = nil
+        endlessBustProgress = 0
     }
 }

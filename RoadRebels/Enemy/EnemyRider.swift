@@ -4,6 +4,7 @@ import Foundation
 /// machine (EnemyAIState) on top of the same BikeState/RiderCombatState
 /// building blocks the player uses. Multiple of these with different
 /// archetypes make up the field in a race.
+@MainActor
 final class EnemyRider {
     let archetype: EnemyArchetype
     let displayName: String

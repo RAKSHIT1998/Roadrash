@@ -15,12 +15,12 @@ struct EndlessResultView: View {
             Color.black.opacity(0.5).ignoresSafeArea()
 
             VStack(spacing: 16) {
-                Image(systemName: "bolt.trianglebadge.exclamationmark.fill")
+                Image(systemName: result.reason == .busted ? "light.beacon.max.fill" : "bolt.trianglebadge.exclamationmark.fill")
                     .font(.system(size: 30, weight: .bold))
                     .foregroundStyle(Theme.accentRed)
                     .shadow(color: Theme.accentRed.opacity(0.6), radius: 14)
 
-                Text("WRECKED")
+                Text(result.reason == .busted ? "BUSTED" : "WRECKED")
                     .font(.system(size: 36, weight: .black, design: .rounded))
                     .foregroundStyle(Theme.textPrimary)
 
